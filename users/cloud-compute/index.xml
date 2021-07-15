@@ -440,9 +440,32 @@ of this guide will focus on CLI/API access.&lt;/p>
 &lt;p>The OpenStack client is a command-line client for OpenStack that brings the
 command set for Compute, Identity, Image, Object Storage and Block Storage APIs
 together in a single shell with a uniform command structure.&lt;/p>
-&lt;blockquote>
-&lt;p>If installing on Windows, as there are non-pure Python packages needed for
-installation, the
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab"
+aria-controls="tabs-0-0" aria-selected="true">
+Linux / Mac
+&lt;/a>
+&lt;/li>
+&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-0-1-tab" data-toggle="tab" href="#tabs-0-1" role="tab"
+aria-controls="tabs-0-1" aria-selected="false">
+Windows
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tabx-content" id="tabs-0-content">
+&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">
+&lt;p>Installation of the OpenStack client can be done using:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">pip install openstackclient
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-0-1" role="tabpanel" aria-labelled-by="tabs-0-1-tab">
+&lt;p>As there are non-pure Python packages needed for installation, the
 &lt;a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools&lt;/a>
 is a prerequisite, please make sure it&amp;rsquo;s installed with the following options
 selected:&lt;/p>
@@ -454,10 +477,12 @@ selected:&lt;/p>
 &lt;/ul>
 &lt;p>In case you prefer to use non-Microsoft alternatives for building non-pure
 packages, please see &lt;a href="https://wiki.python.org/moin/WindowsCompilers">here&lt;/a>.&lt;/p>
-&lt;/blockquote>
 &lt;p>Installation of the OpenStack client can be done using:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">pip install openstackclient
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add IGTF CA to python's CA store:&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>Add IGTF CA to python's CA store:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">cat /etc/grid-security/certificates/*.pem &amp;gt;&amp;gt; &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>python -m requests.certs&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="authentication">Authentication&lt;/h2>
 &lt;p>Check the documentation at the

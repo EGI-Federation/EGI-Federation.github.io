@@ -29,11 +29,11 @@ discoverable via the EGI Information System (BDII).&lt;/p>
 &lt;p>The lcg-infosites command can be used to obtain VO-specific information on
 existing grid storages&lt;/p>
 &lt;p>The syntax is the following:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">lcg-infosites --vo voname -&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>v&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> -f &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>site name&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>option&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>s&lt;span style="color:#ce5c00;font-weight:bold">)]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>-h&lt;span style="color:#000;font-weight:bold">|&lt;/span> --help&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">lcg-infosites --vo voname -&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>v&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> -f &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>site name&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>option&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>s&lt;span style="color:#ce5c00;font-weight:bold">)]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>-h&lt;span style="color:#000;font-weight:bold">|&lt;/span> --help&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>--is BDII&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>For example, to list the Storage Elements (SEs) available to the biomed VO one
 could issue the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">lcg-infosites --vo biomed se
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">lcg-infosites --vo biomed se
 lcg-infosites --vo biomed se
 Avail Space&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>kB&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> Used Space&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>kB&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> Type SE
 ------------------------------------------
@@ -41,7 +41,7 @@ Avail Space&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>kB&lt;span
 &lt;span style="color:#0000cf;font-weight:bold">10995116266&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">11&lt;/span> SRM cirigridse01.univ-bpclermont.fr
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="client-access">Client access&lt;/h2>
 &lt;p>The access via client requires the user to obtain a valid X.509 user VOMS proxy.
-Please refer to the &lt;a href="../../check-in/vos/voms/">Check-in doc&lt;/a> for more
+Please refer to the &lt;a href="../../check-in/vos/voms">Check-in doc&lt;/a> for more
 information. Integration with OpenID Connect and the EGI Check-in service is
 under piloting at some of the endpoints on the infrastructure , but it has not
 yet reached the production stage.&lt;/p>
@@ -52,14 +52,14 @@ available for installation both on RHEL and Debian compatible systems.&lt;/p>
 protocols (XRootD, WebDAV, SRM, gsiftp, etc) and therefore is quite convenient
 as the same API can be used to access different protocols.&lt;/p>
 &lt;p>The gfal2 CLI can be installed as follows (for RHEL compatible systems):&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">yum install gfal2-util gfal2-all
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">yum install gfal2-util gfal2-all
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;em>gfal2-all&lt;/em> will install all the plug-ins to deal with all the available
 protocols.&lt;/p>
 &lt;p>In the following example the command to access storages via gfal2 are
 documented. Please note that the access via gsiftp protocol in the following
 example can be replaced by any other supported protocols&lt;/p>
 &lt;p>List files on a given endpoint:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-ls gsiftp://dcache-door-doma01.desy.de/dteam
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-ls gsiftp://dcache-door-doma01.desy.de/dteam
 1G.header-1
 domatest
 gb
@@ -67,23 +67,23 @@ SSE-demo
 &lt;span style="color:#204a87">test&lt;/span>
 tpctest
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Create a folder:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-mkdir gsiftp://dcache-door-doma01.desy.de/dteam/test
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-mkdir gsiftp://dcache-door-doma01.desy.de/dteam/test
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Copy a local file:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-copy test.json gsiftp://dcache-door-doma01.desy.de/dteam/test
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-copy test.json gsiftp://dcache-door-doma01.desy.de/dteam/test
 Copying file:///root/Documents/test.json &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>DONE&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> after 0s
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Copy files between storages:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-copy gsiftp://prometheus.desy.de/VOs/dteam/public-file gsiftp://dcache-door-doma01.desy.de/dteam/test
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-copy gsiftp://prometheus.desy.de/VOs/dteam/public-file gsiftp://dcache-door-doma01.desy.de/dteam/test
 Copying gsiftp://prometheus.desy.de/VOs/dteam/public-file &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>DONE&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> after 3s
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Download a file to a local folder:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-copy gsiftp://prometheus.desy.de/VOs/dteam/public-file /tmp
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-copy gsiftp://prometheus.desy.de/VOs/dteam/public-file /tmp
 Copying gsiftp://prometheus.desy.de/VOs/dteam/public-file &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>DONE&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> after 0s
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Delete a file:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">gfal-rm gsiftp://dcache-door-doma01.desy.de/dteam/test/public-file
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gfal-rm gsiftp://dcache-door-doma01.desy.de/dteam/test/public-file
 gsiftp://dcache-door-doma01.desy.de/dteam/test/public-file DELETED
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>More commands are available, please refer to the
 &lt;a href="https://dmc-docs.web.cern.ch/dmc-docs/gfal2-util.html">gfal2-util documentation&lt;/a>&lt;/p>
 &lt;h2 id="access-via-the-egi-data-transfer-service">Access via the EGI Data Transfer service&lt;/h2>
-&lt;p>The &lt;a href="../../data-transfer">EGI Data Transfer&lt;/a> service provides mechanism to
+&lt;p>The &lt;a href="../../data-transfer/">EGI Data Transfer&lt;/a> service provides mechanism to
 optimize the transfer of files between EGI Online storage endpoints. Both a
 graphical interface and CLI are available to perform bulk movement of data.
 Please check the related documentation for more information.&lt;/p>
@@ -130,21 +130,21 @@ available on the infrastructure.&lt;/p>
 the &lt;code>fedcloud&lt;/code> components is quite handy. For instance to setup the access to the
 SWIFT endpoint at IFCA-LCG2 via the Pilot VO (vo.access.egi.eu) you can use the
 &lt;code>fedcloud openstack&lt;/code> command. Start listing the available containers(buckets):&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container list
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container list
 +------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Name &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> egi_endorsed_vas &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Creating a new container:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container create test-egi
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container create test-egi
 +---------+-----------+------------------------------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> account &lt;span style="color:#000;font-weight:bold">|&lt;/span> container &lt;span style="color:#000;font-weight:bold">|&lt;/span> x-trans-id &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +---------+-----------+------------------------------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> v1 &lt;span style="color:#000;font-weight:bold">|&lt;/span> test-egi &lt;span style="color:#000;font-weight:bold">|&lt;/span> tx000000000000000000afc-005f845160-2bb3ed4-RegionOne &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +---------+-----------+------------------------------------------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Creating a new Object by uploading a file:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> object create test-egi file1.txt
 +-----------+-----------+----------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> object &lt;span style="color:#000;font-weight:bold">|&lt;/span> container &lt;span style="color:#000;font-weight:bold">|&lt;/span> etag &lt;span style="color:#000;font-weight:bold">|&lt;/span>
@@ -152,20 +152,20 @@ SWIFT endpoint at IFCA-LCG2 via the Pilot VO (vo.access.egi.eu) you can use the
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> file1.txt &lt;span style="color:#000;font-weight:bold">|&lt;/span> test-egi &lt;span style="color:#000;font-weight:bold">|&lt;/span> 5bbf5a52328e7439ae6e719dfe712200 &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +-----------+-----------+----------------------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Listing objects inside a container:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu object list test-egi
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu object list test-egi
 +-----------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Name &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +-----------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> file1.txt &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +-----------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Download an object:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> object save test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Removing an object from the container:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> object delete test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Removing the entire container (&lt;code>-r&lt;/code> option for recursive):&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container delete test-egi
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container delete test-egi
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="access-via-s3-protocol">Access via S3 protocol&lt;/h3>
 &lt;p>Openstack SWIFT is compatible with S3 protocol, therefore if the SWIFT
 deployment are properly configured they can be accessed as any other S3
@@ -174,7 +174,7 @@ compatible storage.&lt;/p>
 credentials from the Openstack deployment.&lt;/p>
 &lt;p>The following command is needed:&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu ec2 credentials create
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu ec2 credentials create
 +------------+------------------------------------------------------------------------------------------------------------------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Field &lt;span style="color:#000;font-weight:bold">|&lt;/span> Value &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------+------------------------------------------------------------------------------------------------------------------------------------------+
@@ -193,7 +193,7 @@ etc). In EGI we are using the &lt;a href="https://davix.web.cern.ch">Davix clien
 has been developed at CERN and is available both in RHEL and Debian
 environments.&lt;/p>
 &lt;p>In order to list via S3 protocol the SWIFT server just type:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">davix-ls --s3accesskey &lt;span style="color:#4e9a06">&amp;#39;access&amp;#39;&lt;/span> --s3secretkey &lt;span style="color:#4e9a06">&amp;#39;secret&amp;#39;&lt;/span> --s3alternate s3s://api.cloud.ifca.es:8080/swift/v1/test-egi
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">davix-ls --s3accesskey &lt;span style="color:#4e9a06">&amp;#39;access&amp;#39;&lt;/span> --s3secretkey &lt;span style="color:#4e9a06">&amp;#39;secret&amp;#39;&lt;/span> --s3alternate s3s://api.cloud.ifca.es:8080/swift/v1/test-egi
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>davix-get&lt;/code>, &lt;code>davix-put&lt;/code> and &lt;code>davix-del&lt;/code> are also available to download, store
 and delete objects from the storage.&lt;/p>
 &lt;h3 id="access-via-the-egi-data-transfer">Access via the EGI Data Transfer&lt;/h3>

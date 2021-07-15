@@ -1,4 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>EGI Docs – Data Transfer</title><link>/users/data-transfer/</link><description>Recent content in Data Transfer on EGI Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/users/data-transfer/index.xml" rel="self" type="application/rss+xml"/><item><title>Users: Clients</title><link>/users/data-transfer/clients/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data-transfer/clients/</guid><description>
+&lt;!--
+// jscpd:ignore-start
+-->
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The FTS3 service offers a command line client to ease the interaction with the
 service.&lt;/p>
@@ -10,7 +13,7 @@ implementation for RHEL 8 is on-going.&lt;/p>
 &lt;a href="../api/#restful-api">RESTFul API section&lt;/a>.&lt;/p>
 &lt;h2 id="installation">Installation&lt;/h2>
 &lt;p>The CLI can be installed from the EPEL repositories with the following package:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">yum install fts-rest-cli -y
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">yum install fts-rest-cli -y
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="commands">Commands&lt;/h2>
 &lt;p>This section describes some of the commands that can be issues via the FTS CLI.
 As per the API, in order to authenticate to the FTS REST server you need an
@@ -22,7 +25,7 @@ for more information.&lt;/p>
 &lt;p>This command can be used to check, as the name suggests, who are we for the
 server.&lt;/p>
 &lt;h4 id="usage">Usage&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-whoami &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-whoami &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 Options
 -h/--help : Show this &lt;span style="color:#204a87">help&lt;/span> message and &lt;span style="color:#204a87">exit&lt;/span>
 -v/--verbose : Verbose output.
@@ -35,7 +38,7 @@ Options
 --access-token : Oauth2 access token &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>supported only by some endpoints,
 takes precedence&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example">Example&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fts-rest-whoami -s https://fts3-public.cern.ch:8446
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fts-rest-whoami -s https://fts3-public.cern.ch:8446
 User DN: /DC&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>org/DC&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>terena/DC&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>tcs/C&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>NL/O&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>Stichting EGI/CN&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>Andrea Manzi
 VO: dteam
 VO id: 6b10f4e4-8fdc-5555-baa2-7d4850d4f406
@@ -44,7 +47,7 @@ Base id: 01874efb-4735-4595-bc9c-591aef8240c9
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="fts-rest-delegate">fts-rest-delegate&lt;/h3>
 &lt;p>This command can be used to (re)delegate your credentials to the FTS3 server.&lt;/p>
 &lt;h4 id="usage-1">Usage&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-delegate &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-delegate &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 Options
 -h/--help : Show this &lt;span style="color:#204a87">help&lt;/span> message and &lt;span style="color:#204a87">exit&lt;/span>
 -v/--verbose : Verbose output.
@@ -59,12 +62,12 @@ takes precedence&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 -f/--force : Force the delegation
 -H/--hours : Duration of the delegation in hours &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>default: 12&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example-1">Example&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">$ fts-rest-delegate -s https://fts3-public.cern.ch:8446
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fts-rest-delegate -s https://fts3-public.cern.ch:8446
 Delegation id: 9ab8068853808c6b
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="fts-rest-transfer-submit">fts-rest-transfer-submit&lt;/h3>
 &lt;p>This command can be used to submit new jobs to FTS3. It supports simple and bulk
 submissions. The bulk format is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;span style="color:#4e9a06">&amp;#34;files&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;span style="color:#4e9a06">&amp;#34;sources&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
@@ -92,7 +95,7 @@ submissions. The bulk format is as follows:&lt;/p>
 &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="usage-2">Usage&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-submit &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> SOURCE DESTINATION &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>CHECKSUM&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-submit &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> SOURCE DESTINATION &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>CHECKSUM&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 Options
 -h/--help : Show this &lt;span style="color:#204a87">help&lt;/span> message and &lt;span style="color:#204a87">exit&lt;/span>
 -v/--verbose : Verbose output.
@@ -134,7 +137,7 @@ If negative, there will be no retries.
 --ipv4 : Force ipv4
 --ipv6 : Force ipv6
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example-2">Example&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-submit -s https://fts3-public.cern.ch:8446 &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-submit -s https://fts3-public.cern.ch:8446 &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> gsiftp://source.host/file gsiftp://destination.host/file
 Job successfully submitted.
 Job id: 7e02b4fa-d568-11ea-9c80-02163e018681
@@ -144,7 +147,7 @@ Job id: 9a28d204-d568-11ea-9c80-02163e018681
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="fts-rest-transfer-status">fts-rest-transfer-status&lt;/h3>
 &lt;p>This command can be used to check the current status of a given job.&lt;/p>
 &lt;h4 id="usage-3">Usage&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-status &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> JOB_ID
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-status &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> JOB_ID
 Options
 -h/--help : Show this &lt;span style="color:#204a87">help&lt;/span> message and &lt;span style="color:#204a87">exit&lt;/span>
 -v/--verbose : Verbose output.
@@ -157,7 +160,7 @@ Options
 --access-token : Oauth2 access token &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>supported only by some endpoints,
 takes precedence&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example-3">Example&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-status -s https://fts3-public.cern.ch:8446 &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-status -s https://fts3-public.cern.ch:8446 &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> 7e02b4fa-d568-11ea-9c80-02163e018681
 Request ID: 7e02b4fa-d568-11ea-9c80-02163e018681
 Status: FAILED
@@ -174,7 +177,7 @@ the cancelled job. Please, mind that if the job is already in a final state
 You can additionally cancel only a subset appending a comma-separated list of
 file ids.&lt;/p>
 &lt;h4 id="usage-4">Usage&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-cancel &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-cancel &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 Options
 -h/--help : Show this &lt;span style="color:#204a87">help&lt;/span> message and &lt;span style="color:#204a87">exit&lt;/span>
 -v/--verbose : Verbose output.
@@ -187,10 +190,12 @@ Options
 --access-token : Oauth2 access token &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>supported only by some endpoints,
 takes precedence&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example-4">Example&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">fts-rest-transfer-cancel -s https://fts3-public.cern.ch:8446
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fts-rest-transfer-cancel -s https://fts3-public.cern.ch:8446
 9a28d204-d568-11ea-9c80-02163e018681
 CANCELED
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: WebFTS</title><link>/users/data-transfer/webfts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data-transfer/webfts/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div>&lt;!--
+// jscpd:ignore-end
+--></description></item><item><title>Users: WebFTS</title><link>/users/data-transfer/webfts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data-transfer/webfts/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The WebFTS interface offers end users a way to graphically execute and monitor
 file transfer between storages using different protocols. You can check CERN
@@ -209,7 +214,7 @@ private key &lt;strong>WILL NOT BE TRANSMITTED ANYWHERE&lt;/strong>. It is only 
 FTS services.&lt;/p>
 &lt;p>&lt;img src="webfts_delegate.png" alt="image">&lt;/p>
 &lt;p>To obtain the private key, you can run in the console:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">openssl pkcs12 -in yourCert.p12 -nocerts -nodes &lt;span style="color:#000;font-weight:bold">|&lt;/span> openssl rsa
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">openssl pkcs12 -in yourCert.p12 -nocerts -nodes &lt;span style="color:#000;font-weight:bold">|&lt;/span> openssl rsa
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>This command requires openssl.&lt;/p>
 &lt;p>If you need a delegation with VOMS credentials (required to access some types of
 Storage Elements), you will need to introduce the name of the virtual
@@ -275,7 +280,7 @@ single transfers), monitor and cancel existing transfers. Please check the CERN
 for the full API details. Here we will provide some examples usage using the
 Curl client.&lt;/p>
 &lt;h3 id="checking-how-the-server-sees-the-identity-of-the-user">Checking how the server sees the identity of the user&lt;/h3>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --cacert &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> https://fts3-public.cern.ch:8446/whoami
 &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;span style="color:#4e9a06">&amp;#34;dn&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
@@ -303,7 +308,7 @@ Curl client.&lt;/p>
 &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="getting-a-list-of-jobs-running">Getting a list of jobs running&lt;/h3>
 &lt;p>Filtered by VO&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --cacert &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> https://fts3-public.cern.ch:8446/jobs?vo_name&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>dteam
 &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -339,12 +344,12 @@ Curl client.&lt;/p>
 &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="cancelling-a-job">Cancelling a job&lt;/h3>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --cacert &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X DELETE &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> https://fts3-pilot.cern.ch:8446/jobs/a40b82b7-1132-459f-a641-f8b49137a713
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="getting-expiration-time-of-delegated-credentials">Getting expiration time of delegated credentials&lt;/h3>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl --capath /etc/grid-security/certificates -E &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --cacert &lt;span style="color:#000">$X509_USER_PROXY&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> https://fts3-public.cern.ch:8446/delegation/9ab8068853808c6b
 &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -356,15 +361,15 @@ Curl client.&lt;/p>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="python-bindings">Python Bindings&lt;/h2>
 &lt;p>The Python bindings for FTS can be installed from the EPEL package repository
 (EL6 and EL7 packages are available) with Python 2.7 being supported.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">yum install python-fts -y
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">yum install python-fts -y
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>For using the bindings, you need to import &lt;code>fts3.rest.client.easy&lt;/code>, although for
 convenience it can be renamed as something else:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">import fts3.rest.client.easy as fts3
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">import fts3.rest.client.easy as fts3
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>In the following code snippets, an import as above is assumed.&lt;/p>
 &lt;p>In order to be able to do any operation, information about the state of the user
 credentials and remote endpoint needs to be kept. That&amp;rsquo;s the purpose of a
 Context.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> fts3.Context&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>endpoint, ucert, ukey, &lt;span style="color:#000">verify&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>True&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> fts3.Context&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>endpoint, ucert, ukey, &lt;span style="color:#000">verify&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>True&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>The endpoint to use corresponds to the FTS instance REST server and it must have
 the following format:&lt;/p>
 &lt;p>&lt;code>https://\&amp;lt;host&amp;gt;:\&amp;lt;port&amp;gt;&lt;/code>&lt;/p>
@@ -377,7 +382,7 @@ defined in the environment variables &lt;code>X509_USER_PROXY&lt;/code> or &lt;c
 &lt;p>If verify is &lt;code>False&lt;/code>, the server certificate will not be verified.&lt;/p>
 &lt;p>Here are some examples about creating a context, submitting a job with a single
 transfer and getting the job status:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#8f5902;font-style:italic"># pretty print the json outputs&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># pretty print the json outputs&lt;/span>
 &amp;gt;&amp;gt;&amp;gt; import pprint
 &amp;gt;&amp;gt;&amp;gt; &lt;span style="color:#000">pp&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> pprint.PrettyPrinter&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">indent&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>4&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># creating the context&lt;/span>
