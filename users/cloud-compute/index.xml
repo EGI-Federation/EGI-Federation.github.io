@@ -80,14 +80,15 @@ plain text.
 &lt;/div>
 &lt;p>Alternatively, you can use the
 &lt;a href="https://indigo-dc.gitbook.io/oidc-agent/user/oidc-gen/provider/egi">oidc-agent&lt;/a>
-tool, that is able to manage your tokens locally.&lt;/p>
+tool that is able to manage your tokens locally, or the
+&lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a> client executed inside
+&lt;a href="../../notebooks/integration/#fedcloud-client">EGI Notebooks&lt;/a>.&lt;/p>
 &lt;h3 id="discovering-projects-in-keystone">Discovering projects in Keystone&lt;/h3>
 &lt;p>The &lt;em>access token&lt;/em> will provide you access to a cloud provider, but you may have
 access to several different projects within that provider (a project can be
 considered equivalent to a VO allocation). In order to discover which projects
 are available you can do that using the Keystone API.&lt;/p>
-&lt;p>You can use the
-&lt;a href="https://github.com/EGI-Federation/fedcloudclient">&lt;code>fedcloud&lt;/code> client&lt;/a> to
+&lt;p>You can use the &lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a> client to
 simplify the discovery of projects.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Get a list of sites (also available in [AppDB](https://appdb.egi.eu))&lt;/span>
 fedcloud site list
@@ -498,7 +499,8 @@ variable with the needed token:&lt;/p>
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --os-auth-url &amp;lt;keystone url&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --os-access-token &amp;lt;your access token&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --os-project-id &amp;lt;your project id&amp;gt; token issue -c id -f value&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can easily obtain an OpenStack token with the &lt;code>fedcloud&lt;/code> command:&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can easily obtain an OpenStack token with the
+&lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a> client:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site &amp;lt;NAME_OF_THE_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt; token issue
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="useful-commands-with-openstack-cli">Useful commands with OpenStack CLI&lt;/h2>
 &lt;p>Usage of the OpenStack client is described in detail
@@ -1619,7 +1621,8 @@ sites.&lt;/p>
 &lt;h2 id="discovery">Discovery&lt;/h2>
 &lt;h3 id="how-can-i-get-the-list-of-the-egi-cloud-providers">How can I get the list of the EGI Cloud providers?&lt;/h3>
 &lt;p>The list of certified providers is available in &lt;a href="https://goc.egi.eu">GOCDB&lt;/a>. The
-&lt;code>fedcloud site list&lt;/code> command can help you to get that list:&lt;/p>
+following command with the &lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a>
+client can help you to get that list:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud site list
 100IT
 BIFI
@@ -1755,29 +1758,31 @@ one as a gateway as described in the
 &lt;a href="https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-configure-a-jump-host-to-access-servers-that-i-have-no-direct-access-to">Ansible FAQ&lt;/a>.&lt;/p>
 &lt;h3 id="how-can-i-release-resources-without-destroying-my-data">How can I release resources without destroying my data?&lt;/h3>
 &lt;p>Whenever you delete a VM, the ephemeral disks associated with it will be also
-deleted. If you don&amp;rsquo;t plan to use your VM for some time, there are several
-ways to release resources consumed by the VM (e.g. CPU, RAM) and recover the
-the data or boot your VM in a previous state when you need it back. We list
-below the main strategies you can use:&lt;/p>
+deleted. If you don&amp;rsquo;t plan to use your VM for some time, there are several ways
+to release resources consumed by the VM (e.g. CPU, RAM) and recover the the data
+or boot your VM in a previous state when you need it back. We list below the
+main strategies you can use:&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>Use a volume to store the data to be kept: Check the &lt;a href="../storage">Storage section of the
-documentation&lt;/a> to learn how to use volumes. If you start your VM
-from a volume, the VM can be destroyed and recreated easily. OpenStack
-documentation cover how to &lt;a href="https://docs.openstack.org/nova/latest/user/launch-instance-from-volume.html">start a VM from a volume with CLI&lt;/a>
-or &lt;a href="https://docs.openstack.org/horizon/latest/user/launch-instances.html">using the Horizon dashboard&lt;/a>&lt;/p>
+&lt;p>Use a volume to store the data to be kept: Check the
+&lt;a href="../storage">Storage section of the documentation&lt;/a> to learn how to use
+volumes. If you start your VM from a volume, the VM can be destroyed and
+recreated easily. OpenStack documentation cover how to
+&lt;a href="https://docs.openstack.org/nova/latest/user/launch-instance-from-volume.html">start a VM from a volume with CLI&lt;/a>
+or
+&lt;a href="https://docs.openstack.org/horizon/latest/user/launch-instances.html">using the Horizon dashboard&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Suspend or shelve instance: Suspending a VM will pause a VM, releasing CPU
-and memory, and allowing to resume later in time at the exact same state.
-Shelving shuts down the VM, thus RAM contents will be lost but disk will be
-kept. This releases more resources from the provider while still allows to
-easily boot the VM back without losing disk contents.&lt;/p>
+&lt;p>Suspend or shelve instance: Suspending a VM will pause a VM, releasing CPU and
+memory, and allowing to resume later in time at the exact same state. Shelving
+shuts down the VM, thus RAM contents will be lost but disk will be kept. This
+releases more resources from the provider while still allows to easily boot
+the VM back without losing disk contents.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Create snapshot of instance: a snapshot will create a new VM image at your
-provider that can be used to boot a new instance of the VM with the same
-disk content. You can use this technique for creating a base template
-image that can be later re-used to start similar VMs easily.&lt;/p>
+provider that can be used to boot a new instance of the VM with the same disk
+content. You can use this technique for creating a base template image that
+can be later re-used to start similar VMs easily.&lt;/p>
 &lt;/li>
 &lt;/ul></description></item></channel></rss>

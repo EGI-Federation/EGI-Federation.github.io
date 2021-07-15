@@ -141,16 +141,17 @@ your cluster:&lt;/p>
 &lt;li>network identifiers&lt;/li>
 &lt;li>VM image identifiers&lt;/li>
 &lt;/ol>
-&lt;p>We will use &lt;code>fedcloud&lt;/code> cli to discover all needed details, set your credentials
-as shown in &lt;a href="../../auth/#check-in-and-access-tokens">the authentication guide&lt;/a> and
-create the autorisation files needed for ec3 (in this case for CESGA with
-VO vo.access.egi.eu):&lt;/p>
+&lt;p>We will use the &lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a> client to
+discover the required information. Set your credentials as shown in
+&lt;a href="../../auth/#check-in-and-access-tokens">the authentication guide&lt;/a> and create
+the autorisation files needed for ec3 (in this case for CESGA with VO
+vo.access.egi.eu):&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud ec3 init --site CESGA --vo vo.access.egi.eu
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>This will generate an &lt;code>auth.dat&lt;/code> file with your credentials to access the site
-and a &lt;code>templates/refresh.radl&lt;/code> with a token refreshal mechanism to allow long
-running clusters to be managed on the infrastructure.&lt;/p>
-&lt;p>Let&amp;rsquo;s get also some needed site information. Start getting the available networks,
-we will need both a public and private network:&lt;/p>
+and a &lt;code>templates/refresh.radl&lt;/code> with a refresh token to allow long running
+clusters to be managed on the infrastructure.&lt;/p>
+&lt;p>Let&amp;rsquo;s get also some needed site information. Start getting the available
+networks, we will need both a public and private network:&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site CESGA --vo vo.access.egi.eu network list
 +--------------------------------------+----------------------+--------------------------------------+

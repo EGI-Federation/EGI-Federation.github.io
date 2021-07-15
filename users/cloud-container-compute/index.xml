@@ -57,9 +57,8 @@ applications with EC3.&lt;/p>
 &lt;p>Before getting your kubernetes cluster deployed, you need to get access to the
 Cloud Compute service, check the
 &lt;a href="../../cloud-compute/auth">Authentication and Authorisation guide&lt;/a> for more
-information. You should also get
-&lt;a href="https://github.com/EGI-Federation/fedcloudclient/">&lt;code>fedcloud&lt;/code> client&lt;/a> installed
-to get EC3 templates needed to start deployment.&lt;/p>
+information. You should also get &lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a>
+client installed to get EC3 templates needed to start deployment.&lt;/p>
 &lt;p>Your kubernetes deployment needs to be performed at an specific provider (site)
 and project. Discover them using &lt;code>fedcloud&lt;/code> as described in the
 &lt;a href="../../cloud-compute/ec3">EC3 tutorial&lt;/a>.&lt;/p>

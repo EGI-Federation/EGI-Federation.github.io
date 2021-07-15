@@ -127,9 +127,10 @@ sections.&lt;/p>
 &lt;p>The Openstack CLI can be used to perform operations over the SWIFT endpoints
 available on the infrastructure.&lt;/p>
 &lt;p>First the Openstack environment needs to be properly setup, and for this purpose
-the &lt;code>fedcloud&lt;/code> components is quite handy. For instance to setup the access to the
-SWIFT endpoint at IFCA-LCG2 via the Pilot VO (vo.access.egi.eu) you can use the
-&lt;code>fedcloud openstack&lt;/code> command. Start listing the available containers(buckets):&lt;/p>
+the &lt;a href="https://fedcloudclient.fedcloud.eu">fedcloud&lt;/a> client is quite handy. For
+instance to setup the access to the SWIFT endpoint at IFCA-LCG2 via the Pilot VO
+(vo.access.egi.eu) you can use the &lt;code>fedcloud openstack&lt;/code> command. Start listing
+the available containers(buckets):&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu container list
 +------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Name &lt;span style="color:#000;font-weight:bold">|&lt;/span>
