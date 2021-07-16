@@ -315,29 +315,34 @@ upstream git@github.com:EGI-Federation/documentation.git &lt;span style="color:#
 can be used as a reference for building instructions.&lt;/p>
 &lt;h3 id="requirements">Requirements&lt;/h3>
 &lt;ul>
-&lt;li>mdl&lt;/li>
-&lt;li>hugo&lt;/li>
-&lt;li>NodeJS
+&lt;li>&lt;a href="https://gohugo.io">hugo&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://nodejs.org/">NodeJS&lt;/a> and other &lt;a href="https://www.docsy.dev">docsy&lt;/a> theme
+dependencies:
 &lt;ul>
 &lt;li>postcss-cli&lt;/li>
 &lt;li>autoprofixer&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="building-and-testing">Building and testing&lt;/h3>
-&lt;p>To install npm+nodejs please check the instructions at:
-&lt;a href="https://www.npmjs.com/get-npm">https://www.npmjs.com/get-npm&lt;/a>&lt;/p>
-&lt;p>The rest of the tools can be installed as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">gem install mdl
-npm install postcss-cli@7.1.2
-npm install autoprefixer@9.0
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>The supported Hugo version packages are available under the &lt;code>binaries&lt;/code> folder.&lt;/p>
-&lt;p>To build and run the site, from the repository root&lt;/p>
+&lt;h3 id="installing-dependencies">Installing dependencies&lt;/h3>
+&lt;p>To install npm+nodejs please check the
+&lt;a href="https://www.npmjs.com/get-npm">official instructions&lt;/a>.&lt;/p>
+&lt;p>Everything has been tested with Node.js 12.&lt;/p>
+&lt;p>The dependencies of the docsy theme can be installed as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># from the root of the repository clone&lt;/span>
+npm ci
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The supported Hugo version is shipped under the &lt;code>binaries&lt;/code> folder. Updates can
+be downloaded at
+&lt;a href="https://github.com/gohugoio/hugo/releases">the Hugo releases page&lt;/a>.&lt;/p>
+&lt;h3 id="building-the-site">Building the site&lt;/h3>
+&lt;p>To build and run the site, from the repository root:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">git submodule update --init --recursive --depth &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
-mdl -s relaxed -s style.rb -r ~MD002,~MD024 content/
-&lt;span style="color:#8f5902;font-style:italic"># Pick the repository specific to your platform&lt;/span>
-./binaries/&amp;lt;platform&amp;gt;/hugo server -D
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>The website is available at: &lt;a href="http://localhost:1313/">http://localhost:1313/&lt;/a>.&lt;/p>
+./binaries/&amp;lt;platform&amp;gt;/hugo --minify
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="testing-the-site-locally">Testing the site locally&lt;/h3>
+&lt;p>To launch the site locally, from the repository root:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">./binaries/&amp;lt;platform&amp;gt;/hugo server -D
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The website is available locally at:
+&lt;a href="http://localhost:1313/">http://localhost:1313/&lt;/a>.&lt;/p>
 &lt;h2 id="branches-and-commits">Branches and Commits&lt;/h2>
 &lt;p>You should submit your patch as a git branch ideally named with a meaningful
 name related to the changes you want to propose. This is called a &lt;em>feature
