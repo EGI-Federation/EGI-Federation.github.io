@@ -443,6 +443,17 @@ on Filter button&lt;/p>
 &lt;p>&lt;img src="./check-in-groups-actions.png" alt="Groups actions">&lt;/p>
 &lt;/li>
 &lt;/ol>
+&lt;h3 id="expiration-policy">Expiration Policy&lt;/h3>
+&lt;p>VO membership expires within a given time, typically a year after the VO member
+joins the VO. VO members receive a notification from &lt;a href="mailto:noreply@faai.grnet.gr">EGI Check-in Notifications&lt;/a>
+with the subject &amp;ldquo;vo.example.org membership will expire soon&amp;rdquo; warning them that
+their membership will expire four weeks before expiration. The notification
+email is sent on a weekly basis and includes all the instructions needed by
+VO members in order to reapply for a membership. If the VO member does not
+take any action to renew their membership, a final notification email is
+sent when the VO membership expires. Please note that a user with expired
+membership is not eligible for VO membership entitlements and as a result
+the user will not have access to VO resources relying on these entitlements.&lt;/p>
 &lt;h4 id="assign-cou-member-admin-role">Assign COU member admin role&lt;/h4>
 &lt;p>From the steps defined &lt;a href="#managing-cou-admin-members">above&lt;/a>:&lt;/p>
 &lt;ol>
