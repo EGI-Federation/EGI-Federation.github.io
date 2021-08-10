@@ -865,17 +865,10 @@ Machine will make the hardware available to the user.&lt;/p>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>IISAS-GPUCloud&lt;/td>
+&lt;td>IISAS-FedCloud&lt;/td>
 &lt;td>up to 2 NVIDIA Tesla K20m&lt;/td>
-&lt;td>gpu1cpu6, gpu2cpu12&lt;/td>
+&lt;td>g1.c08r31-K20m, g1.c16r62-2xK20m&lt;/td>
 &lt;td>acc-comp.egi.eu, eosc-synergy.eu, enmr.eu, training.egi.eu&lt;/td>
-&lt;td>Sponsored access for limited testing, conditions to be negotiated for long-term usage&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>IISAS-Nebula&lt;/td>
-&lt;td>up to 2 NVIDIA Tesla K20m&lt;/td>
-&lt;td>resource_tpl#large_gpu&lt;/td>
-&lt;td>acc-comp.egi.eu, biomed&lt;/td>
 &lt;td>Sponsored access for limited testing, conditions to be negotiated for long-term usage&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -896,10 +889,19 @@ Machine will make the hardware available to the user.&lt;/p>
 &lt;/table>
 &lt;!-- markdownlint-enable line-length -->
 &lt;h2 id="access-to-gpu-resources-on-egi-cloud">Access to GPU resources on EGI Cloud&lt;/h2>
-&lt;p>GPUs sites can be accessed by different ways: via site-specific dashboards and
-endpoints or via common federated-cloud services like common Horizon dashboard,
-&lt;a href="../vmops">VMOps dashboard&lt;/a>, or &lt;a href="../im">Infrastructure manager&lt;/a>.&lt;/p>
-&lt;p>Site-specific dashboards and endpoints are described in the following table:&lt;/p>
+&lt;p>GPUs sites can be accessed in different ways: via site-specific dashboards and
+endpoints or via common federated-cloud services like the OpenStack Horizon
+dashboards, &lt;a href="../vmops">VMOps dashboard&lt;/a>, or &lt;a href="../im">Infrastructure manager&lt;/a>.&lt;/p>
+&lt;p>It is also possible to use the
+&lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloudclient&lt;/a> for CLI access. Below is
+an example on how to use the &lt;code>fedcloud&lt;/code> command to show the GPU properties of
+the available flavors:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack flavor list --long &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --site IISAS-FedCloud &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --vo acc-comp.egi.eu &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --json-output &lt;span style="color:#000;font-weight:bold">|&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> jq -r &lt;span style="color:#4e9a06">&amp;#39;.[].Result | map(select(.Properties.&amp;#34;Accelerator:Type&amp;#34; == &amp;#34;GPU&amp;#34;)) | .&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Site-specific dashboards and endpoints are described in the following table:&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
 &lt;table>
 &lt;thead>
@@ -911,9 +913,9 @@ endpoints or via common federated-cloud services like common Horizon dashboard,
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>IISAS-GPUCloud&lt;/td>
-&lt;td>&lt;code>https://nova3.ui.savba.sk/horizon&lt;/code>&lt;/td>
-&lt;td>&lt;code>https://keystone3.ui.savba.sk:5000/&lt;/code>&lt;/td>
+&lt;td>IISAS-FedCloud&lt;/td>
+&lt;td>&lt;code>https://cloud.ui.savba.sk&lt;/code>&lt;/td>
+&lt;td>&lt;code>https://cloud.ui.savba.sk:5000/v3/&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>IFCA-LCG2&lt;/td>
