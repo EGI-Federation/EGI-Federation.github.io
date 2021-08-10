@@ -308,6 +308,8 @@ curl --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/spa
 &lt;ul>
 &lt;li>&lt;a href="http://go.egi.eu/datahub-intro">Overview slides&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://community.egi.eu/c/egi-services/datahub">Community Forum&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://indico.egi.eu/event/5089/">EGI Webinar&lt;/a> and
+&lt;a href="https://youtu.be/ayAplV2kEN4">Youtube video&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>&lt;a href="https://onedata.org/docs/doc/system_requirements.html">System requirements&lt;/a>&lt;/li>
