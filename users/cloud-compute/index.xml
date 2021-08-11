@@ -432,12 +432,15 @@ accounts.&lt;/p>
 &lt;p>The extensive &lt;a href="https://docs.openstack.org/user/">OpenStack user documentation&lt;/a>
 includes details on every OpenStack project, most providers offer access to:&lt;/p>
 &lt;ul>
-&lt;li>Keystone, for identity&lt;/li>
-&lt;li>Nova, for VM management&lt;/li>
-&lt;li>Glance, for VM image management&lt;/li>
-&lt;li>Cinder, for block storage&lt;/li>
-&lt;li>Neutron, for network management&lt;/li>
-&lt;li>Horizon, as a web dashboard&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/keystone/latest/">Keystone&lt;/a>, for identity&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/nova/latest/">Nova&lt;/a>, for VM management&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/glance/latest/">Glance&lt;/a>, for VM image
+management&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/cinder/latest/">Cinder&lt;/a>, for block storage&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/neutron/latest/">Neutron&lt;/a>, for network
+management&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/horizon/latest/">Horizon&lt;/a>, as a web
+dashboard&lt;/li>
 &lt;/ul>
 &lt;p>Web-dashboard of the integrated providers can be accessed using your EGI
 Check-in credentials directly: select &lt;em>OpenID Connect&lt;/em> or &lt;em>EGI Check-in&lt;/em> in the
@@ -701,152 +704,7 @@ for details. See below two code samples for using them&lt;/p>
 &lt;span style="color:#000">driver&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">OpenStack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">None&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;/tmp/x509up_u1000&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">ex_tenant_name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;EGI_FCTF&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;span style="color:#000">ex_force_auth_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;https://sbgcloud.in2p3.fr:5000&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;span style="color:#000">ex_force_auth_version&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;2.0_voms&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: Storage</title><link>/users/cloud-compute/storage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/cloud-compute/storage/</guid><description>
-&lt;p>If you are in need of more storage than the one provided within image disk of
-your VMs, or need to persist data independently from the VMs storage, you will
-need to use one of the solutions available as part of the
-&lt;a href="../../online-storage/">EGI online storage service&lt;/a>.&lt;/p>
-&lt;p>This page describes the Block Storage offering of the online storage which is
-only accessible from VMs running on the EGI Cloud.&lt;/p>
-&lt;h2 id="block-storage">Block Storage&lt;/h2>
-&lt;p>&lt;strong>Block storage&lt;/strong> provides additional storage blocks which can be attached to a
-virtual machine. A storage block is a virtual disk of a given size, which can be
-exposed as a virtual device in the VM. You can think of this can of devices as a
-USB stick that can be plugged into the VMs and can be used as a regular drive.
-You can format it with any file system you want and mount it in your VM. Block
-devices are persistent, thus they keep all the data after VM shutdown and need
-to be explicitly destroyed when data is not needed anymore. Block storage disks
-can be accessed only from within a VM, and only from VMs running at the same
-provider where the block storage is located. Also, they can be accessed by only
-one VM at the same time. As part of the IaaS service, block storage is managed
-via OpenStack/OCCI APIs. There is a limit on the number of block storage devices
-you can attach on a VM and there is a limit to the maximum size of such virtual
-disks. These values will depend on the particular provider and your SLA.
-Moreover, the disk space is accounted for the entire block storage device,
-regardless how much of it is actually used.&lt;/p>
-&lt;p>Block storage is created and managed via requests to specific APIs. Once the
-storage is attached to a VM, it is managed as a regular disk that can be used as
-any other disk from within the VM.&lt;/p>
-&lt;h3 id="management">Management&lt;/h3>
-&lt;p>OpenStack providers offer block storage using their native API. Both the CLI
-client or dashboard can be used. Main commands for managing volumes are listed
-below:&lt;/p>
-&lt;!-- markdownlint-disable line-length -->
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Command&lt;/th>
-&lt;th>function&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>volume create --size &amp;lt;size&amp;gt; &amp;lt;name&amp;gt;&lt;/code>&lt;/td>
-&lt;td>create a volume of size &lt;code>&amp;lt;size&amp;gt;&lt;/code> GBs and name &lt;code>&amp;lt;name&amp;gt;&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>volume list&lt;/code>&lt;/td>
-&lt;td>list available volumes&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>volume show &amp;lt;volume&amp;gt;&lt;/code>&lt;/td>
-&lt;td>show details of a given volume&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>volume delete &amp;lt;volume&amp;gt;&lt;/code>&lt;/td>
-&lt;td>deletes a volume&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>server add volume &amp;lt;server&amp;gt; &amp;lt;volume&amp;gt;&lt;/code>&lt;/td>
-&lt;td>Attach a volume to a server&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>server remove volume &amp;lt;server&amp;gt; &amp;lt;volume&amp;gt;&lt;/code>&lt;/td>
-&lt;td>Dettach a volume from a server&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;!-- markdownlint-enable line-length -->
-&lt;p>For using the legacy OCCI interface refer to
-&lt;a href="https://wiki.egi.eu/wiki/HOWTO11_How_to_use_the_rOCCI_Client#How_to_create_block_storage.3F">OCCI How-to&lt;/a>.&lt;/p>
-&lt;h3 id="using-block-storage-from-your-vms">Using block storage from your VMs&lt;/h3>
-&lt;p>Block Storage will appear as block devices into your VM. Usually these devices
-are empty upon creation. The first time you attach them to a VM, you will need
-to partition and create filesystems on the device.&lt;/p>
-&lt;p>You can just create a filesystem on the block device with the following command
-(run this at your VM!).&lt;/p>
-&lt;div class="alert alert-danger" role="alert">
-&lt;h4 class="alert-heading">Danger&lt;/h4>
-Only run this command the first time
-you use the device, it deletes all data!
-&lt;/div>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># mkfs.ext4 /dev/&amp;lt;volume device&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>&amp;lt;volume device&amp;gt;&lt;/code> (e.g &lt;code>vdb&lt;/code>) can be obtained with the
-&lt;code>openstack volume show&lt;/code> command&lt;/p>
-&lt;p>Once you have a filesystem you can mount it at the desired path:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># mount /dev/&amp;lt;volume device&amp;gt; /&amp;lt;path&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>With that you can access &lt;code>/&amp;lt;path&amp;gt;&lt;/code> where all your data will be available.
-Applications will not see any difference between a block storage device and a
-regular disk, thus no major changes should be required in the application logic.&lt;/p>
-&lt;h2 id="exposing-storage-to-egi-file-transfer-service">Exposing storage to EGI File Transfer service&lt;/h2>
-&lt;p>The &lt;a href="../../data-transfer">File Transfer service&lt;/a> allows you to move any type of
-data files asynchronously from one storage to another. If you want to copy data
-from/to one VM running on the EGI cloud, you will need to run a compatible
-server (Webdav/https, GridFTP, xrootd, SRM, S3, GCloud) that can interact with
-the FTS3 software.&lt;/p>
-&lt;p>An easy way to provide a GridFTP server on your VM is to use the
-&lt;a href="https://github.com/cern-fts/ready2go/tree/master/gridftp-le">gridftp-le ready2go docker stack&lt;/a>
-for deploying a GridFTP Docker Container with certificates from Let&amp;rsquo;s Encrypt.
-Take into account:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Security groups for the VM must allow ports 80, 2811 and the 50000-50200 range.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The VM must have a valid DNS entry (you can use
-&lt;a href="https://nsupdate.fedcloud.eu">FedCloud&amp;rsquo;s Dynamic DNS&lt;/a> for getting one)&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The default setup uses &lt;code>/srv&lt;/code> as path to expose and maps users to the &lt;code>nobody&lt;/code>
-user. Make sure that &lt;code>nobody&lt;/code> is able to read (and write if needed) on that
-location or set the mapping to the appropriate users.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The Let&amp;rsquo;s Encrypt certificates may not be accepted by some the EGI
-infrastructure endpoints, you may want to consider using IGTF certificates
-instead. Check your CA for instructions on how to get those.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You can add direct mappings for specific DNs by adding a
-&lt;code>/etc/localgridmap.conf&lt;/code> file in your running container. See the example below
-to map the
-&lt;code>/DC=org/DC=terena/DC=tcs/C=NL/O=Stichting EGI/CN=Enol Fernandez del Castillo&lt;/code>
-DN to &lt;code>nobody&lt;/code>. You can add as many lines as needed:&lt;/p>
-&lt;!-- markdownlint-disable line-length -->
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-plaintext" data-lang="plaintext">&amp;#34;/DC=org/DC=terena/DC=tcs/C=NL/O=Stichting EGI/CN=Enol Fernandez del Castillo&amp;#34; nobody
-&lt;/code>&lt;/pre>&lt;/div>&lt;!-- markdownlint-enable line-length -->
-&lt;/li>
-&lt;li>
-&lt;p>You need to specify the environment variables in the &lt;code>docker-compose.yml&lt;/code> file
-for obtaining the Let&amp;rsquo;s Encrypt certificate. An extra variable
-&lt;code>GLOBUS_HOSTNAME&lt;/code> must be also set:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- TESTCERT&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- EMAIL=youremail@domain.com&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- DOMAIN=mygridftp.example.com&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- GLOBUS_HOSTNAME=mygridftp.example.com&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>If you are running on a site with MTU smaller than 1500 (e.g. CESNET-MCC),
-make sure that you set the MTU to a value smaller than the interface MTU(you
-can check this with &lt;code>ip addr&lt;/code>). In your &lt;code>docker-compose.yml&lt;/code>, add:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">networks&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">default&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">driver&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>bridge&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">driver_opts&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">com.docker.network.driver.mtu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1434&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul></description></item><item><title>Users: GPUs</title><link>/users/cloud-compute/gpgpu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/cloud-compute/gpgpu/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: GPUs</title><link>/users/cloud-compute/gpgpu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/cloud-compute/gpgpu/</guid><description>
 &lt;h2 id="gpu-resources-on-egi-cloud">GPU resources on EGI Cloud&lt;/h2>
 &lt;p>GPUs resources are available on selected providers of the EGI Cloud. These are
 available as specific &lt;strong>flavours&lt;/strong> that when used to instantiate a Virtual
