@@ -44,7 +44,7 @@ maximum size of such virtual disks. These values will depend on the particular
 provider and your SLA.
 &lt;/div>
 &lt;h2 id="manage-volumes">Manage volumes&lt;/h2>
-&lt;p>The Block Storage in the EGI Cloud is offered via
+&lt;p>The block storage in the EGI Cloud is offered via
 &lt;a href="https://openstack.org/">OpenStack&lt;/a> deployments that implement the
 &lt;a href="https://docs.openstack.org/cinder/latest/">Cinder&lt;/a> service.&lt;/p>
 &lt;p>Users can manage block storage using the
@@ -72,12 +72,9 @@ the OpenStack CLI&lt;/li>
 &lt;p>The main FedCloud commands for managing volumes are detailed below.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-For more information check out the
+For more information see the
 documentation about
-&lt;a href="https://docs.openstack.org/cinder/latest/cli/cli-manage-volumes.html">volume management&lt;/a>,
-and the
-&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/volume-snapshot.html">volume snapshot&lt;/a>
-commands.
+&lt;a href="https://docs.openstack.org/cinder/latest/cli/cli-manage-volumes.html">volume management&lt;/a>.
 &lt;/div>
 &lt;h3 id="list-volumes">List volumes&lt;/h3>
 &lt;p>For example, to
@@ -691,6 +688,7 @@ and to catalogue the existing file and related metadata.&lt;/p>
 &lt;p>When running computation via the EGI Workload Manager, users do not actually
 access the storage directly. However, users can retrieve the output of the
 computation once it has been stored on the grid.&lt;/p></description></item><item><title>Users: Object Storage</title><link>/users/online-storage/object-storage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/online-storage/object-storage/</guid><description>
+&lt;!-- markdownlint-disable commands-show-output -->
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
 &lt;p>Object storage is a standalone service that &lt;strong>stores data as individual
 objects, organized into containers&lt;/strong>. It is a highly scalable, reliable,
@@ -742,44 +740,39 @@ It is possible to set permissions so
 that the storage container or object can be accessed publicly.
 &lt;/div>
 &lt;h2 id="usage-from-your-application">Usage from your application&lt;/h2>
-&lt;p>The Object Storage in the EGI Cloud is offered via
-&lt;a href="https://openstack.org/">OpenStack&lt;/a> SWIFT deployments on (some of
-the) EGI Cloud providers.&lt;/p>
-&lt;p>You can access and manage the storage via the
-&lt;a href="#access-from-the-command-line">command line&lt;/a> or the web dashboard of the
-selected provider. More advanced usage include access via the
-&lt;a href="#access-via-the-s3-protocol">S3 protocol&lt;/a>, or via the
-&lt;a href="#access-via-egi-data-transfer">EGI Data Transfer service&lt;/a>.&lt;/p>
+&lt;p>The object storage in the EGI Cloud is offered via
+&lt;a href="https://openstack.org/">OpenStack&lt;/a> deployments that implement the
+&lt;a href="https://docs.openstack.org/swift/latest/">Swift&lt;/a> service.&lt;/p>
+&lt;p>Users can manage object storage using the
+&lt;a href="https://docs.openstack.org/horizon/latest/user/">OpenStack Horizon dashboard&lt;/a>
+of a provider or from the &lt;a href="#access-from-the-command-line">command line&lt;/a>
+(CLI). More advanced usage include access via the
+&lt;a href="#access-via-the-s3-protocol">S3 protocol&lt;/a>, via the
+&lt;a href="https://docs.openstack.org/api-ref/object-store/">OpenStack Object Store API&lt;/a>,
+or using the &lt;a href="#access-via-egi-data-transfer">EGI Data Transfer service&lt;/a>.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Available SWIFT resources
+Available object storage resources
 can be discovered in the
 &lt;a href="https://goc.egi.eu/portal/index.php?Page_Type=Services&amp;amp;serviceType=org.openstack.swift&amp;amp;selectItemserviceType=org.openstack.swift&amp;amp;ngi=&amp;amp;searchTerm=&amp;amp;production=TRUE&amp;amp;monitored=TRUE&amp;amp;certStatus=Certified&amp;amp;scopeMatch=all&amp;amp;servKeyNames=&amp;amp;servKeyValue=">Configuration Database&lt;/a>
 (GOCDB).
 &lt;/div>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-OpenStack SWIFT offers a REST API
-to manage object storage. See the
-&lt;a href="https://docs.openstack.org/api-ref/object-store/">OpenStack object store API&lt;/a>
-for more details.
-&lt;/div>
 &lt;h2 id="access-from-the-command-line">Access from the command line&lt;/h2>
-&lt;p>Multiple command line interfaces (CLIs) are available to access object
+&lt;p>Multiple command line interfaces (CLIs) are available to manage object
 storage:&lt;/p>
 &lt;ul>
-&lt;li>For SWIFT endpoints the recommended CLI is the
-&lt;a href="../../cloud-compute/openstack">FedCloud Client&lt;/a>, a high-level CLI for
-interaction with the EGI Federated Cloud.&lt;/li>
-&lt;li>For S3-compatible object storage the recommended CLI is the
-&lt;a href="https://davix.web.cern.ch">Davix Client&lt;/a>, which has been developed at CERN
-and is available both in RHEL and Debian environments.&lt;/li>
+&lt;li>The &lt;a href="https://docs.openstack.org/python-openstackclient/latest">OpenStack CLI&lt;/a>&lt;/li>
+&lt;li>The &lt;a href="../../cloud-compute/openstack">FedCloud Client&lt;/a> is a high-level CLI for
+interaction with the EGI Federated Cloud (&lt;strong>recommended&lt;/strong>)&lt;/li>
+&lt;li>The &lt;a href="https://docs.openstack.org/mitaka/cli-reference/swift.html">Swift CLI&lt;/a>
+has some advanced features that are not available through the OpenStack CLI&lt;/li>
+&lt;li>The &lt;a href="https://davix.web.cern.ch">Davix Client&lt;/a>, developed at CERN for RHEL and
+Debian environments, is another alternative for working with S3-compatible
+object storage&lt;/li>
 &lt;/ul>
 &lt;h3 id="access-with-the-fedcloud-cli">Access with the FedCloud CLI&lt;/h3>
-&lt;p>The &lt;a href="../../cloud-compute/openstack">FedCloud command line interface&lt;/a>
-(CLI) can be used to perform operations on the SWIFT endpoints available in
-the EGI Federated Cloud. This means using the command &lt;code>fedcloud openstack&lt;/code>
-to query and manipulate storage containers and objects.&lt;/p>
+&lt;p>The main FedCloud commands for managing storage containers and storage objects are
+described below.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 See
@@ -790,8 +783,9 @@ for all object-related commands.
 &lt;/div>
 &lt;h4 id="list-storage-containers">List storage containers&lt;/h4>
 &lt;p>For example, to access to the SWIFT endpoint at IFCA-LCG2 via the
-Pilot VO (vo.access.egi.eu), use the following FedCloud command
-to list the available storage containers:&lt;/p>
+Pilot VO (vo.access.egi.eu), and
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/container.html#container-list">list the available storage containers&lt;/a>,
+use the FedCloud command below:&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Tip&lt;/h4>
 Instead of passing the site, VO, etc.
@@ -804,9 +798,12 @@ $ fedcloud openstack container list
 +------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Name &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------------+
-&lt;span style="color:#000;font-weight:bold">|&lt;/span> egi_endorsed_vas &lt;span style="color:#000;font-weight:bold">|&lt;/span>
+&lt;span style="color:#000;font-weight:bold">|&lt;/span> test-egi &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="create-new-storage-container">Create new storage container&lt;/h4>
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/container.html#container-create">create a new storage container&lt;/a>
+named &lt;code>test-egi&lt;/code>, use the follwoing FedCloud command:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack container create test-egi
 +---------+-----------+------------------------------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> account &lt;span style="color:#000;font-weight:bold">|&lt;/span> container &lt;span style="color:#000;font-weight:bold">|&lt;/span> x-trans-id &lt;span style="color:#000;font-weight:bold">|&lt;/span>
@@ -814,6 +811,20 @@ $ fedcloud openstack container list
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> v1 &lt;span style="color:#000;font-weight:bold">|&lt;/span> test-egi &lt;span style="color:#000;font-weight:bold">|&lt;/span> tx000000000000000000afc-005f845160-2bb3ed4-RegionOne &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +---------+-----------+------------------------------------------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="create-new-object-by-uploading-a-file">Create new object by uploading a file&lt;/h4>
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/object.html#object-create">upload a file as a new object&lt;/a>
+into a storage container named &lt;code>test-egi&lt;/code>, use the following FedCloud command:&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
+The newly created object can have a different
+name than the file being uploaded, use the &lt;code>--name&lt;/code> command flag for this.
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
+Multiple files can be uploaded at once,
+but in that case the resulting objects will have the same names as the uploaded
+files.
+&lt;/div>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object create test-egi file1.txt
 +-----------+-----------+----------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> object &lt;span style="color:#000;font-weight:bold">|&lt;/span> container &lt;span style="color:#000;font-weight:bold">|&lt;/span> etag &lt;span style="color:#000;font-weight:bold">|&lt;/span>
@@ -821,6 +832,9 @@ $ fedcloud openstack container list
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> file1.txt &lt;span style="color:#000;font-weight:bold">|&lt;/span> test-egi &lt;span style="color:#000;font-weight:bold">|&lt;/span> 5bbf5a52328e7439ae6e719dfe712200 &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +-----------+-----------+----------------------------------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="list-objects-in-a-storage-container">List objects in a storage container&lt;/h4>
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/object.html#object-list">list the objects in a storage container&lt;/a>
+use the FedCloud command below:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object list test-egi
 +-----------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Name &lt;span style="color:#000;font-weight:bold">|&lt;/span>
@@ -828,26 +842,77 @@ $ fedcloud openstack container list
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> file1.txt &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +-----------+
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="download-the-content-of-an-object">Download (the content of) an object&lt;/h4>
-&lt;!-- markdownlint-disable commands-show-output -->
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/object.html#object-save">download an object&lt;/a>
+named &lt;code>file1.txt&lt;/code> located in storage container &lt;code>test-egi&lt;/code>, and save its content
+to a file use the FedCloud command below:&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
+The object can be saved into a file
+named differently than the object itselft, by using the &lt;code>--filename&lt;/code> command
+flag.
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
+Multiple files can be downloaded at
+once, but in that case the resulting files will have the same names as the
+downloaded objects.
+&lt;/div>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object save test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="add-metadata-to-an-object">Add metadata to an object&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object &lt;span style="color:#204a87">set&lt;/span> --property &lt;span style="color:#000">key&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>value test-egi file1.txt
+&lt;p>You can &lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/object.html#object-set">add/update object metadata&lt;/a>,
+stored as key-value pairs among the object properties.
+E.g. to add a property named &lt;code>key1&lt;/code> with the value &lt;code>value2&lt;/code> to an object
+named &lt;code>file1.txt&lt;/code> located in the storage container named &lt;code>test-egi&lt;/code>, you can
+use the FedCloud command below:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object &lt;span style="color:#204a87">set&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --property &lt;span style="color:#000">key1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>value2 test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="remove-metadata-from-an-object">Remove metadata from an object&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object &lt;span style="color:#204a87">unset&lt;/span> --property key test-egi file1.txt
+&lt;p>You can also &lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/container.html#container-unset">remove metadata from objects&lt;/a>.
+E.g. to remove the property named &lt;code>key1&lt;/code> from the object named &lt;code>file1.txt&lt;/code>
+located in the storage container named &lt;code>test-egi&lt;/code>, you can use the FedCloud
+command below:&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Only metadata added by users can be
+removed (system properties cannot be removed).
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object &lt;span style="color:#204a87">unset&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --property key test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="remove-an-object-from-a-storage-container">Remove an object from a storage container&lt;/h4>
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/object.html#object-delete">delete an object&lt;/a>
+named &lt;code>file1.txt&lt;/code> from the storage container &lt;code>test-egi&lt;/code>, use the following
+FedCloud command:&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Caution&lt;/h4>
+Deleting object from storage
+containers is final, there is no way to recover deleted objects. Unlike in
+&lt;a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS S3&lt;/a>,
+objects in OpenStack storage containers cannot be protected against deletion.
+&lt;/div>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack object delete test-egi file1.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="removing-an-entire-container">Removing an entire container&lt;/h4>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack container delete test-egi
-&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To
+&lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/container.html#container-delete">delete a storage container&lt;/a>,
+including all objects in it, use the FedCloud command below.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Tip&lt;/h4>
 You can add the &lt;code>-r&lt;/code> option
 to recursively remove sub-containers.
 &lt;/div>
-&lt;h3 id="access-via-the-s3-protocol">Access via the S3 protocol&lt;/h3>
-&lt;p>OpenStack SWIFT is compatible with S3 protocol, therefore if the SWIFT
-deployment is properly configured, it can be accessed as any other
-S3-compatible storage.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Caution&lt;/h4>
+Deleting all objects from a
+storage container is final, there is no way to recover deleted objects. Unlike in
+&lt;a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS S3&lt;/a>,
+objects in OpenStack storage containers cannot be protected against deletion.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack container delete test-egi
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="access-via-the-s3-protocol">Access via the S3 protocol&lt;/h3>
+&lt;p>The OpenStack &lt;a href="https://docs.openstack.org/swift/latest/">Swift&lt;/a> service is
+compatible with the S3 protocol, therefore when properly configured, it can be
+accessed as any other S3-compatible object store.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The S3 protocol was created by &lt;a href="https://www.aws.com">Amazon
@@ -861,7 +926,7 @@ to access object storage offered by other providers.
 &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">EC2&lt;/a>-compatible
 credentials from the OpenStack deployment. Use the following command:&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack --site IFCA-LCG2 --vo vo.access.egi.eu ec2 credentials create
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack ec2 credentials create
 +------------+------------------------------------------------------------------------------------------------------------------------------------------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> Field &lt;span style="color:#000;font-weight:bold">|&lt;/span> Value &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------------+------------------------------------------------------------------------------------------------------------------------------------------+
@@ -879,10 +944,11 @@ Save the &lt;code>access&lt;/code> and &lt;code>secret&lt;/code>
 values, as those are needed in subsequent commands that use the S3 protocol.
 &lt;/div>
 &lt;p>To list containers/objects via the S3 protocol, use the command:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ davix-ls --s3accesskey &lt;span style="color:#4e9a06">&amp;#39;access&amp;#39;&lt;/span> --s3secretkey &lt;span style="color:#4e9a06">&amp;#39;secret&amp;#39;&lt;/span> --s3alternate s3s://api.cloud.ifca.es:8080/swift/v1/test-egi
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ davix-ls --s3accesskey &lt;span style="color:#4e9a06">&amp;#39;access&amp;#39;&lt;/span> --s3secretkey &lt;span style="color:#4e9a06">&amp;#39;secret&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --s3alternate s3s://api.cloud.ifca.es:8080/swift/v1/test-egi
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>davix-get&lt;/code>, &lt;code>davix-put&lt;/code> and &lt;code>davix-del&lt;/code> are also available to download, store
 and delete objects from the storage.&lt;/p>
-&lt;!-- markdownlint-enable line-length commands-show-output -->
+&lt;!-- markdownlint-enable line-length -->
 &lt;h2 id="access-via-egi-data-transfer">Access via EGI Data Transfer&lt;/h2>
 &lt;p>The &lt;a href="../../data-transfer">EGI Data Transfer&lt;/a> service can move files
 to and from object storages that are compatible with the S3 protocol.
@@ -893,4 +959,5 @@ objects in the storage.&lt;/p>
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Please contact support
 at &lt;code>support&lt;/code> &lt;code>&amp;lt;at&amp;gt;&lt;/code> &lt;code>egi.eu&lt;/code> for more details.
-&lt;/div></description></item></channel></rss>
+&lt;/div>
+&lt;!-- markdownlint-enable commands-show-output --></description></item></channel></rss>

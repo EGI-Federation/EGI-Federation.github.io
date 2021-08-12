@@ -437,6 +437,7 @@ includes details on every OpenStack project, most providers offer access to:&lt;
 &lt;li>&lt;a href="https://docs.openstack.org/glance/latest/">Glance&lt;/a>, for VM image
 management&lt;/li>
 &lt;li>&lt;a href="https://docs.openstack.org/cinder/latest/">Cinder&lt;/a>, for block storage&lt;/li>
+&lt;li>&lt;a href="https://docs.openstack.org/swift/latest/">Swift&lt;/a>, for object storage&lt;/li>
 &lt;li>&lt;a href="https://docs.openstack.org/neutron/latest/">Neutron&lt;/a>, for network
 management&lt;/li>
 &lt;li>&lt;a href="https://docs.openstack.org/horizon/latest/">Horizon&lt;/a>, as a web
