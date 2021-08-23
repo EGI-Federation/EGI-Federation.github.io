@@ -696,7 +696,7 @@ submitted to sites in the normal way.&lt;/p>
 &lt;td>GlueSiteName: RAL-LCG2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_DESC=&amp;quot;Rutherford Lab&amp;rdquo;&lt;/td>
+&lt;td>SITE_DESC=&amp;ldquo;Rutherford Lab&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteDescription: Rutherford Lab&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -712,7 +712,7 @@ submitted to sites in the normal way.&lt;/p>
 &lt;td>GlueSiteSecurityContact: mailto:steve@example.com&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_LOC=&amp;quot;Soho, London, United Kingdom&amp;rdquo;&lt;/td>
+&lt;td>SITE_LOC=&amp;ldquo;Soho, London, United Kingdom&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteLocation: Soho, London, United Kingdom&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -724,23 +724,23 @@ submitted to sites in the normal way.&lt;/p>
 &lt;td>GlueSiteLatitude: -12.34&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_WEB=&amp;quot;https://example.com/&amp;rdquo;&lt;/td>
+&lt;td>SITE_WEB=&amp;ldquo;&lt;a href="https://example.com/%22">https://example.com/&amp;quot;&lt;/a>&lt;/td>
 &lt;td>GlueSiteWeb: &lt;a href="https://example.com/">https://example.com/&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_OTHER_GRID=&amp;quot;EGI|WLCG&amp;rdquo;&lt;/td>
+&lt;td>SITE_OTHER_GRID=&amp;ldquo;EGI|WLCG&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteOtherInfo: GRID=EGI&lt;br />GlueSiteOtherInfo: GRID=WLCG&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_OTHER_EGEE_ROC=&amp;quot;UK/I&amp;rdquo;&lt;/td>
+&lt;td>SITE_OTHER_EGEE_ROC=&amp;ldquo;UK/I&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteOtherInfo: EGEE_ROC=UK/I&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_OTHER_EGI_NGI=&amp;quot;NGI_CZ&amp;rdquo;&lt;/td>
+&lt;td>SITE_OTHER_EGI_NGI=&amp;ldquo;NGI_CZ&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteOtherInfo: EGI_NGI=NGI_CZ&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>SITE_OTHER_EGEE_SERVICE=&amp;quot;prod&amp;rdquo;&lt;/td>
+&lt;td>SITE_OTHER_EGEE_SERVICE=&amp;ldquo;prod&amp;rdquo;&lt;/td>
 &lt;td>GlueSiteOtherInfo: EGEE_SERVICE=prod&lt;/td>
 &lt;/tr>
 &lt;tr>

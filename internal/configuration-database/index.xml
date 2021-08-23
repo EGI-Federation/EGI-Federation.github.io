@@ -25,7 +25,7 @@ institutional account, users need to:&lt;/p>
 &lt;/ol>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Important&lt;/h4>
-In the case the user cannot use an IdP compliant with &lt;a href="https://refeds.org/research-and-scholarship">REFEDS
+&lt;p>In the case the user cannot use an IdP compliant with &lt;a href="https://refeds.org/research-and-scholarship">REFEDS
 R&amp;amp;S&lt;/a> and &lt;a href="https://refeds.org/sirtfi">REFEDS
 Sirtfi&lt;/a>, the user will have to request joining a
 specific group, by performing the steps below. Using a compliant IdP is the

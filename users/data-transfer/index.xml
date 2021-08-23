@@ -235,7 +235,7 @@ protocol, the address of the endpoint and the path. (Ex:
 &lt;p>If you need to filter the list of files and folders, you can use the available
 filters: name, size and date. Once you have loaded both endpoints and selected
 the files, the transfer buttons will be enabled. Click the button with the
-correct direction. A success or error message will appear above the endpoints&amp;rsquo;
+correct direction. A success or error message will appear above the endpoints'
 containers.&lt;/p>
 &lt;p>You can now check the status of you transfer in the &amp;ldquo;My jobs&amp;rdquo; tab.&lt;/p>
 &lt;p>&lt;img src="webfts_submit.png" alt="image">&lt;/p>
