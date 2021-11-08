@@ -688,7 +688,144 @@ domain name in the mapping. Add as many VOs as you are supporting.&lt;/p>
 &lt;p>cloudkeeper-os should run permanently, there is a &lt;code>cloudkeeper-os.service&lt;/code> for
 systemd in the appliance. Manage as usual:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">systemctl &amp;lt;start&lt;span style="color:#000;font-weight:bold">|&lt;/span>stop&lt;span style="color:#000;font-weight:bold">|&lt;/span>status&amp;gt; cloudkeeper-os
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>cloudkeeper core is run every 4 hours with a cron script.&lt;/p></description></item><item><title>Providers: VO Configuration guide</title><link>/providers/cloud-compute/openstack/vo_config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/vo_config/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>cloudkeeper core is run every 4 hours with a cron script.&lt;/p></description></item><item><title>Providers: GPU Flavors</title><link>/providers/cloud-compute/openstack/gpu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/gpu/</guid><description>
+&lt;h2 id="setting-up-gpu-flavors">Setting up GPU flavors&lt;/h2>
+&lt;p>Support for GPU can be added to flavors using the
+&lt;a href="https://docs.openstack.org/nova/xena/admin/pci-passthrough.html">PCI passthrough feature in OpenStack&lt;/a>.
+This allows to plug any kind of PCI device to the Virtual Machines.&lt;/p>
+&lt;p>As a summary of the OpenStack documentation, these are the steps needed to add a
+GPU enabled flavor (be aware this may need tuning to your specific
+hardware/configuration!):&lt;/p>
+&lt;ol>
+&lt;li>On computing node, get vendor/product ID of your hardware:
+&lt;code>lspci | grep NVDIA&lt;/code> to get pci slot of GPU, then
+&lt;code>virsh nodedev-dumpxml pci_xxxx_xx_xx_x&lt;/code>&lt;/li>
+&lt;li>On computing node, unbind device from host kernel driver. Unbinding is system
+dependent, and can be done in many ways, e.g.:
+&lt;ul>
+&lt;li>if the kernel does not uses the devices (no GPU drivers included in kernel,
+or drivers disable in GRUB), nothing to unbind&lt;/li>
+&lt;li>via pci-stub
+&lt;code>grubby --args=&amp;quot;pci-stub.ids=10de:11fa&amp;quot; --update-kernel DEFAULT&lt;/code> (see
+&lt;a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#proc_assigning-a-gpu-to-a-virtual-machine_assembly_managing-gpu-devices-in-virtual-machines">RedHat manual, section 12.1, step 1-2&lt;/a>;
+where the &lt;code>pci-stub.ids&lt;/code> value is &lt;code>vendor_ID: product_id&lt;/code> from &lt;code>lspci&lt;/code>.&lt;/li>
+&lt;li>via echo command: &lt;code>echo $dev &amp;gt; /sys/bus/pci/devices/$dev/driver/unbind&lt;/code>
+where &lt;code>$dev&lt;/code> is the PCI device ID &lt;code>xx:xx.x&lt;/code> or &lt;code>xxxx:xx:xx.x&lt;/code> from &lt;code>lspci&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>On computing node, add
+&lt;code>pci_passthrough_whitelist = {&amp;quot;vendor_id&amp;quot;:&amp;quot;xxxx&amp;quot;,&amp;quot;product_id&amp;quot;:&amp;quot;xxxx&amp;quot;}&lt;/code> to
+&lt;code>nova.conf&lt;/code> (see
+&lt;a href="https://docs.openstack.org/nova/xena/admin/pci-passthrough.html#configure-nova-compute">nova-compute&lt;/a>)&lt;/li>
+&lt;li>On controller node, add
+&lt;code>pci_alias = {&amp;quot;vendor_id&amp;quot;:&amp;quot;xxxx&amp;quot;,&amp;quot;product_id&amp;quot;:&amp;quot;xxxx&amp;quot;, &amp;quot;name&amp;quot;:&amp;quot;GPU&amp;quot;}&lt;/code> to
+&lt;code>nova.conf&lt;/code> (see
+&lt;a href="https://docs.openstack.org/nova/xena/admin/pci-passthrough.html#configure-nova-scheduler">nova-api&lt;/a>)&lt;/li>
+&lt;li>On controller node, enable &lt;code>PciPassthroughFilter&lt;/code> in the scheduler (see
+&lt;a href="https://docs.openstack.org/nova/xena/admin/pci-passthrough.html#configure-nova-scheduler">nova-scheduler&lt;/a>)&lt;/li>
+&lt;li>Create new flavors with &lt;code>pci_passthrough:alias&lt;/code> (or add key to existing
+flavor), e.g.
+&lt;code>openstack flavor set m1.large --property &amp;quot;pci_passthrough:alias&amp;quot;=&amp;quot;GPU:2&amp;quot;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h2 id="gpu-description-in-flavor-metadata">GPU description in flavor metadata&lt;/h2>
+&lt;p>Users should be able to easily discover the flavors that provide GPUs (or
+accelerators in general). The following table describes the agreed metadata for
+EGI providers to add to those flavors:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metadata&lt;/th>
+&lt;th>Definition&lt;/th>
+&lt;th>Comments&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Accelerator:Type&lt;/td>
+&lt;td>Type of accelerator (e.g. &lt;code>GPU&lt;/code>)&lt;/td>
+&lt;td>Possible values: &lt;code>GPU&lt;/code>, &lt;code>MIC&lt;/code>, &lt;code>FPGA&lt;/code>, &lt;code>TPU&lt;/code>, &lt;code>NPU&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Number&lt;/td>
+&lt;td>Number of accelerators available in the flavor (e.g. &lt;code>1.0&lt;/code>)&lt;/td>
+&lt;td>Non integers allowed for the case of sharing GPU between VMs&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Vendor&lt;/td>
+&lt;td>Name of accelerator Vendor (e.g. &lt;code>NVIDIA&lt;/code>)&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Model&lt;/td>
+&lt;td>Model of accelerator (e.g. &lt;code>Tesla V100&lt;/code>)&lt;/td>
+&lt;td>Need to make consensus and enforce. A100 is usually marketed without &amp;ldquo;Tesla&amp;rdquo; classname. Similarly, RTX A6000 usually marketed without “GeForce”. For clarity, full names should be used: “Tesla A100” and “GeForce RTX A6000”&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Version&lt;/td>
+&lt;td>Version of the accelerator&lt;/td>
+&lt;td>Some cards have different versions, e.g. A100 PCIe and NVLink. Openstack does not allow empty value, so we should give 0 if no version is specified&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Memory&lt;/td>
+&lt;td>RAM in GBs of the accelerator&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:VirtualizationType&lt;/td>
+&lt;td>Type of virtualisation used (e.g. &lt;code>PCI passthrough&lt;/code>)&lt;/td>
+&lt;td>Not relevant for accounting, but may be still useful in some cases&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>There are some extra fields that are defined in the GLUE2.1 schema but not so
+relevant for GPUs and therefore not considered at the moment. These are listed
+below for completeness:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metadata&lt;/th>
+&lt;th>Definition&lt;/th>
+&lt;th>Comments&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Accelerator:ComputeCapability&lt;/td>
+&lt;td>Compute capabilities&lt;/td>
+&lt;td>Defined by GLUE2.1, e.g. floating point type, NVLink, &amp;hellip; may be used informally so far&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:ClockSpeed&lt;/td>
+&lt;td>Clockspeed of accelerator&lt;/td>
+&lt;td>Defined by GLUE2.1, not so relevant, as ClockSpeed no longer related to performance. May be reserved for other types of accelerators&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Accelerator:Cores&lt;/td>
+&lt;td>Number of cores of the accelerator&lt;/td>
+&lt;td>Not so useful as there are several types of cores now (CUDA, tensor). May be reserved for other types of accelerators&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Adding metadata to flavors has no effects on site operations. End-users can see
+the metadata easily via &lt;code>openstack flavor list --long&lt;/code> or
+&lt;code>openstack flavor show &amp;lt;flavor id&amp;gt;&lt;/code> commands without any additional tools, e.g.:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ fedcloud openstack flavor show gpu1cpu2 --site IISAS-GPUCloud --vo eosc-synergy.eu -f json
+Site: IISAS-GPUCloud, VO: eosc-synergy.eu
+&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;OS-FLV-DISABLED:disabled&amp;#34;&lt;/span>: false,
+&lt;span style="color:#4e9a06">&amp;#34;OS-FLV-EXT-DATA:ephemeral&amp;#34;&lt;/span>: 0,
+&lt;span style="color:#4e9a06">&amp;#34;access_project_ids&amp;#34;&lt;/span>: null,
+&lt;span style="color:#4e9a06">&amp;#34;disk&amp;#34;&lt;/span>: 40,
+&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;a8082202-f647-4d1f-9b97-4f5ddb38ae8e&amp;#34;&lt;/span>,
+&lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;gpu1cpu2&amp;#34;&lt;/span>,
+&lt;span style="color:#4e9a06">&amp;#34;os-flavor-access:is_public&amp;#34;&lt;/span>: false,
+&lt;span style="color:#4e9a06">&amp;#34;properties&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Accelerator:Version=&amp;#39;0&amp;#39;, Accelerator:Memory=&amp;#39;5&amp;#39;, Accelerator:Model=&amp;#39;Tesla K20m&amp;#39;, Accelerator:Number=&amp;#39;1.0&amp;#39;, Accelerator:Type=&amp;#39;GPU&amp;#39;, Accelerator:Vendor=&amp;#39;NVIDIA&amp;#39;, Accelerator:VirtualizationType=&amp;#39;PCI passthrough&amp;#39;, pci_passthrough:alias=&amp;#39;GPU:1&amp;#39;&amp;#34;&lt;/span>,
+&lt;span style="color:#4e9a06">&amp;#34;ram&amp;#34;&lt;/span>: 8192,
+&lt;span style="color:#4e9a06">&amp;#34;rxtx_factor&amp;#34;&lt;/span>: 1.0,
+&lt;span style="color:#4e9a06">&amp;#34;swap&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;span style="color:#4e9a06">&amp;#34;vcpus&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Providers: VO Configuration guide</title><link>/providers/cloud-compute/openstack/vo_config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/vo_config/</guid><description>
 &lt;p>In this page you can find a summary of the needed steps for supporting a new VO
 in your OpenStack infrastructure.&lt;/p>
 &lt;h2 id="local-project-creation">Local project creation&lt;/h2>
