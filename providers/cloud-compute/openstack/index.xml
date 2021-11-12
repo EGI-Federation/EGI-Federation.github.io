@@ -577,7 +577,7 @@ is used instead for transferring information
 &lt;p>You can either run the service by yourself or rely on central operations of the
 cloud-info-provider. In both cases you must register your host DN in the GOCDB
 entry for the &lt;code>org.openstack.nova&lt;/code>.&lt;/p>
-&lt;h3 id="catch-all-operations">Catch-all operations&lt;/h3>
+&lt;h2 id="catch-all-operations">Catch-all operations&lt;/h2>
 &lt;p>EGI can manage the operation of the &lt;code>cloud-info-provider&lt;/code> for the site so you
 don&amp;rsquo;t need to do it. In order for your site to be included in the centrally
 operated &lt;code>cloud-info-provider&lt;/code>, you need to create a Pull Request at the
