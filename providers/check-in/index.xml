@@ -486,8 +486,8 @@ provide the following information to connect your service to EGI Check-in:&lt;/p
 &lt;li>Name of the service (in English and optionally in other languages supported
 by the service)&lt;/li>
 &lt;li>Short description of the service&lt;/li>
-&lt;li>Site (URL) for localised information about the service; the content found
-at the URL SHOULD provide more complete information than what provided by the
+&lt;li>Site (URL) for localised information about the service; the content found at
+the URL SHOULD provide more complete information than what is provided by the
 description&lt;/li>
 &lt;li>Contact information of the following types:
 &lt;ul>
@@ -586,8 +586,11 @@ bundle to connected Service Providers without administrative involvement,
 subject to user consent. The following attributes constitute a minimal subset of
 the R&amp;amp;S attribute bundle:&lt;/p>
 &lt;ul>
-&lt;li>Persistent, non-reassignable, non-targeted, opaque, globally unique EGI user
-ID (&lt;code>eduPersonUniqueId&lt;/code>); this is always scoped &lt;code>@egi.eu&lt;/code>&lt;/li>
+&lt;li>Community User Identifier (CUID) which is a globally unique, opaque,
+persistent and non-reassignable identifier identifying the user
+(&lt;code>voPersonID&lt;/code>). For users whose community identity is managed by Check-in,
+this identifier is of the form &lt;code>&amp;lt;uniqueID&amp;gt;@egi.eu&lt;/code>. The &lt;code>&amp;lt;uniqueID&amp;gt;&lt;/code> portion
+is an opaque identifier issued by Check-in.&lt;/li>
 &lt;li>Email address (&lt;code>mail&lt;/code>)&lt;/li>
 &lt;li>Display name (&lt;code>displayName&lt;/code>) OR (&lt;code>givenName&lt;/code> AND &lt;code>sn&lt;/code>)&lt;/li>
 &lt;/ul>
@@ -717,12 +720,20 @@ UserInfo Endpoint:&lt;/p>
 &lt;td>&lt;ul>&lt;li>&lt;code>email&lt;/code>&lt;/li>&lt;li>&lt;code>email_verified&lt;/code>&lt;/li>&lt;li>&lt;code>voperson_verified_email&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>&lt;code>eduperson_scoped_affiliation&lt;/code>&lt;/td>
-&lt;td>&lt;code>eduperson_scoped_affiliation&lt;/code>&lt;/td>
+&lt;td>&lt;code>aarc&lt;/code>&lt;/td>
+&lt;td>&lt;ul>&lt;li>&lt;code>name&lt;/code>&lt;/li>&lt;li>&lt;code>given_name&lt;/code>&lt;/li>&lt;li>&lt;code>family_name&lt;/code>&lt;/li>&lt;li>&lt;code>preferred_username&lt;/code>&lt;/li>&lt;li>&lt;code>email&lt;/code>&lt;/li>&lt;li>&lt;code>email_verified&lt;/code>&lt;/li>&lt;li>&lt;code>voperson_verified_email&lt;/code>&lt;/li>&lt;li>&lt;code>voperon_id&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>eduperson_entitlement&lt;/code>&lt;/td>
 &lt;td>&lt;code>eduperson_entitlement&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>eduperson_scoped_affiliation&lt;/code>&lt;/td>
+&lt;td>&lt;code>eduperson_scoped_affiliation&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>voperson_id&lt;/code>&lt;/td>
+&lt;td>&lt;code>voperson_id&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1423,31 +1434,31 @@ the API described at the
 &lt;h2 id="user-attributes">User attributes&lt;/h2>
 &lt;p>This section defines the attributes that can be made available to services
 connected to Check-in.&lt;/p>
-&lt;h3 id="1-egi-id">1. EGI ID&lt;/h3>
 &lt;!-- markdownlint-disable line-length no-inline-html -->
+&lt;h3 id="1-community-user-identifier">1. Community User Identifier&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
 &lt;th style="text-align:right">attribute name&lt;/th>
-&lt;th style="text-align:left">EGI ID&lt;/th>
+&lt;th style="text-align:left">Community User Identifier&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>description&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">An identifier for the user, unique among all EGI accounts and never reused&lt;/td>
+&lt;td style="text-align:left">The User’s Community Identifier is a globally unique, opaque, persistent and non-reassignable identifier identifying the user. For users whose community identity is managed by Check-in, this identifier is of the form &lt;code>&amp;lt;uniqueID&amp;gt;@egi.eu&lt;/code>. The &lt;code>&amp;lt;uniqueID&amp;gt;&lt;/code> portion is an opaque identifier issued by Check-in&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>SAML Attribute(s)&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>1.3.6.1.4.1.5923.1.1.1.13&lt;/code> (eduPersonUniqueId)&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>urn:oid:1.3.6.1.4.1.25178.4.1.6&lt;/code> (voPersonID)&lt;/li>&lt;li>&lt;code>urn:oid:1.3.6.1.4.1.5923.1.1.1.13&lt;/code> (eduPersonUniqueId)&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>openid&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>voperson_id&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;li>&lt;code>openid&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>sub&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>voperson_id&lt;/code>&lt;/li>&lt;li>&lt;code>sub&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim location&lt;/strong>&lt;/td>
@@ -1455,7 +1466,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>origin&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">Check-in assigns this attribute on user registration&lt;/td>
+&lt;td style="text-align:left">The Community User Identifier is assigned by Check-in or an external AAI service managing the community identity of the user&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>changes&lt;/strong>&lt;/td>
@@ -1475,7 +1486,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>notes&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">Use &lt;strong>EGI ID&lt;/strong> within your application as the unique-identifier key for the user&lt;/td>
+&lt;td style="text-align:left">Use &lt;strong>Community User Identifier&lt;/strong> within your application as the unique-identifier key for the user. Obtaining the Community User Identifier from the &lt;code>sub&lt;/code> claim using the &lt;code>openid&lt;/code> scope for OIDC Relying Parties or from &lt;code>eduPersonUniqueId&lt;/code> for SAML Relying Parties will be deprecated. OIDC RPs should request either the &lt;code>voperson_id&lt;/code> or &lt;code>aarc&lt;/code> scope to obtain the Community User Identifier. SAML PRs should request the &lt;code>voPersonID&lt;/code> attribute to obtain the Community User Identifier.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>status&lt;/strong>&lt;/td>
@@ -1483,7 +1494,6 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="2-display-name">2. Display Name&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -1503,7 +1513,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>profile&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>profile&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1562,7 +1572,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>profile&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>profile&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1621,7 +1631,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>profile&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>profile&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1662,7 +1672,6 @@ connected to Check-in.&lt;/p>
 &lt;/tbody>
 &lt;/table>
 &lt;h3 id="5-username">5. Username&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1681,7 +1690,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>profile&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>profile&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1721,9 +1730,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="6-email-address">6. Email Address&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1742,7 +1749,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>email&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>email&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1782,9 +1789,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="7-verified-email-flag">7. Verified email flag&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1803,7 +1808,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>email&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>email&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1843,9 +1848,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="8-verified-email-list">8. Verified email list&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1864,7 +1867,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC scope&lt;/strong>&lt;/td>
-&lt;td style="text-align:left">&lt;code>email&lt;/code>&lt;/td>
+&lt;td style="text-align:left">&lt;ul>&lt;li>&lt;code>email&lt;/code>&lt;/li>&lt;li>&lt;code>aarc&lt;/code>&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:right">&lt;strong>OIDC claim(s)&lt;/strong>&lt;/td>
@@ -1904,9 +1907,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="9-affiliation">9. Affiliation&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1965,9 +1966,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="10-groups">10. Groups&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2026,9 +2025,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="11-capabilities">11. Capabilities&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2087,9 +2084,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="12-gocdb-roles">12. GOCDB Roles&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2148,9 +2143,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="13-assurance">13. Assurance&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2209,9 +2202,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="14-certentitlement">14. CertEntitlement&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2270,9 +2261,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h3 id="15-ssh-public-key">15. SSH Public Key&lt;/h3>
-&lt;!-- markdownlint-disable line-length no-inline-html -->
 &lt;table>
 &lt;thead>
 &lt;tr>
