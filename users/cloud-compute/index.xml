@@ -512,8 +512,8 @@ variable with the needed token:&lt;/p>
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --os-access-token &amp;lt;your access token&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --os-project-id &amp;lt;your project id&amp;gt; token issue -c id -f value&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>You can easily obtain an OpenStack token with the
-&lt;a href="https://fedcloudclient.fedcloud.eu/">fedcloud&lt;/a> client:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site &amp;lt;NAME_OF_THE_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt; token issue
+&lt;a href="../../getting-started/cli/">fedcloud&lt;/a> client:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fedcloud openstack --site &amp;lt;NAME_OF_THE_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt; token issue -c id -f value
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="useful-commands-with-openstack-cli">Useful commands with OpenStack CLI&lt;/h2>
 &lt;p>Usage of the OpenStack client is described in detail
 &lt;a href="https://docs.openstack.org/python-openstackclient/latest">here&lt;/a>.&lt;/p>
@@ -589,86 +589,40 @@ give your the details you can use it as any other image at the provider:&lt;/p>
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --file /home/ubuntu/.ssh/authorized_keys&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>my_new_keys &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &amp;lt;name of the new VM&amp;gt;
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="terraform">Terraform&lt;/h2>
-&lt;p>&lt;a href="https://terraform.io">Terraform&lt;/a> supports EGI Cloud OpenStack providers by
+&lt;p>&lt;a href="https://terraform.io/">Terraform&lt;/a> supports EGI Cloud OpenStack providers by
 using valid access tokens for Keystone. For using this, just configure your
-provider as usual in Terraform, but do not include user/password information:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-terraform" data-lang="terraform">&lt;span style="color:#8f5902;font-style:italic"># Configure the OpenStack Provider
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">project_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;your project id&amp;gt;&amp;#34;&lt;/span>
-&lt;span style="color:#c4a000">auth_url&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;http://&amp;lt;your keystone url&amp;gt;/v3&amp;#34;&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Create a server
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack_compute_instance_v2&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test-server&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # ...
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>when launching Terraform, set the &lt;code>OS_TOKEN&lt;/code> environment variable to a valid
-token as shown in :ref:OpenStack token for other clients. You may also set the
-Keystone URL and project ID in the &lt;code>OS_AUTH_URL&lt;/code> and &lt;code>OS_PROJECT_ID&lt;/code> environment
-variables:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-terraform" data-lang="terraform">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;span style="color:#204a87;font-weight:bold">
-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">data&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack_images_image_v2&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ubuntu16&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">most_recent&lt;/span> = &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
-&lt;span style="color:#000">properties&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">APPLIANCE_MPURI&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;https://appdb.egi.eu/store/vo/image/8df7ba00-8467-57aa-bf1e-05754a2a73bf:6428/&amp;#34;&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;span style="color:#204a87;font-weight:bold">
-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">data&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack_compute_flavor_v2&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;small&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">vcpus&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
-&lt;span style="color:#c4a000">ram&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">2048&lt;/span>
-&lt;span style="color:#c4a000">disk&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">20&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;span style="color:#204a87;font-weight:bold">
-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack_compute_instance_v2&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vm&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;testvm&amp;#34;&lt;/span>
-&lt;span style="color:#c4a000">image_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#204a87">data&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">openstack_images_image_v2&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ubuntu16&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;span style="color:#c4a000">flavor_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#204a87">data&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">openstack_compute_flavor_v2&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">small&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;span style="color:#c4a000">security_groups&lt;/span> = &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># this will export OS_AUTH_URL and OS_PROJECT_ID&lt;/span>
+provider as usual in Terraform, but do not include user/password information.
+Instead, use the &lt;a href="../../getting-started/cli/">fedcloud&lt;/a> client to configure
+environment variables as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># export OS_AUTH_URL and OS_PROJECT_ID with&lt;/span>
 $ &lt;span style="color:#204a87">eval&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>fedcloud site show-project-id --site &amp;lt;NAME_OF_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt;&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># now get a valid token&lt;/span>
 $ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">OS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>fedcloud openstack --site &amp;lt;NAME_OF_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> token issue -c id -f value&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
-$ terraform plan
-Refreshing Terraform state in-memory prior to plan...
-The refreshed state will be used to calculate this plan, but will not be
-persisted to &lt;span style="color:#204a87">local&lt;/span> or remote state storage.
-data.openstack_compute_flavor_v2.small: Refreshing state...
-data.openstack_images_image_v2.ubuntu16: Refreshing state...
-------------------------------------------------------------------------
-An execution plan has been generated and is shown below.
-Resource actions are indicated with the following symbols:
-+ create
-Terraform will perform the following actions:
-+ openstack_compute_instance_v2.vm
-id: &amp;lt;computed&amp;gt;
-access_ip_v4: &amp;lt;computed&amp;gt;
-access_ip_v6: &amp;lt;computed&amp;gt;
-all_metadata.%: &amp;lt;computed&amp;gt;
-availability_zone: &amp;lt;computed&amp;gt;
-flavor_id: &lt;span style="color:#4e9a06">&amp;#34;2&amp;#34;&lt;/span>
-flavor_name: &amp;lt;computed&amp;gt;
-force_delete: &lt;span style="color:#4e9a06">&amp;#34;false&amp;#34;&lt;/span>
-image_id: &lt;span style="color:#4e9a06">&amp;#34;ceb0434d-37af-4d1f-9efe-13f6f9937df2&amp;#34;&lt;/span>
-image_name: &amp;lt;computed&amp;gt;
-name: &lt;span style="color:#4e9a06">&amp;#34;testvm&amp;#34;&lt;/span>
-network.#: &amp;lt;computed&amp;gt;
-power_state: &lt;span style="color:#4e9a06">&amp;#34;active&amp;#34;&lt;/span>
-region: &amp;lt;computed&amp;gt;
-security_groups.#: &lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>
-security_groups.3814588639: &lt;span style="color:#4e9a06">&amp;#34;default&amp;#34;&lt;/span>
-stop_before_destroy: &lt;span style="color:#4e9a06">&amp;#34;false&amp;#34;&lt;/span>
-Plan: &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> to add, &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> to change, &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> to destroy.
-------------------------------------------------------------------------
-Note: You didn&lt;span style="color:#4e9a06">&amp;#39;t specify an &amp;#34;-out&amp;#34; parameter to save this plan, so Terraform
-&lt;/span>&lt;span style="color:#4e9a06">can&amp;#39;&lt;/span>t guarantee that exactly these actions will be performed &lt;span style="color:#204a87;font-weight:bold">if&lt;/span>
-&lt;span style="color:#4e9a06">&amp;#34;terraform apply&amp;#34;&lt;/span> is subsequently run.
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that as in the example above you can get images using information from
-AppDB if needed.&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here is a sample &lt;code>main.tf&lt;/code> configuration file for Terraform:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-terraform" data-lang="terraform">&lt;span style="color:#000">terraform&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">required_providers&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">openstack&lt;/span> = &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">source&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;terraform-provider-openstack/openstack&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Create a server
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;openstack_compute_instance_v2&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vm&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;testvm&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">image_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;...&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">flavor_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;...&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">security_groups&lt;/span> = &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Initialize Terraform with:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ terraform init
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now check the deployment plan:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ terraform plan
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you are happy with the plan, perform the deployment with:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ terraform apply
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>For more information on how to use Terraform with OpenStack please check the
+&lt;a href="https://registry.terraform.io/providers/terraform-provider-openstack/openstack/">OpenStack provider documentation&lt;/a>.&lt;/p>
 &lt;h2 id="libcloud">libcloud&lt;/h2>
 &lt;p>&lt;a href="https://libcloud.apache.org/index.html">Apache libcloud&lt;/a> supports OpenStack and
 EGI authentication mechanisms by setting the &lt;code>ex_force_auth_version&lt;/code> to
