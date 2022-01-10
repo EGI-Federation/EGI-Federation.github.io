@@ -418,7 +418,7 @@ specific applications.&lt;/p>
 &lt;p>It is a service that features a web-based GUI, a XML-RPC API, a REST API and a
 command-line interface. For detailed information about Infrastructure Manager
 please visit its &lt;a href="https://imdocs.readthedocs.io">documentation pages&lt;/a>.&lt;/p>
-&lt;p>IM is integrated with the &lt;a href="../../check-in">EGI Check-In Service&lt;/a>. A very easy
+&lt;p>IM is integrated with the &lt;a href="../../check-in">EGI Check-in Service&lt;/a>. A very easy
 way to deploy your first Virtual Machine in the EGI Federation is using the
 &lt;a href="https://appsgrycap.i3m.upv.es:31443/im-dashboard/">web-based GUI&lt;/a>. Please see
 tutorial &lt;a href="https://imdocs.readthedocs.io/en/latest/dashboard.html#usage">here&lt;/a>.&lt;/p>

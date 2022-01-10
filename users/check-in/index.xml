@@ -647,16 +647,16 @@ update requires using &lt;code>PUT&lt;/code> instead of &lt;code>POST&lt;/code>.
 &lt;p>Same as the update but requires setting the membership status to &lt;code>Deleted&lt;/code>&lt;/p>
 &lt;/li>
 &lt;/ol></description></item><item><title>Users: FAQ</title><link>/users/check-in/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/check-in/faq/</guid><description>
-&lt;h2 id="connect-to-checkin-an-idp-federated-in-an-hub-and-spoke-federations">Connect to CheckIn an IdP federated in an hub and spoke federations&lt;/h2>
+&lt;h2 id="connect-to-check-in-an-idp-federated-in-an-hub-and-spoke-federations">Connect to Check-in an IdP federated in an hub and spoke federations&lt;/h2>
 &lt;!-- markdownlint-disable line-length -->
 &lt;h3 id="i-get-an-error-similar-to-error---no-connection-between-institution-and-service-surfconext-example">I get an error similar to: &amp;ldquo;Error - No connection between institution and service&amp;rdquo; (SURFconext example)&lt;/h3>
 &lt;!-- markdownlint-enable line-length -->
 &lt;p>In case of a &amp;ldquo;hub and spoke&amp;rdquo; federation the federation coordinator may require
 that the IdP administrators explicitly request to connect to a SP and let their
 users to authenticate on these SP.&lt;/p>
-&lt;p>In most of the cases this is not a configuration problem neither for the CheckIn
-service nor for the Identity provider. The connection needs to be implemented in
-the hub and spoke IdP Proxy.&lt;/p>
+&lt;p>In most of the cases this is not a configuration problem neither for the
+Check-in service nor for the Identity provider. The connection needs to be
+implemented in the hub and spoke IdP Proxy.&lt;/p>
 &lt;p>One example of such federation is SURFconext, the national IdP federation for
 research and education in the Netherlands operated by SURFnet. If you are using
 credentials from a Dutch IdP in eduGAIN, you or your IdP administrators need to
@@ -674,7 +674,7 @@ it in the dashboard, please write to &lt;code>support at surfconext dot nl&lt;/c
 &amp;ldquo;Connect&amp;rdquo; button, this will create a service ticket and the SURFconext team
 will make the connection active.&lt;/li>
 &lt;li>After you received confirmation that the &amp;ldquo;EGI AAI Service provider proxy&amp;rdquo; is
-accessible, you will be able to login in CheckIn&lt;/li>
+accessible, you will be able to login in Check-in&lt;/li>
 &lt;/ul>
 &lt;h2 id="authentication-error-with-adfs-based-identity-providers">Authentication error with ADFS-based Identity Providers&lt;/h2>
 &lt;h3 id="why-do-i-get-the-error-below-after-successfully-authenticating-at-my-home-idp">Why do I get the error below after successfully authenticating at my Home IdP?&lt;/h3>
@@ -687,8 +687,9 @@ implementations (notably Microsoft ADFS 2.0 and ADFS 3.0) that cannot properly
 handle
 &lt;a href="https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping%3E">Scoping elements&lt;/a>.
 Check-in can be configured to omit the scoping element from the authentication
-requests sent to such IdPs in order to allow successful logins. Please contact
-the CheckIn support team and include a screenshot of your error.&lt;/p>
+requests sent to such IdPs in order to allow successful logins. Please send an
+email to the Check-in Support team using &lt;code>checkin-support&lt;/code> &lt;code>&amp;lt;AT&amp;gt;&lt;/code>
+&lt;code>mailman.egi.eu&lt;/code> and include a screenshot of your error.&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
 &lt;h2 id="i-have-linked-an-igtf-x509-certificate-to-my-check-in-identity-but-the-information-is-inaccurate-or-incomplete">I have linked an IGTF X.509 certificate to my Check-in identity but the information is inaccurate or incomplete&lt;/h2>
 &lt;!-- markdownlint-enable line-length -->
@@ -696,7 +697,8 @@ the CheckIn support team and include a screenshot of your error.&lt;/p>
 &lt;p>To update your certificate information, follow these steps to log into your
 Check-in profile page using your IGTF certificate:&lt;/p>
 &lt;ol>
-&lt;li>Click &lt;a href="https://aai.egi.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=https%3A%2F%2Faai.egi.eu%2Fregistry%2Fauth%2Flogin">here&lt;/a>
+&lt;li>Click
+&lt;a href="https://aai.egi.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=https%3A%2F%2Faai.egi.eu%2Fregistry%2Fauth%2Flogin">here&lt;/a>
 to access your profile page&lt;/li>
 &lt;/ol>
 &lt;p>
@@ -710,7 +712,8 @@ service you have accessed with Check-in on this browser!
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 If prompted to log in with a
 different identity provider, click &lt;strong>CHOOSE ANOTHER ACCOUNT&lt;/strong> and then select
-&lt;strong>IGTF&lt;/strong>. Alternatively, you can click &lt;a href="https://aai.egi.eu/registry/auth/login?idphint=https%3A%2F%2Fedugain-proxy.igtf.net%2Fsimplesaml%2Fsaml2%2Fidp%2Fmetadata.php">here&lt;/a>
+&lt;strong>IGTF&lt;/strong>. Alternatively, you can click
+&lt;a href="https://aai.egi.eu/registry/auth/login?idphint=https%3A%2F%2Fedugain-proxy.igtf.net%2Fsimplesaml%2Fsaml2%2Fidp%2Fmetadata.php">here&lt;/a>
 for your convenience
 &lt;/div>
 &lt;p>&lt;img src="./check-in-discovery-igft.png" alt="Check-in IdP discovery IGTF">&lt;/p></description></item></channel></rss>

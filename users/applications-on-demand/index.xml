@@ -20,7 +20,7 @@ interactively using for example the built-in genome browser.&lt;/p>
 &lt;h2 id="createreview-a-temporary-account">Create/Review a temporary account&lt;/h2>
 &lt;p>Go to
 &lt;a href="https://fgsg.egi.eu/egissod/web/ssod/chipster-accounts">Chipster entry in Science Software on Demand Portal&lt;/a>
-and log in with your &lt;a href="../../check-in">EGI Check-In account&lt;/a>&lt;/p>
+and log in with your &lt;a href="../../check-in">EGI Check-in account&lt;/a>&lt;/p>
 &lt;p>The first time you log in, you need to generate a temporary password by clicking
 on the &lt;em>&amp;quot;Execute&amp;quot;&lt;/em> button, as shown below.&lt;/p>
 &lt;p>&lt;img src="./chipster-execute.png" alt="First log in with Chipster">&lt;/p>

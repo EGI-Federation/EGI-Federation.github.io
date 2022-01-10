@@ -415,7 +415,11 @@ more information.&lt;/p>
 &lt;ol>
 &lt;li>Register your Service Provider and test integration with the &lt;strong>demo&lt;/strong>
 instance of EGI Check-in by selecting the &amp;ldquo;Demo&amp;rdquo; integration environment
-during registration through the EGI Federation Registry Portal. The demo
+during registration through the EGI Federation Registry Portal. Service
+registration requests require approval by an administrator. The review
+process for the demo environment involves primarily the technical aspects of
+the service configuration. However, moving the service to production requires
+compliance with all the [eligibility criteria] (see Step 2). The demo
 instance allows for testing authentication and authorisation through the
 academic and social Identity Providers connected to Check-in without
 affecting the production Check-in service. Note that while the demo instance
@@ -451,23 +455,23 @@ more information can be found in the protocol-specific sections that follow.&lt;
 &lt;thead>
 &lt;tr>
 &lt;th>Protocol&lt;/th>
-&lt;th>Development environment&lt;/th>
-&lt;th>Demo environment&lt;/th>
 &lt;th>Production environment&lt;/th>
+&lt;th>Demo environment&lt;/th>
+&lt;th>Development environment&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
 &lt;td>SAML&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php">https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php">https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/proxy/saml2/idp/metadata.php">https://aai.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php">https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php">https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>OpenID Connect&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/.well-known/openid-configuration">https://aai-dev.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/.well-known/openid-configuration">https://aai.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/.well-known/openid-configuration">https://aai-dev.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -487,7 +491,7 @@ provide the following information to connect your service to EGI Check-in:&lt;/p
 by the service)&lt;/li>
 &lt;li>Short description of the service&lt;/li>
 &lt;li>Site (URL) for localised information about the service; the content found at
-the URL SHOULD provide more complete information than what is provided by the
+the URL SHOULD provide more complete information than what provided by the
 description&lt;/li>
 &lt;li>Contact information of the following types:
 &lt;ul>
@@ -542,16 +546,16 @@ depends on the integration environment being used:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>Development environment&lt;/th>
-&lt;th>Demo environment&lt;/th>
 &lt;th>Production environment&lt;/th>
+&lt;th>Demo environment&lt;/th>
+&lt;th>Development environment&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php">https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php">https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/proxy/saml2/idp/metadata.php">https://aai.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php">https://aai-demo.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php">https://aai-dev.egi.eu/proxy/saml2/idp/metadata.php&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -756,59 +760,53 @@ OAuth flow.&lt;/li>
 &lt;thead>
 &lt;tr>
 &lt;th>Endpoint&lt;/th>
-&lt;th>Development environment&lt;/th>
-&lt;th>Demo environment&lt;/th>
 &lt;th>Production environment&lt;/th>
+&lt;th>Demo environment&lt;/th>
+&lt;th>Development environment&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
 &lt;td>Provider configuration&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/.well-known/openid-configuration">https://aai-dev.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/.well-known/openid-configuration">https://aai.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Client registration&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc">https://aai-dev.egi.eu/oidc&lt;/a>&lt;/td>
-&lt;td>&lt;em>Contact &lt;a href="mailto:egi-aai-checkin@lists.grnet.gr">EGI Check-in support&lt;/a> for registering your client&lt;/em>&lt;/td>
-&lt;td>&lt;em>Contact &lt;a href="mailto:egi-aai-checkin@lists.grnet.gr">EGI Check-in support&lt;/a> for registering your client&lt;/em>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/.well-known/openid-configuration">https://aai-dev.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Authorisation&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/authorize">https://aai-dev.egi.eu/oidc/authorize&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/authorize">https://aai-demo.egi.eu/oidc/authorize&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/authorize">https://aai.egi.eu/oidc/authorize&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/authorize">https://aai-demo.egi.eu/oidc/authorize&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/authorize">https://aai-dev.egi.eu/oidc/authorize&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Token&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/token">https://aai-dev.egi.eu/oidc/token&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/token">https://aai-demo.egi.eu/oidc/token&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/token">https://aai.egi.eu/oidc/token&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/token">https://aai-demo.egi.eu/oidc/token&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/token">https://aai-dev.egi.eu/oidc/token&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Device Code&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/devicecode">https://aai-dev.egi.eu/oidc/devicecode&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/devicecode">https://aai-demo.egi.eu/oidc/devicecode&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/devicecode">https://aai.egi.eu/oidc/devicecode&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/devicecode">https://aai-demo.egi.eu/oidc/devicecode&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/devicecode">https://aai-dev.egi.eu/oidc/devicecode&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>JSON Web Key(jwt)&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/jwk">https://aai-dev.egi.eu/oidc/jwk&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/jwk">https://aai-demo.egi.eu/oidc/jwk&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/jwk">https://aai.egi.eu/oidc/jwk&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/jwk">https://aai-demo.egi.eu/oidc/jwk&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/jwk">https://aai-dev.egi.eu/oidc/jwk&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>User Info&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/userinfo">https://aai-dev.egi.eu/oidc/userinfo&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/userinfo">https://aai-demo.egi.eu/oidc/userinfo&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/userinfo">https://aai.egi.eu/oidc/userinfo&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/userinfo">https://aai-demo.egi.eu/oidc/userinfo&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/userinfo">https://aai-dev.egi.eu/oidc/userinfo&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Introspection&lt;/td>
-&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/introspect">https://aai-dev.egi.eu/oidc/introspect&lt;/a>&lt;/td>
-&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/introspect">https://aai-demo.egi.eu/oidc/introspect&lt;/a>&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/introspect">https://aai.egi.eu/oidc/introspect&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-demo.egi.eu/oidc/introspect">https://aai-demo.egi.eu/oidc/introspect&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai-dev.egi.eu/oidc/introspect">https://aai-dev.egi.eu/oidc/introspect&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1411,8 +1409,7 @@ Make sure to store the &lt;code>client_id&lt;/code> and
 &lt;code>client_secret&lt;/code> in a secure place
 &lt;/div>
 &lt;p>In order to get the client approved, send an email to the administrator of the
-EGI Master Portal using
-&lt;a href="mailto:egi-aai-checkin@lists.grnet.gr">EGI Check-in support&lt;/a>.&lt;/p>
+EGI Master Portal using &lt;code>checkin-support&lt;/code> &lt;code>&amp;lt;AT&amp;gt;&lt;/code> &lt;code>mailman.egi.eu&lt;/code>.&lt;/p>
 &lt;h4 id="detailed-information">Detailed information&lt;/h4>
 &lt;p>For further and detailed instructions on the integration flow, see the generic
 &lt;a href="https://wiki.nikhef.nl/grid/RCauth.eu_and_MasterPortal_VOPortal_integration_guide">RCAuth.eu MasterPortal VOPortal integration guide&lt;/a>&lt;/p>
