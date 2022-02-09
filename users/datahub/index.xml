@@ -4,17 +4,17 @@
 &lt;p>The official documentation is hosted on the
 &lt;a href="https://onedata.org/#/home/documentation/doc/using_onedata/oneclient.html">Onedata homepage&lt;/a>.&lt;/p>
 &lt;h2 id="using-the-web-interface">Using the web interface&lt;/h2>
-&lt;p>&lt;img src="datahub-connect-check-in.png" alt="Selecting EGI to connect using EGI Check-in">&lt;/p>
 &lt;p>Using EGI Check-in it's possible to connect with your institute credentials.&lt;/p>
-&lt;p>&lt;img src="datahub-welcome-screen.png" alt="EGI DataHub landing page">&lt;/p>
+&lt;p>&lt;img src="datahub-connect-check-in.png" alt="Selecting EGI to connect using EGI Check-in">&lt;/p>
 &lt;p>On this page it&amp;rsquo;s possible to have an overview of all the spaces and their
 supporting providers.&lt;/p>
-&lt;p>&lt;img src="datahub-space-info.png" alt="Information about spaces supported by a Oneprovider">&lt;/p>
+&lt;p>&lt;img src="datahub-welcome-screen.png" alt="EGI DataHub landing page">&lt;/p>
 &lt;p>On this capture, the information about the spaces supported by a specific
 provider is displayed.&lt;/p>
-&lt;p>&lt;img src="datahub-browse-space.png" alt="Information about spaces supported by a Oneprovider">&lt;/p>
+&lt;p>&lt;img src="datahub-space-info.png" alt="Information about spaces supported by a Oneprovider">&lt;/p>
 &lt;p>The data space can be managed (i.e. uploading/downloading/managing files and
 metadata, managing space access) using the web browser.&lt;/p>
+&lt;p>&lt;img src="datahub-browse-space.png" alt="Information about spaces supported by a Oneprovider">&lt;/p>
 &lt;h2 id="generating-tokens-for-using-oneclient-or-apis">Generating tokens for using Oneclient or APIs&lt;/h2>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Important&lt;/h4>
