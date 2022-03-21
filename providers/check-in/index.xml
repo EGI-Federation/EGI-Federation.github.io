@@ -2317,6 +2317,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;!-- textlint-disable -->
 &lt;h3 id="16-orcid-id">16. ORCID iD&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -2376,6 +2377,7 @@ connected to Check-in.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;!-- textlint-enable -->
 &lt;!-- markdownlint-enable line-length no-inline-html -->
 &lt;h2 id="user-authorisation">User authorisation&lt;/h2>
 &lt;p>The following information about the authenticated user can be provided by EGI
