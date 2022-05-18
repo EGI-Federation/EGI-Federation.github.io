@@ -302,11 +302,11 @@ collect credentials every single time one expires. You can request this token
 alongside the access and/or ID tokens as part of a user&amp;rsquo;s initial authentication
 flow.&lt;/p>
 &lt;p>If you need to obtain these kind of tokens for using it in command-line tools or APIs,
-you can easily do so with the special &lt;em>fedcloud&lt;/em> client. You can access the
-&lt;a href="https://aai.egi.eu/fedcloud">FedCloud Check-in client&lt;/a> and click on
+you can easily do so with the EGI Check-in Token Portal. You can access the
+&lt;a href="https://aai.egi.eu/token">EGI Check-in Token Portal&lt;/a> and click on
 'Authorise' to log in with your Check-in credentials to obtain:&lt;/p>
 &lt;ul>
-&lt;li>a client ID (&lt;code>fedcloud&lt;/code>)&lt;/li>
+&lt;li>a client ID (&lt;code>token-portal&lt;/code>)&lt;/li>
 &lt;li>a refresh token&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-danger" role="alert">
@@ -861,8 +861,8 @@ details and there is also a video recording available on
 Europe can join. Just place an order into the
 &lt;a href="https://marketplace.egi.eu/31-cloud-compute">EGI Marketplace&lt;/a>.&lt;/p>
 &lt;h3 id="how-can-i-get-an-oauth20-token">How can I get an OAuth2.0 token?&lt;/h3>
-&lt;p>Authentication via CLI or API requires a valid Check-in token. The
-&lt;a href="https://aai.egi.eu/fedcloud">FedCloud Check-in client&lt;/a> allows you to get one as
+&lt;p>Authentication via CLI or API requires a valid Access Token from Check-in. The
+&lt;a href="https://aai.egi.eu/token">EGI Check-in Token Portal&lt;/a> allows you to get one as
 needed. Check the &lt;a href="../auth">Authentication and Authorisation&lt;/a> guide for more
 information.&lt;/p>
 &lt;h3 id="is-occi-still-supported">Is OCCI still supported?&lt;/h3>
