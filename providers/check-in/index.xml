@@ -786,7 +786,7 @@ OAuth flow.&lt;/li>
 &lt;tr>
 &lt;td>Provider configuration&lt;/td>
 &lt;td>&lt;a href="https://aai.egi.eu/oidc/.well-known/openid-configuration">https://aai.egi.eu/oidc/.well-known/openid-configuration&lt;/a>&lt;/td>
-&lt;td>&lt;ul>&lt;li>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a> (MITREid Connect)&lt;/li>&lt;li>&lt;a href="https://aai-dev.egi.eu/auth/realms/egi/.well-known/openid-configuration">https://aai-dev.egi.eu/auth/realms/egi/.well-known/openid-configuration&lt;/a> (Keycloak)&lt;/li>&lt;/ul>&lt;/td>
+&lt;td>&lt;ul>&lt;li>&lt;a href="https://aai-demo.egi.eu/oidc/.well-known/openid-configuration">https://aai-demo.egi.eu/oidc/.well-known/openid-configuration&lt;/a> (MITREid Connect)&lt;/li>&lt;li>&lt;a href="https://aai-demo.egi.eu/auth/realms/egi/.well-known/openid-configuration">https://aai-demo.egi.eu/auth/realms/egi/.well-known/openid-configuration&lt;/a> (Keycloak)&lt;/li>&lt;/ul>&lt;/td>
 &lt;td>&lt;ul>&lt;li>&lt;a href="https://aai-dev.egi.eu/oidc/.well-known/openid-configuration">https://aai-dev.egi.eu/oidc/.well-known/openid-configuration&lt;/a> (MITREid Connect)&lt;/li>&lt;li>&lt;a href="https://aai-dev.egi.eu/auth/realms/egi/.well-known/openid-configuration">https://aai-dev.egi.eu/auth/realms/egi/.well-known/openid-configuration&lt;/a> (Keycloak)&lt;/li>&lt;/ul>&lt;/td>
 &lt;/tr>
 &lt;tr>
