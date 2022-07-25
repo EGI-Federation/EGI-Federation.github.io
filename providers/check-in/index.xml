@@ -537,12 +537,13 @@ during registration through the EGI Federation Registry Portal. Service
 registration requests require approval by an administrator. The review
 process for the demo environment involves primarily the technical aspects of
 the service configuration. However, moving the service to production requires
-compliance with all the &lt;a href="#services-eligible-for-integration">eligibility criteria&lt;/a>
-(see Step 2). The demo instance allows for testing authentication and
-authorisation through the academic and social Identity Providers connected
-to Check-in without affecting the production Check-in service. Note that
-while the demo instance has identical functionality to the production
-instance, no information is shared between the two systems.
+compliance with all the
+&lt;a href="#services-eligible-for-integration">eligibility criteria&lt;/a> (see Step 2). The
+demo instance allows for testing authentication and authorisation through the
+academic and social Identity Providers connected to Check-in without
+affecting the production Check-in service. Note that while the demo instance
+has identical functionality to the production instance, no information is
+shared between the two systems.
 &lt;ul>
 &lt;li>You can also test new features of Check-in that are not available in
 production yet, by registering your Service Provider and testing
@@ -1799,11 +1800,11 @@ please check the following table:&lt;/p>
 &lt;tbody>
 &lt;tr>
 &lt;td>Keycloak&lt;/td>
-&lt;td>&lt;a href="https://aai.egi.eu/token">https://aai.egi.eu/token&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai.egi.eu/token-keycloak">https://aai.egi.eu/token-keycloak&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>MITREid Connect (Legacy)&lt;/td>
-&lt;td>&lt;a href="https://aai.egi.eu/token-legacy">https://aai.egi.eu/token-legacy&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://aai.egi.eu/token">https://aai.egi.eu/token&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
