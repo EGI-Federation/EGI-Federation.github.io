@@ -51,12 +51,6 @@ provider and your SLA.
 of a provider, from a &lt;a href="#manage-from-the-command-line">command-line interface&lt;/a>
 (CLI), or via the
 &lt;a href="https://docs.openstack.org/api-ref/block-storage/">OpenStack Block Storage API&lt;/a>.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Please refer to
-&lt;a href="https://wiki.egi.eu/wiki/HOWTO11_How_to_use_the_rOCCI_Client#How_to_create_block_storage.3F">OCCI How-To&lt;/a>
-for details about using the legacy OCCI interface to manage block storage.
-&lt;/div>
 &lt;h2 id="manage-from-the-command-line">Manage from the command-line&lt;/h2>
 &lt;p>Multiple command-line interfaces (CLIs) are available to manage block storage:&lt;/p>
 &lt;ul>
@@ -80,32 +74,32 @@ documentation about
 &lt;a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/volume.html#volume-list">list the volumes&lt;/a>
 in the site IN2P3-IRES via the Pilot VO (vo.access.egi.eu), use the following
 FedCloud command:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-5" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active"
-id="tabs-5-0-tab" data-toggle="tab" href="#tabs-5-0" role="tab"
-aria-controls="tabs-5-0" aria-selected="true">
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab"
+aria-controls="tabs-4-0" aria-selected="true">
 Linux / Mac
 &lt;/a>
 &lt;/li>
 &lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-5-1-tab" data-toggle="tab" href="#tabs-5-1" role="tab"
-aria-controls="tabs-5-1" aria-selected="false">
+id="tabs-4-1-tab" data-toggle="tab" href="#tabs-4-1" role="tab"
+aria-controls="tabs-4-1" aria-selected="false">
 Windows
 &lt;/a>
 &lt;/li>
 &lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-5-2-tab" data-toggle="tab" href="#tabs-5-2" role="tab"
-aria-controls="tabs-5-2" aria-selected="false">
+id="tabs-4-2-tab" data-toggle="tab" href="#tabs-4-2" role="tab"
+aria-controls="tabs-4-2" aria-selected="false">
 PowerShell
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tabx-content" id="tabs-5-content">
+&lt;div class="tabx-content" id="tabs-4-content">
 &lt;div class="tab-pane show active"
-id="tabs-5-0" role="tabpanel" aria-labelled-by="tabs-5-0-tab">
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">
 &lt;p>To avoid passing the site, VO, etc. each time, you can use
 &lt;a href="../../../getting-started/cli#environment-variables">FedCloud CLI environment variables&lt;/a>
 to set them once and reuse them with each command invocation.&lt;/p>
@@ -122,7 +116,7 @@ Site: IN2P3-IRES, VO: vo.access.egi.eu, command: volume list
 &lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane "
-id="tabs-5-1" role="tabpanel" aria-labelled-by="tabs-5-1-tab">
+id="tabs-4-1" role="tabpanel" aria-labelled-by="tabs-4-1-tab">
 &lt;p>To avoid passing the site, VO, etc. each time, you can use
 &lt;a href="../../../getting-started/cli#environment-variables">FedCloud CLI environment variables&lt;/a>
 to set them once and reuse them with each command invocation.&lt;/p>
@@ -139,7 +133,7 @@ Site: IN2P3-IRES, VO: vo.access.egi.eu, command: volume list
 &lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane "
-id="tabs-5-2" role="tabpanel" aria-labelled-by="tabs-5-2-tab">
+id="tabs-4-2" role="tabpanel" aria-labelled-by="tabs-4-2-tab">
 &lt;p>To avoid passing the site, VO, etc. each time, you can use
 &lt;a href="../../../getting-started/cli#environment-variables">FedCloud CLI environment variables&lt;/a>
 to set them once and reuse them with each command invocation.&lt;/p>

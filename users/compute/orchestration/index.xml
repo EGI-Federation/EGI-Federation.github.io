@@ -455,9 +455,9 @@ command:&lt;/p>
 &lt;h4 id="more-details">More details&lt;/h4>
 &lt;ul>
 &lt;li>JDL language and simple jobs submission:
-&lt;a href="http://dirac.readthedocs.io/en/latest/UserGuide/Tutorials/JDLsAndJobManagementBasic/index.html">JDLs and Job Management&lt;/a>&lt;/li>
-&lt;li>Basic Submitting Parametric and MPI jobs, using DIRAC API:
-&lt;a href="http://dirac.readthedocs.io/en/latest/UserGuide/Tutorials/JobManagementAdvanced/index.html">Advanced Job Management&lt;/a>&lt;/li>
+&lt;a href="https://dirac.readthedocs.io/en/latest/UserGuide/Tutorials/JDLsAndJobManagementBasic/index.html">JDLs and Job Management&lt;/a>&lt;/li>
+&lt;li>Basic Submitting Parametric jobs, using DIRAC API:
+&lt;a href="https://dirac.readthedocs.io/en/latest/UserGuide/Tutorials/JobManagementAdvanced/index.html">Advanced Job Management&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/DIRACGrid/DIRAC/wiki/TutorialIHEP2013-11">Past tutorials&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h4 id="technical-support">Technical Support&lt;/h4>
