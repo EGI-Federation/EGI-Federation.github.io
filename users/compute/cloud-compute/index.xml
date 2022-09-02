@@ -1132,4 +1132,12 @@ provider that can be used to boot a new instance of the VM with the same disk
 content. You can use this technique for creating a base template image that
 can be later re-used to start similar VMs easily.&lt;/p>
 &lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/ul>
+&lt;h3 id="how-can-i-find-all-the-vms-that-i-own-in-the-egi-federated-cloud">How can I find all the VMs that I own in the EGI Federated Cloud?&lt;/h3>
+&lt;p>We suggest using the &lt;a href="../../../../users/getting-started/cli/">fedcloudclient&lt;/a>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># list the Virtual Organisations that you belong to&lt;/span>
+fedcloud token list-vos
+&lt;span style="color:#8f5902;font-style:italic"># then, for each VO, run:&lt;/span>
+list-all-my-own-vms.sh --vo &amp;lt;virtual-organisation&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>See the &lt;a href="https://fedcloudclient.fedcloud.eu/cheat.html#useful-commands">fedcloudclient documentation&lt;/a>
+for more information.&lt;/p></description></item></channel></rss>
