@@ -563,11 +563,14 @@ their membership, a final notification email is sent when the VO membership
 expires. Please note that a user with expired membership is not eligible for VO
 membership entitlements and as a result the user will not have access to VO
 resources relying on these entitlements.&lt;/p>
-&lt;h2 id="vo-membership-api">VO membership API&lt;/h2>
+&lt;h2 id="vo-api">VO API&lt;/h2>
 &lt;h3 id="api-v2">API v2&lt;/h3>
-&lt;p>Check-in provides a REST API that allows clients to manage membership
-information only for the VOs they are authoritative for.&lt;/p>
-&lt;p>Features:&lt;/p>
+&lt;p>Check-in provides a REST API that allows clients to:&lt;/p>
+&lt;ul>
+&lt;li>manage membership information only for the VOs they are authoritative for&lt;/li>
+&lt;li>get VO group information only for the VOs they are authoritative for&lt;/li>
+&lt;/ul>
+&lt;p>Membership Features:&lt;/p>
 &lt;ul>
 &lt;li>Members of the VO are identified via their EGI Check-in Community User
 Identifier (CUID)&lt;/li>
@@ -581,7 +584,10 @@ membership affiliations are supported&lt;/li>
 &lt;li>Check-in automatically changes the membership status from &lt;code>Active&lt;/code> to
 &lt;code>Expired&lt;/code> beyond the validity period&lt;/li>
 &lt;/ul>
-&lt;h4 id="connection-parameters">Connection Parameters&lt;/h4>
+&lt;h4 id="endpoints-for-vo-groups">Endpoints for VO Groups&lt;/h4>
+&lt;!--
+// jscpd:ignore-start
+-->
 &lt;!-- prettier-ignore -->
 &lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">
 &lt;li class="nav-item">
@@ -610,7 +616,7 @@ Development environment
 &lt;div class="tab-pane show active"
 id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
-$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai.egi.eu/api/v2/VoMembers
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai.egi.eu/registry/cous.json
 &lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># e.g. for the username `co_2.test`, the CO_ID is `2`&lt;/span>
@@ -620,7 +626,7 @@ $ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO
 &lt;div class="tab-pane "
 id="tabs-0-1" role="tabpanel" aria-labelled-by="tabs-0-1-tab">
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
-$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai-demo.egi.eu/api/v2/VoMembers
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai-demo.egi.eu/registry/cous.json
 &lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># e.g. for the username `co_2.test`, the CO_ID is `2`&lt;/span>
@@ -630,6 +636,69 @@ $ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO
 &lt;div class="tab-pane "
 id="tabs-0-2" role="tabpanel" aria-labelled-by="tabs-0-2-tab">
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai-dev.egi.eu/api/cous.json
+&lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># e.g. for the username `co_2.test`, the CO_ID is `2`&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;!--
+// jscpd:ignore-end
+-->
+&lt;h4 id="endpoints-for-vo-memberships">Endpoints for VO Memberships&lt;/h4>
+&lt;!--
+// jscpd:ignore-start
+-->
+&lt;!-- prettier-ignore -->
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab"
+aria-controls="tabs-1-0" aria-selected="true">
+Production environment
+&lt;/a>
+&lt;/li>
+&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab"
+aria-controls="tabs-1-1" aria-selected="false">
+Demo environment
+&lt;/a>
+&lt;/li>
+&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-1-2-tab" data-toggle="tab" href="#tabs-1-2" role="tab"
+aria-controls="tabs-1-2" aria-selected="false">
+Development environment
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tabx-content" id="tabs-1-content">
+&lt;div class="tab-pane show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai.egi.eu/api/v2/VoMembers
+&lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># e.g. for the username `co_2.test`, the CO_ID is `2`&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-pane "
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai-demo.egi.eu/api/v2/VoMembers
+&lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># e.g. for the username `co_2.test`, the CO_ID is `2`&lt;/span>
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-pane "
+id="tabs-1-2" role="tabpanel" aria-labelled-by="tabs-1-2-tab">
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Export VO API Base URL parameter&lt;/span>
 $ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VO_API_BASE_URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://aai-dev.egi.eu/api/v2/VoMembers
 &lt;span style="color:#8f5902;font-style:italic"># Export CO ID parameter.&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># The CO ID is the number part of the API username prefix.&lt;/span>
@@ -638,6 +707,10 @@ $ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CO
 &lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
+&lt;!--
+// jscpd:ignore-end
+-->
+&lt;h4 id="connection-parameters">Connection Parameters&lt;/h4>
 &lt;p>The &lt;code>API username&lt;/code> and &lt;code>API password&lt;/code> will be assigned by the EGI Check-in team
 when you request REST API access. In order to obtain REST API credentials you
 need to email your request to
@@ -650,7 +723,225 @@ access to. Only VO managers can request REST API credentials for a given VO.&lt;
 over HTTPS using the Basic Authentication scheme. More sophisticated
 authentication mechanisms, such as OpenID Connect/OAuth 2.0 access tokens, may
 be supported in the future.&lt;/p>
-&lt;h4 id="methods">Methods&lt;/h4>
+&lt;h4 id="vo-groups-methods">VO Groups Methods&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>Retrieving all VO groups:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ curl -vX GET &lt;span style="color:#000">$VO_API_BASE_URL&lt;/span>?coid&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$CO_ID&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --user &lt;span style="color:#4e9a06">&amp;#34;example-client&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;veryverysecret&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>output:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ResponseType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">123&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;CoId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vo.example.org&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Example Virtual Organisation&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Lft&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">109&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Rght&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">112&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Modified&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Revision&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Deleted&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ActorIdentifier&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;actoridentifier@egi.eu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Metadata&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mailman&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#a40000">...&lt;/span>&lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#a40000">...&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;!--
+// jscpd:ignore-start
+-->
+&lt;p>The JSON object &lt;code>Metadata&lt;/code> encapsulates additional VO group information like the
+&lt;code>type&lt;/code>.&lt;/p>
+&lt;!--
+// jscpd:ignore-end
+-->
+&lt;p>Response Format:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>HTTP Status&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Response Body&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>200 OK&lt;/td>
+&lt;td>Role Returned&lt;/td>
+&lt;td>JSON response&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>400 Bad Request&lt;/td>
+&lt;td>CO ID unknown&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>401 Unauthorized&lt;/td>
+&lt;td>Authentication Required&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>500 Other error&lt;/td>
+&lt;td>Unknown Error&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>
+&lt;p>Retrieving all VO groups filtered by Group type:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ curl -vX GET &lt;span style="color:#000">$VO_API_BASE_URL&lt;/span>?coid&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$CO_ID&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">dept&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>mailman &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --user &lt;span style="color:#4e9a06">&amp;#34;example-client&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;veryverysecret&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>output:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ResponseType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">123&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;CoId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vo.example.org&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Example Virtual Organisation&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Lft&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">109&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Rght&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">112&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Modified&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Revision&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Deleted&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ActorIdentifier&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;actoridentifier@egi.eu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;!--
+// jscpd:ignore-start
+-->
+&lt;p>Response Format:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>HTTP Status&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Response Body&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>200 OK&lt;/td>
+&lt;td>Role Returned&lt;/td>
+&lt;td>JSON response&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>400 Bad Request&lt;/td>
+&lt;td>CO ID unknown&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>401 Unauthorized&lt;/td>
+&lt;td>Authentication Required&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>500 Other error&lt;/td>
+&lt;td>Unknown Error&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;!--
+// jscpd:ignore-end
+-->
+&lt;ol>
+&lt;li>
+&lt;p>Retrieving VO Group by name:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ curl -vX GET &lt;span style="color:#000">$VO_API_BASE_URL&lt;/span>?coid&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$CO_ID&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>vo.example.org &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --user &lt;span style="color:#4e9a06">&amp;#34;example-client&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;veryverysecret&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>output:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ResponseType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Cous&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">123&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;CoId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vo.example.org&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Example Virtual Organisation&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Lft&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">109&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Rght&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">112&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Created&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Modified&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2020-09-09 08:17:51&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Revision&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Deleted&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ActorIdentifier&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;actoridentifier@egi.eu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Metadata&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mailman&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;!--
+// jscpd:ignore-start
+-->
+&lt;p>Response Format:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>HTTP Status&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Response Body&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>200 OK&lt;/td>
+&lt;td>Role Returned&lt;/td>
+&lt;td>JSON response&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>400 Bad Request&lt;/td>
+&lt;td>CO ID unknown&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>401 Unauthorized&lt;/td>
+&lt;td>Authentication Required&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>404 COU/VO unknown&lt;/td>
+&lt;td>COU/CO name not found&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>500 Other error&lt;/td>
+&lt;td>Unknown Error&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;!--
+// jscpd:ignore-end
+-->
+&lt;h4 id="vo-memberships-methods">VO Memberships Methods&lt;/h4>
 &lt;ol>
 &lt;li>
 &lt;p>Adding a user to a VO requires specifying the user&amp;rsquo;s EGI Check-in CUID, the
@@ -1024,7 +1315,7 @@ over HTTPS using the Basic Authentication scheme. More sophisticated
 authentication mechanisms, such as OpenID Connect/OAuth 2.0 access tokens, may
 be supported in the future.&lt;/p>
 &lt;!-- markdownlint-disable no-duplicate-header -->
-&lt;h4 id="methods-1">Methods&lt;/h4>
+&lt;h4 id="methods">Methods&lt;/h4>
 &lt;!-- markdownlint-enable no-duplicate-header -->
 &lt;ol>
 &lt;li>
