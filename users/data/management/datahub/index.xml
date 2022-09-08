@@ -170,7 +170,8 @@ mkdir /tmp/space
 oneclient /tmp/space
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: DataHub API</title><link>/users/data/management/datahub/api/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data/management/datahub/api/</guid><description>
 &lt;p>Most operations in EGI DataHub can be performed using one of the
-&lt;a href="https://onedata.org/#/home/api">OneData Applicaton Programming Interfaces&lt;/a> (APIs).&lt;/p>
+&lt;a href="https://onedata.org/#/home/api">OneData Application Programming Interfaces&lt;/a>
+(APIs).&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Important&lt;/h4>
 In order to be able to access
@@ -187,25 +188,24 @@ and other Onedata APIs.&lt;/p>
 &lt;p>It&amp;rsquo;s possible to retrieve the &lt;code>CLIENT_ID&lt;/code> and &lt;code>REFRESH_TOKEN&lt;/code> using the
 &lt;a href="https://aai.egi.eu/token/">EGI Check-in Token Portal&lt;/a>. See
 &lt;a href="../../../../aai/check-in">Check-in documentation&lt;/a> for more information.&lt;/p>
-&lt;!-- markdownlint-disable line-length -->
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#000">CLIENT_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;CLIENT_ID&amp;gt;
-&lt;span style="color:#000">REFRESH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;REFRESH_TOKEN&amp;gt;
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ &lt;span style="color:#000">CLIENT_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;CLIENT_ID&amp;gt;
+$ &lt;span style="color:#000">REFRESH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;REFRESH_TOKEN&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Retrieving an OIDC token from Check-in&lt;/span>
-curl -X POST &lt;span style="color:#4e9a06">\
+$ curl -X POST &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#34;client_id=&lt;/span>&lt;span style="color:#000">$CLIENT_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;amp;grant_type=refresh_token&amp;amp;refresh_token=&lt;/span>&lt;span style="color:#000">$REFRESH_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;amp;scope=openid%20email%20profile%20eduperson_entitlement&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;https://aai.egi.eu/auth/realms/egi/protocol/openid-connect/token&amp;#39;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> python -m json.tool&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Token is in the access_token field of the response&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;!-- markdownlint-enable line-length -->
-&lt;p>The following variables should be set:&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The following variables should be set:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>OIDC_TOKEN&lt;/code>: OpenID Connect Access token.&lt;/li>
 &lt;li>&lt;code>ONEZONE_HOST&lt;/code>: name or IP of the Onezone host (to use Onezone API).&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
-&lt;span style="color:#000">OIDC_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;OIDC_ACCESS_TOKEN&amp;gt;
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: egi:&lt;/span>&lt;span style="color:#000">$OIDC_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> -X POST &lt;span style="color:#4e9a06">\
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ &lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
+$ &lt;span style="color:#000">OIDC_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;OIDC_ACCESS_TOKEN&amp;gt;
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: egi:&lt;/span>&lt;span style="color:#000">$OIDC_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> -X POST &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#39;Content-type: application/json&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/tokens/named&amp;#34;&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#39;{
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/tokens/named&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#39;{
 &lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;name&amp;#34;: &amp;#34;REST and CDMI access token&amp;#34;,
 &lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;type&amp;#34;: {
 &lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;accessToken&amp;#34;: {}
@@ -216,55 +216,59 @@ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: egi:&lt;/span>&lt;
 &lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;interface&amp;#34;: &amp;#34;rest&amp;#34;
 &lt;/span>&lt;span style="color:#4e9a06"> }
 &lt;/span>&lt;span style="color:#4e9a06"> ]
-&lt;/span>&lt;span style="color:#4e9a06">}&amp;#39;&lt;/span>
+&lt;/span>&lt;span style="color:#4e9a06"> }&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="data-access-via-cdmi-and-rest-api">Data access via CDMI and REST API&lt;/h2>
 &lt;p>Below are example commands to learn how to access DataHub files and folders via
-&lt;a href="https://en.wikipedia.org/wiki/Cloud_Data_Management_Interface">CDMI&lt;/a>
-and &lt;a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST&lt;/a>
-API using the command-line interface.&lt;/p>
-&lt;p>For more information please check the Onedata &lt;a href="https://onedata.org/#/home/documentation/stable/doc/advanced/cdmi.html">CDMI documentation&lt;/a>
-and the Onedata &lt;a href="https://onedata.org/#/home/api/stable/oneprovider?anchor=tag/Basic-File-Operations">Oneprovider REST API&lt;/a>&lt;/p>
+&lt;a href="https://en.wikipedia.org/wiki/Cloud_Data_Management_Interface">CDMI&lt;/a> and
+&lt;a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST&lt;/a> API using
+the command-line interface.&lt;/p>
+&lt;p>For more information please check the Onedata
+&lt;a href="https://onedata.org/#/home/documentation/stable/doc/advanced/cdmi.html">CDMI documentation&lt;/a>
+and the Onedata
+&lt;a href="https://onedata.org/#/home/api/stable/oneprovider?anchor=tag/Basic-File-Operations">Oneprovider REST API&lt;/a>&lt;/p>
 &lt;h3 id="common-configuration">Common configuration&lt;/h3>
-&lt;p>Follow instructions &lt;a href="#getting-an-api-access-token">above&lt;/a> to get an API access token, and configure environment variables:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">DATAHUB_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;DATAHUB_ACCESS_TOKEN&amp;gt;
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>plg-cyfronet-01.datahub.egi.eu
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Having &lt;a href="https://stedolan.github.io/jq/">jq&lt;/a> installed is useful for better formatting of the json output.&lt;/p>
+&lt;p>Follow instructions &lt;a href="#getting-an-api-access-token">above&lt;/a> to get an API access
+token, and configure environment variables:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">DATAHUB_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;DATAHUB_ACCESS_TOKEN&amp;gt;
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>plg-cyfronet-01.datahub.egi.eu
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Having &lt;a href="https://stedolan.github.io/jq/">jq&lt;/a> installed is useful for better
+formatting of the JSON output.&lt;/p>
 &lt;h3 id="cdmi">CDMI&lt;/h3>
 &lt;p>Configure a header to be passed in some operations.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CDMI_VSN_HEADER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;X-CDMI-Specification-Version: 1.1.1&amp;#39;&lt;/span>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">CDMI_VSN_HEADER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;X-CDMI-Specification-Version: 1.1.1&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>See examples on how to list a folder, and file download/upload using CDMI:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># List files in a folder&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$CDMI_VSN_HEADER&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/cdmi/PLAYGROUND/?children&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq .
 &lt;span style="color:#8f5902;font-style:italic"># Download &amp;#34;helloworld.txt&amp;#34; from DataHub to &amp;#34;downloadtest.txt&amp;#34; on your computer&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/cdmi/PLAYGROUND/helloworld.txt&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -o downloadtest.txt
 &lt;span style="color:#8f5902;font-style:italic"># Upload &amp;#34;helloworld.txt&amp;#34; from your computer to &amp;#34;uploadtest.txt&amp;#34; on DataHub&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$CDMI_VSN_HEADER&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X PUT &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/cdmi/PLAYGROUND/uploadtest.txt&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -T helloworld.txt
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rest-api">REST API&lt;/h3>
 &lt;p>See examples on how to list a folder, and file download/upload using REST API:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Get base folder ID&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X POST &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/lookup-file-id/PLAYGROUND&amp;#34;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Add the folder ID to an environment variable&lt;/span>
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">DIR_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ID_FROM_PREVIOUS_COMMAND&amp;gt;
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">DIR_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ID_FROM_PREVIOUS_COMMAND&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># List files inside the folder with DIR_ID&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X GET &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/data/&lt;/span>&lt;span style="color:#000">$DIR_ID&lt;/span>&lt;span style="color:#4e9a06">/children&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq .
 &lt;span style="color:#8f5902;font-style:italic"># Add the ID of the file that you want to download&lt;/span>
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">FILE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ID_FROM_PREVIOUS_COMMAND&amp;gt;
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">FILE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ID_FROM_PREVIOUS_COMMAND&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Download file with FILE_ID from DataHub to &amp;#34;helloworld.txt&amp;#34; on your computer&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X GET &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/data/&lt;/span>&lt;span style="color:#000">$FILE_ID&lt;/span>&lt;span style="color:#4e9a06">/content&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -o helloworld.txt
 &lt;span style="color:#8f5902;font-style:italic"># Upload &amp;#34;helloworld.txt&amp;#34; on your local computer to &amp;#34;uploadtest.txt&amp;#34; on DataHub&lt;/span>
-curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$DATAHUB_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X POST &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/data/&lt;/span>&lt;span style="color:#000">$DIR_ID&lt;/span>&lt;span style="color:#4e9a06">/children?name=uploadtest.txt&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#34;Content-Type: application/octet-stream&amp;#34;&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#34;@helloworld.txt&amp;#34;&lt;/span>
@@ -275,32 +279,32 @@ curl -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span
 &lt;p>A docker container with clients acting as wrappers around the API calls is
 available: &lt;code>onedata/rest-cli&lt;/code>. It's very convenient for discovering and testing
 the &lt;strong>Onezone&lt;/strong> and &lt;strong>Oneprovider&lt;/strong> API.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">docker run -it onedata/rest-cli
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ docker run -it onedata/rest-cli
 &lt;span style="color:#8f5902;font-style:italic"># Exporting env for Onezone API&lt;/span>
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Checking current user&lt;/span>
-onezone-rest-cli getCurrentUSer &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
+$ onezone-rest-cli getCurrentUSer &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Listing all accessible spaces&lt;/span>
-onezone-rest-cli listEffectiveUserSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">docker run -it onedata/rest-cli
+$ onezone-rest-cli listEffectiveUserSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ docker run -it onedata/rest-cli
 &lt;span style="color:#8f5902;font-style:italic"># Exporting env for Oneprovider API&lt;/span>
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://plg-cyfronet-01.datahub.egi.eu
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://plg-cyfronet-01.datahub.egi.eu
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEPROVIDER_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Listing all spaces supported by the Oneprovider&lt;/span>
-oneprovider-rest-cli getAllSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
+$ oneprovider-rest-cli getAllSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Listing content of a space&lt;/span>
-oneprovider-rest-cli listFiles &lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;EGI Foundation/&amp;#39;&lt;/span>
-oneprovider-rest-cli listFiles &lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;EGI Foundation/CS3_dataset&amp;#39;&lt;/span>
+$ oneprovider-rest-cli listFiles &lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;EGI Foundation/&amp;#39;&lt;/span>
+$ oneprovider-rest-cli listFiles &lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;EGI Foundation/CS3_dataset&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="printing-the-raw-rest-calls-of-a-wrapped-command">Printing the raw REST calls of a wrapped command&lt;/h2>
 &lt;p>Raw REST calls (used with &lt;code>curl&lt;/code>) can be printed using the &lt;code>--dry-run&lt;/code> switch.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">docker run -it onedata/rest-cli
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
-&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ docker run -it onedata/rest-cli
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://datahub.egi.eu
+$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ONEZONE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;ACCESS_TOKEN&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Listing all accessible spaces&lt;/span>
-onezone-rest-cli listEffectiveUserSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
+$ onezone-rest-cli listEffectiveUserSpaces &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Printing the curl command without running it&lt;/span>
-onezone-rest-cli listEffectiveUserSpaces --dry-run
+$ onezone-rest-cli listEffectiveUserSpaces --dry-run
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="working-with-pid--handle">Working with PID / Handle&lt;/h2>
 &lt;p>It&amp;rsquo;s possible to mint a Permanent Identifier (PID) for a space or a subdirectory
 of a space using a handle service (like Handle.net) that is registered in the
@@ -320,52 +324,66 @@ registered in the Onezone.&lt;/p>
 &lt;li>&lt;code>ONEPROVIDER_HOST&lt;/code>: name or IP of the Oneprovider host (to use Oneprovider
 API)&lt;/li>
 &lt;/ul>
-&lt;!-- markdownlint-disable line-length -->
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#8f5902;font-style:italic"># Getting the IDs of the available Handle Services&lt;/span>
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/handle_services&amp;#34;&lt;/span>
 &lt;span style="color:#000">HANDLE_SERVICE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;HANDLE_SERVICE_ID&amp;gt;
 &lt;span style="color:#8f5902;font-style:italic"># Getting details about a specific Handle service&lt;/span>
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/handle_services/&lt;/span>&lt;span style="color:#000">$HANDLE_SERVICE&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Listing all spaces&lt;/span>
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/effective_spaces/&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Displaying details of a space&lt;/span>
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/spaces/&lt;/span>&lt;span style="color:#000">$SPACE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Listing content of a space&lt;/span>
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/files/EGI%20Foundation/&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Creating a share of a subdirectory of a space&lt;/span>
-&lt;span style="color:#000">DIR_ID_TO_SHARE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;DIR_ID&amp;gt;
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ &lt;span style="color:#000">DIR_ID_TO_SHARE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;DIR_ID&amp;gt;
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X POST -H &lt;span style="color:#4e9a06">&amp;#39;Content-Type: application/json&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#39;{&amp;#34;name&amp;#34;: &amp;#34;input&amp;#34;}&amp;#39;&lt;/span>
 &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/shares-id/&lt;/span>&lt;span style="color:#000">$DIR_ID_TO_SHARE&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Displaying the share&lt;/span>
-&lt;span style="color:#000">SHARE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;SHARED_ID&amp;gt;
-curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ &lt;span style="color:#000">SHARE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;SHARED_ID&amp;gt;
+$ curl -sS --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/shares/&lt;/span>&lt;span style="color:#000">$SHARE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> jq &lt;span style="color:#4e9a06">&amp;#39;.&amp;#39;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Registering a handle&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Proper Dublin Core metadata is required&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># It can be created using https://nsteffel.github.io/dublin_core_generator/generator_nq.html&lt;/span>
-cat metadata.xml
+$ cat metadata.xml
 &lt;span style="color:#8f5902;font-style:italic"># Escape double quotes and drop line return&lt;/span>
-&lt;span style="color:#000">METADATA&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>cat metadata.xml &lt;span style="color:#000;font-weight:bold">|&lt;/span> sed &lt;span style="color:#4e9a06">&amp;#39;s/&amp;#34;/\\&amp;#34;/g&amp;#39;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> tr &lt;span style="color:#4e9a06">&amp;#39;\n&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">&amp;#39; &amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+$ &lt;span style="color:#000">METADATA&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>cat metadata.xml &lt;span style="color:#000;font-weight:bold">|&lt;/span> sed &lt;span style="color:#4e9a06">&amp;#39;s/&amp;#34;/\\&amp;#34;/g&amp;#39;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> tr &lt;span style="color:#4e9a06">&amp;#39;\n&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">&amp;#39; &amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># On handle creation the created handles is provided in the Location header&lt;/span>
-curl -D - --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl -D - --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#34;Content-type: application/json&amp;#34;&lt;/span> -X POST &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#39;{&amp;#34;handleServiceId&amp;#34;: &amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$HANDLE_SERVICE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;&amp;#34;, &amp;#34;resourceType&amp;#34;: &amp;#34;Share&amp;#34;, &amp;#34;resourceId&amp;#34;: &amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$SHARE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;&amp;#34;, &amp;#34;metadata&amp;#34;: &amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$METADATA&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;&amp;#34;}&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/handles&amp;#34;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Listing handles&lt;/span>
-curl --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ curl --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/handles&amp;#34;&lt;/span>
 &lt;span style="color:#8f5902;font-style:italic"># Displaying a handle&lt;/span>
-&lt;span style="color:#000">HANDLE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;HANDLE_ID&amp;gt;
-curl --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+$ &lt;span style="color:#000">HANDLE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;HANDLE_ID&amp;gt;
+$ curl --tlsv1.2 -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$API_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$ONEZONE_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/onezone/user/handles/&lt;/span>&lt;span style="color:#000">$HANDLE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;!-- markdownlint-enable line-length --></description></item><item><title>Users: DataHub Links</title><link>/users/data/management/datahub/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data/management/datahub/links/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="subscribe-to-file-events">Subscribe to file events&lt;/h2>
+&lt;p>Following is an example of how to subscribe to DataHub to receive notification
+on file events which is described in details in the official documentation
+&lt;a href="https://onedata.org/#/home/api/stable/oneprovider?anchor=operation/get_space_changes">Subscribe to file events&lt;/a>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ curl -N -H &lt;span style="color:#4e9a06">&amp;#34;X-Auth-Token: &lt;/span>&lt;span style="color:#000">$TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -X POST &lt;span style="color:#4e9a06">&amp;#34;https://&lt;/span>&lt;span style="color:#000">$ONEPROVIDER_HOST&lt;/span>&lt;span style="color:#4e9a06">/api/v3/oneprovider/changes/metadata/&lt;/span>&lt;span style="color:#000">$SPACE_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#34;Content-Type: application/json&amp;#34;&lt;/span> -d &lt;span style="color:#4e9a06">&amp;#34;@./changes_req.json&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This requires the permission set as following:&lt;/p>
+&lt;p>&lt;img src="datahub-space-permissions.png" alt="Viewing file popularity for smart caching">&lt;/p>
+&lt;p>For groups or single users. For single users, one way to add one is to select
+Effective members&amp;quot; -&amp;gt; in the user list search for the required user and &amp;ldquo;Make an
+owner&amp;rdquo;. In this case the user will have admins privileges in addition to the one
+required. As this might not be the desired configuration it will be enough to
+remove all the unwanted permissions, e.g.: make it the same as the VO to which
+the user belongs to, and leave only, as extra, the permission shown in the
+screenshot.&lt;/p></description></item><item><title>Users: DataHub Links</title><link>/users/data/management/datahub/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data/management/datahub/links/</guid><description>
 &lt;ul>
 &lt;li>&lt;a href="https://datahub.egi.eu">EGI DataHub service&lt;/a>
 &lt;ul>
