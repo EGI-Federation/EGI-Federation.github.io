@@ -265,7 +265,7 @@ the additional ones in the &lt;em>Service Endpoints&lt;/em> section.&lt;/p>
 &lt;li>you should register a new service endpoint with the webdav service type,
 separated from the SRM one;&lt;/li>
 &lt;li>the endpoint url information used for monitoring purposes should be set in the
-&lt;a href="../extension-properties">extension property&lt;/a> section. Create the following:
+&lt;a href="../extension-properties">extension properties&lt;/a> section. Create the following:
 &lt;ul>
 &lt;li>Name: ARGO_WEBDAV_OPS_URL&lt;/li>
 &lt;li>Value: webdav URL containing also the VO ops folder, for example:
@@ -288,7 +288,7 @@ following:&lt;/p>
 &lt;ul>
 &lt;li>you should register a new service endpoint with the XrootD service type;&lt;/li>
 &lt;li>the endpoint url information used for monitoring purposes should be set in the
-&lt;a href="../extension-properties">extension property&lt;/a> section. Create the following:
+&lt;a href="../extension-properties">extension properties&lt;/a> section. Create the following:
 &lt;ul>
 &lt;li>Name: ARGO_XROOTD_OPS_URL&lt;/li>
 &lt;li>Value: XRootD base SURL to test (the path where ops VO has write access),
@@ -304,8 +304,8 @@ Pay attention to the port configured for the interface.&lt;/li>
 &lt;ul>
 &lt;li>register a new service endpoint, associating the storage element hostname to
 the service type &lt;code>globus-GRIDFTP&lt;/code>, with the &amp;ldquo;production&amp;rdquo; flag disabled;&lt;/li>
-&lt;li>in the “Extension Properties” section of the service endpoint page, fill in
-the following fields:
+&lt;li>in the “&lt;a href="../extension-properties">Extension Properties&lt;/a>” section of the
+service endpoint page, fill in the following fields:
 &lt;ul>
 &lt;li>Name: SE_PATH&lt;/li>
 &lt;li>Value: &lt;code>/dpm/ui.savba.sk/home/ops&lt;/code> (this is an example, set the proper path)&lt;/li>
@@ -351,8 +351,8 @@ GlueChunkKey: &lt;span style="color:#000">GlueSEUniqueID&lt;/span>&lt;span style
 GlueVOInfoLocalID: ops:data01
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>Pay attention to use the storage path for the ops VO&lt;/li>
-&lt;li>On GOCDB, in the “Extension Properties” section of the SRM service endpoint
-page, fill in the following fields:
+&lt;li>On GOCDB, in the “&lt;a href="../extension-properties">Extension Properties&lt;/a>” section
+of the SRM service endpoint page, fill in the following fields:
 &lt;ul>
 &lt;li>Name: SURL&lt;/li>
 &lt;li>Value: the actual SURL value, for example:
