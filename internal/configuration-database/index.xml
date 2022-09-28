@@ -264,7 +264,11 @@ the additional ones in the &lt;em>Service Endpoints&lt;/em> section.&lt;/p>
 &lt;ul>
 &lt;li>you should register a new service endpoint with the webdav service type,
 separated from the SRM one;&lt;/li>
-&lt;li>fill in the webdav URL containing also the VO ops folder, for example:
+&lt;li>the endpoint url information used for monitoring purposes should be set in the
+&lt;a href="../extension-properties">extension property&lt;/a> section. Create the following:
+&lt;ul>
+&lt;li>Name: ARGO_WEBDAV_OPS_URL&lt;/li>
+&lt;li>Value: webdav URL containing also the VO ops folder, for example:
 &lt;code>https://darkstorm.cnaf.infn.it:8443/webdav/ops&lt;/code> or
 &lt;code>https://hepgrid11.ph.liv.ac.uk/dpm/ph.liv.ac.uk/home/ops/&lt;/code>
 &lt;ul>
@@ -272,8 +276,28 @@ separated from the SRM one;&lt;/li>
 (containing the used port and without the VO folder);&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>verify that the webdav URL (for example:
 &lt;code>https://darkstorm.cnaf.infn.it:8443/webdav&lt;/code>) is properly accessible.&lt;/li>
+&lt;/ul>
+&lt;h3 id="eos-and-xrootd-service-endpoints">EOS and XrootD service endpoints&lt;/h3>
+&lt;p>The EOS service endpoints expose an XrootD interface, so in order to properly
+monitor them, even in case you provide a plain XrootD endpoint, please do the
+following:&lt;/p>
+&lt;ul>
+&lt;li>you should register a new service endpoint with the XrootD service type;&lt;/li>
+&lt;li>the endpoint url information used for monitoring purposes should be set in the
+&lt;a href="../extension-properties">extension property&lt;/a> section. Create the following:
+&lt;ul>
+&lt;li>Name: ARGO_XROOTD_OPS_URL&lt;/li>
+&lt;li>Value: XRootD base SURL to test (the path where ops VO has write access),
+for example: &lt;code>root://eosatlas.cern.ch//eos/atlas/opstest/egi/&lt;/code>,
+&lt;code>root://recas-se-01.cs.infn.it:1094/dpm/cs.infn.it/home/ops/&lt;/code>,
+&lt;code>root://dcache-atlas-xrootd-ops.desy.de:2811/pnfs/desy.de/ops&lt;/code> or similar).
+Pay attention to the port configured for the interface.&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="gridftp">GridFTP&lt;/h3>
 &lt;p>In order to properly monitor your gridftp endpoint for ops VO&lt;/p>
