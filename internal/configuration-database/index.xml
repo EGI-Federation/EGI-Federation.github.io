@@ -264,7 +264,7 @@ the additional ones in the &lt;em>Service Endpoints&lt;/em> section.&lt;/p>
 &lt;ul>
 &lt;li>you should register a new service endpoint with the webdav service type,
 separated from the SRM one;&lt;/li>
-&lt;li>the endpoint url information used for monitoring purposes should be set in the
+&lt;li>the endpoint URL information used for monitoring purposes should be set in the
 &lt;a href="../extension-properties">extension properties&lt;/a> section. Create the following:
 &lt;ul>
 &lt;li>Name: ARGO_WEBDAV_OPS_URL&lt;/li>
@@ -287,7 +287,7 @@ monitor them, even in case you provide a plain XrootD endpoint, please do the
 following:&lt;/p>
 &lt;ul>
 &lt;li>you should register a new service endpoint with the XrootD service type;&lt;/li>
-&lt;li>the endpoint url information used for monitoring purposes should be set in the
+&lt;li>the endpoint URL information used for monitoring purposes should be set in the
 &lt;a href="../extension-properties">extension properties&lt;/a> section. Create the following:
 &lt;ul>
 &lt;li>Name: ARGO_XROOTD_OPS_URL&lt;/li>
@@ -351,8 +351,8 @@ GlueChunkKey: &lt;span style="color:#000">GlueSEUniqueID&lt;/span>&lt;span style
 GlueVOInfoLocalID: ops:data01
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>Pay attention to use the storage path for the ops VO&lt;/li>
-&lt;li>On GOCDB, in the “&lt;a href="../extension-properties">Extension Properties&lt;/a>” section
-of the SRM service endpoint page, fill in the following fields:
+&lt;li>On GOCDB, in the “&lt;a href="../extension-properties">Extension Properties&lt;/a>” section of
+the SRM service endpoint page, fill in the following fields:
 &lt;ul>
 &lt;li>Name: SURL&lt;/li>
 &lt;li>Value: the actual SURL value, for example:
@@ -678,22 +678,20 @@ their core services from their other (non-core) services using one of two ways
 ‘Certified’&lt;/li>
 &lt;/ul>
 &lt;h3 id="required-service-types">Required Service Types&lt;/h3>
-&lt;p>The following service types are mandatory and all NGIs in the EGI scope should
-define instances of these services:&lt;/p>
+&lt;p>The following service types are mandatory to support the central operations and
+all NGIs in the EGI scope should define instances of these services:&lt;/p>
 &lt;ul>
-&lt;li>ngi.SAM (Mandatory)&lt;/li>
 &lt;li>emi.ARGUS (Mandatory) (NGI ARGUS)&lt;/li>
 &lt;li>Top-BDII (Mandatory)&lt;/li>
 &lt;/ul>
 &lt;p>Other Mandatory services, depending on middleware deployed by sites under NGI
-responsibility, are listed
-&lt;a href="https://wiki.egi.eu/wiki/NGI_services_in_GOCDB#Services">here&lt;/a>(link to old EGI
-Wiki)&lt;/p>
+responsibility, are the following:&lt;/p>
+&lt;ul>
+&lt;li>MyProxy&lt;/li>
+&lt;li>VOMS&lt;/li>
+&lt;/ul>
 &lt;p>NGIs should also register their custom core services like accounting, helpdesk
-if they are registered in GOCDB (for a list of other common core service types
-see:
-&lt;a href="https://wiki.egi.eu/wiki/NGI_services_in_GOCDB">NGI_services_in_GOCDB&lt;/a>(link to
-old EGI Wiki)&lt;/p>
+if provided.&lt;/p>
 &lt;h3 id="registering-ngi-core-services">Registering NGI Core Services&lt;/h3>
 &lt;p>NGI core services can be grouped/flagged in one of two ways:&lt;/p>
 &lt;ul>
@@ -704,10 +702,9 @@ status of ‘Certified’.&lt;/li>
 services to this ServiceGroup.&lt;/li>
 &lt;/ul>
 &lt;p>It is important that these core service Sites/ServiceGroups adhere to the
-‘NGI_XX_SERVICES’ naming scheme. For further details, including a list of
-existing ‘NGI_XX_SERVICES’ please see:
-&lt;a href="https://wiki.egi.eu/wiki/NGI_services_in_GOCDB">NGI_services_in_GOCDB&lt;/a>(link to
-old EGI Wiki)&lt;/p></description></item><item><title>Internal: Scoping</title><link>/internal/configuration-database/scopes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/configuration-database/scopes/</guid><description>
+‘NGI_XX_SERVICES’ naming scheme. The list of existing Service Groups is
+available on
+&lt;a href="https://goc.egi.eu/portal/index.php?Page_Type=Service_Groups">GOCDB&lt;/a>.&lt;/p></description></item><item><title>Internal: Scoping</title><link>/internal/configuration-database/scopes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/configuration-database/scopes/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;ul>
 &lt;li>Scope tags are used to group entities such as &lt;code>Sites&lt;/code>, &lt;code>Services&lt;/code> and

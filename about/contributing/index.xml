@@ -279,7 +279,7 @@ $ git reset HEAD^
 &lt;/ul>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-markdown" data-lang="markdown">[&lt;span style="color:#204a87;font-weight:bold">EGI Cloud Compute&lt;/span>](&lt;span style="color:#c4a000">https://www.egi.eu/services/cloud-compute/&lt;/span>)
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="markdown-writing-guidelines">Markdown writing guidelines&lt;/h2>
-&lt;p>Documentation pages have to be written in markdown, compliant with
+&lt;p>Documentation pages have to be written in Markdown, compliant with
 &lt;a href="https://spec.commonmark.org/0.29/">CommonMark&lt;/a> and
 &lt;a href="https://github.github.com/gfm/">GitHub Flavored Markdown&lt;/a>.&lt;/p>
 &lt;h3 id="basic-rules">Basic rules&lt;/h3>

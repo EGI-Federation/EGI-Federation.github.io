@@ -207,7 +207,7 @@ the current name.&lt;/p>
 field, and its contents can be executed by using &lt;code>Shift-Enter&lt;/code>, or by clicking
 either the &amp;ldquo;Play&amp;rdquo; button in the toolbar, or Cell -&amp;gt; Run in the menu bar.&lt;/p>
 &lt;p>The execution behaviour of a cell is determined by the cell&amp;rsquo;s type.&lt;/p>
-&lt;p>There are three types of cells: cells, markdown, and raw cells. Every cell
+&lt;p>There are three types of cells: cells, Markdown, and raw cells. Every cell
 starts off being a code cell, but its type can be changed by using a drop-down
 on the toolbar (which will be &amp;ldquo;Code&amp;rdquo;, initially).&lt;/p>
 &lt;h4 id="code-cells">Code cells&lt;/h4>

@@ -36,16 +36,16 @@ It was also presented in one of the
 &lt;/div>
 &lt;p>The following sections document how to use IM from its GUI or CLI.&lt;/p></description></item><item><title>Users: Elastic Cloud Compute Clusters</title><link>/users/compute/orchestration/ec3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/ec3/</guid><description>
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
-&lt;p>&lt;a href="http://servproject.i3m.upv.es/ec3-ltos/">Elastic Cloud Compute Cluster&lt;/a> (EC3) is a
-tool to &lt;strong>create elastic virtual clusters on top of Infrastructure-as-a-Service
-(IaaS) providers&lt;/strong>.&lt;/p>
+&lt;p>&lt;a href="http://servproject.i3m.upv.es/ec3-ltos/">Elastic Cloud Compute Cluster&lt;/a> (EC3)
+is a tool to &lt;strong>create elastic virtual clusters on top of
+Infrastructure-as-a-Service (IaaS) providers&lt;/strong>.&lt;/p>
 &lt;p>Being based on &lt;a href="../im">Infrastructure Manager&lt;/a>, EC3 supports the same wide
-choices of back-ends, either public (such as
+choices of backends, either public (such as
 &lt;a href="https://aws.amazon.com/">Amazon Web Services&lt;/a>,
 &lt;a href="http://cloud.google.com/">Google Cloud&lt;/a> or
 &lt;a href="http://azure.microsoft.com/">Microsoft Azure&lt;/a>) or on-premises (such as
-&lt;a href="../../../getting-started/openstack">OpenStack&lt;/a>). EC3 can provision clusters running
-&lt;a href="https://github.com/adaptivecomputing/torque">TORQUE&lt;/a>,
+&lt;a href="../../../getting-started/openstack">OpenStack&lt;/a>). EC3 can provision clusters
+running &lt;a href="https://github.com/adaptivecomputing/torque">TORQUE&lt;/a>,
 &lt;a href="http://slurm.schedmd.com/">SLURM&lt;/a>,
 &lt;a href="https://research.cs.wisc.edu/htcondor/">HTCondor&lt;/a>,
 &lt;a href="http://mesos.apache.org/">Apache Mesos&lt;/a>, &lt;a href="https://www.nomadproject.io/">Nomad&lt;/a>,
@@ -54,9 +54,9 @@ resized to fit the load (e.g. number of jobs at the batch system).&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 EC3 was presented in one of the
-&lt;a href="https://www.egi.eu/webinars/">EGI Webinars&lt;/a>.
-Please see more details on the &lt;a href="https://indico.egi.eu/event/5092/">Indico page&lt;/a>
-and check out the video recording on &lt;a href="https://youtu.be/cN0tTBjV3I8">YouTube&lt;/a>.
+&lt;a href="https://www.egi.eu/webinars/">EGI Webinars&lt;/a>. Please see more details on the
+&lt;a href="https://indico.egi.eu/event/5092/">Indico page&lt;/a> and check out the video
+recording on &lt;a href="https://youtu.be/cN0tTBjV3I8">YouTube&lt;/a>.
 &lt;/div>
 &lt;p>The following section of the documentation will guide you on how to:&lt;/p>
 &lt;ul>

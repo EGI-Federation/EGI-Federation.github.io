@@ -1751,11 +1751,11 @@ coherence&lt;/li>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;ul>
 &lt;li>
-&lt;p>Several critical grid services such as the Logical File Catalogue (LFC) or the
-VO Management Service (VOMS) server represent single points of failure in a
-grid infrastructure. When unavailable, a user can no longer access to the
-infrastructure since it is prevented from issuing new proxies, or is no longer
-able to access to the physical location of his data.&lt;/p>
+&lt;p>Several critical grid services such as the VO Management Service (VOMS) server
+represent single points of failure in a grid infrastructure. When unavailable,
+a user can no longer access to the infrastructure since it is prevented from
+issuing new proxies, or is no longer able to access to the physical location
+of his data.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>However, those services rely on MySQL backends which opens a window to
@@ -2042,102 +2042,6 @@ tcp &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> &lt;span style="
 +------+-----------+-----------------+------+-------------+---------+----------------------------------------------------------------+------+
 &lt;span style="color:#000;font-weight:bold">|&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2778&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> ibrepifca &lt;span style="color:#000;font-weight:bold">|&lt;/span> localhost:42281 &lt;span style="color:#000;font-weight:bold">|&lt;/span> NULL &lt;span style="color:#000;font-weight:bold">|&lt;/span> Binlog Dump &lt;span style="color:#000;font-weight:bold">|&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1400477&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> Has sent all binlog to slave&lt;span style="color:#000;font-weight:bold">;&lt;/span> waiting &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> binlog to be updated &lt;span style="color:#000;font-weight:bold">|&lt;/span> NULL &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 +------+-----------+-----------------+------+-------------+---------+----------------------------------------------------------------+------+
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="the-lfc-case">The LFC case&lt;/h3>
-&lt;h4 id="an-working-example">An working example&lt;/h4>
-&lt;p>Using the MySQL replication mechanism, you can setup a read-only LFC which can
-start to operate if the primary LFC is unavailable. The following workflow tries
-to demonstrate how the mechanism is working:&lt;/p>
-&lt;ul>
-&lt;li>Only the primary LFC is available in the information system&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ lcg-infosites --vo ict.vo.ibergrid.eu lfc lfc01.ncg.ingrid.pt
-&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>If &lt;code>LFC_HOST&lt;/code> env variable is not defined, &lt;code>lcg_utils&lt;/code> will query the
-information system to get the VO LFC&lt;/li>
-&lt;/ul>
-&lt;pre>&lt;code class="language-log" data-lang="log">06/15/11-18:19:53 --&amp;gt; unset LFC_HOST env variable
-06/15/11-18:19:53 --&amp;gt; copy data to SE and register it on the catalogue
-06/15/11-18:19:53 --&amp;gt; running command: lcg-cr -v --vo ict.vo.ibergrid.eu -d se01-tic.ciemat.es -l lfn:/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl&amp;gt;
-Using grid catalog type: lfc Using grid catalog : lfc01.ncg.ingrid.pt
-Checksum type: None SE type: SRMv2
-Destination SURL : srm://se01-tic.ciemat.es/dpm/ciemat.es/home/ict.vo.ibergrid.eu/generated/2011-06-15/filea0e24e4a-4caf-4d31-a871-da0138bca1b6
-Source SRM Request Token: da0f6de5-3dad-4d14-bd17-a5ae601043ec
-Source URL: &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl&amp;gt;
-File size: 565 VO name: ict.vo.ibergrid.eu
-Destination specified: se01-tic.ciemat.es
-Destination URL for copy: gsiftp://se01-tic.ciemat.es/se01-tic.ciemat.es:/storage10/ict.vo.ibergrid.eu/2011-06-15/filea0e24e4a-4caf-4d31-a871-da0138bca1b6.1488163.0
-# streams: 1 565 bytes 1.19 KB/sec avg 1.19 KB/sec inst
-Transfer took 1020 ms
-Using LFN: lfn:/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt
-Using GUID: guid:f602407d-bc36-4c0b-8346-219fb14f830b
-Registering LFN: /grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt (f602407d-bc36-4c0b-8346-219fb14f830b)
-Registering SURL: srm://se01-tic.ciemat.es/dpm/ciemat.es/home/ict.vo.ibergrid.eu/generated/2011-06-15/filea0e24e4a-4caf-4d31-a871-da0138bca1b6 (f602407d-bc36-4c0b-8346-219fb14f830b)
-guid:f602407d-bc36-4c0b-8346-219fb14f830b
-&lt;/code>&lt;/pre>&lt;ul>
-&lt;li>We now explicitly switch to the backup LFC (not being published in the
-information system), and we do see that the file already appears there
-registered.&lt;/li>
-&lt;/ul>
-&lt;pre>&lt;code class="language-log" data-lang="log">`06/15/11-18:20:01 --&amp;gt; export LFC_HOST to backup LFC`
-`06/15/11-18:20:01 --&amp;gt; running command: export LFC_HOST=ibergrid-lfc.ifca.es`
-`06/15/11-18:20:01 --&amp;gt; list the backup LFC`
-`06/15/11-18:20:01 --&amp;gt; running command: lfc-ls /grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt`
-`/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt`
-&lt;/code>&lt;/pre>&lt;ul>
-&lt;li>We can copy data around reading entries from the backup LFC&lt;/li>
-&lt;/ul>
-&lt;pre>&lt;code class="language-log" data-lang="log">06/15/11-18:20:01 --&amp;gt; Copy data using the backup LFC
-06/15/11-18:20:01 --&amp;gt; running command: lcg-cp -v --vo ict.vo.ibergrid.eu lfn:/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl2&amp;gt;
-Using grid catalog type: LFC Using grid catalog : ibergrid-lfc.ifca.es
-VO name: ict.vo.ibergrid.eu Checksum type: None
-Trying SURL srm://se01-tic.ciemat.es/dpm/ciemat.es/home/ict.vo.ibergrid.eu/generated/2011-06-15/filea0e24e4a-4caf-4d31-a871-da0138bca1b6 ...
-Source SE type: SRMv2
-Source SRM Request Token: 3e0be4f1-f9e9-40f4-8f9f-321a115840ba
-Source URL: /grid/ict.vo.ibergrid.eu/goncalo_borges/mytest.txt
-File size: 565
-Source URL for copy: gsiftp://se01-tic.ciemat.es/se01-tic.ciemat.es:/storage10/ict.vo.ibergrid.eu/2011-06-15/filea0e24e4a-4caf-4d31-a871-da0138bca1b6.1488163.0
-Destination URL: &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl2&amp;gt;
-# streams: 1 0 bytes 0.00 KB/sec avg 0.00 KB/sec inst
-Transfer took 1030 ms
-&lt;/code>&lt;/pre>&lt;ul>
-&lt;li>However, we can not register new files in the backup LFC&lt;/li>
-&lt;/ul>
-&lt;pre>&lt;code class="language-log" data-lang="log">06/15/11-18:30:10 --&amp;gt; copy data to SE and register it on the catalogue
-06/15/11-18:30:10 --&amp;gt; running command: lcg-cr -v --vo ict.vo.ibergrid.eu -d se01-tic.ciemat.es -l lfn:/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest2.txt &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl&amp;gt;
-Using grid catalog type: lfc Using grid catalog : ibergrid-lfc.ifca.es
-Checksum type: None SE type: SRMv2
-Destination SURL : srm://se01-tic.ciemat.es/dpm/ciemat.es/home/ict.vo.ibergrid.eu/generated/2011-06-15/file8a30add9-b247-4037-9d42-981728ae3e76
-Source SRM Request Token: 4029fcc2-281f-4e9a-a843-e8a3a67623ff
-Source URL: &amp;lt;file:/home/ingrid/csys/goncalo/scriptInputData.jdl&amp;gt;
-File size: 565 VO name: ict.vo.ibergrid.eu
-Destination specified: se01-tic.ciemat.es
-Destination URL for copy: gsiftp://se01-tic.ciemat.es/se01-tic.ciemat.es:/storage17/ict.vo.ibergrid.eu/2011-06-15/file8a30add9-b247-4037-9d42-981728ae3e76.1488174.0
-# streams: 1 565 bytes 1.28 KB/sec avg 1.28 KB/sec inst
-Transfer took 1020 ms
-Using LFN: lfn:/grid/ict.vo.ibergrid.eu/goncalo_borges/mytest2.txt
-Using GUID: guid:e1b977c7-290a-410f-ad31-be4feeb67b11
-Registering LFN: /grid/ict.vo.ibergrid.eu/goncalo_borges/mytest2.txt (e1b977c7-290a-410f-ad31-be4feeb67b11)
-[LFC][lfc_creatg][] ibergrid-lfc.ifca.es: guid:e1b977c7-290a-410f-ad31-be4feeb67b11: Read-only file system
-srm://se01-tic.ciemat.es/dpm/ciemat.es/home/ict.vo.ibergrid.eu/generated/2011-06-15/file8a30add9-b247-4037-9d42-981728ae3e76: Registration failed, please register it by hand, when the problem will be solved
-guid:e1b977c7-290a-410f-ad31-be4feeb67b11
-lcg_cr: Communication error on send
-&lt;/code>&lt;/pre>&lt;h4 id="swapping-between-lfcs">Swapping between LFCs&lt;/h4>
-&lt;ul>
-&lt;li>
-&lt;p>Unfortunately the middleware does not offer an automatic way to swap to the
-backup LFC in case the primary fails. Therefore, it is up to the user (or to
-the application) to determine if a given LFC is available or not.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>In the previous example, we have followed the approach where only the primary
-LFC is available through the information system. One can assume that, if the
-primary LFC is not available in the information system, it means that either
-it is down or unreachable. In that case, the user or application could switch
-to the backup LFC.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">LFC_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>lcg-infosites --vo ict.vo.ibergrid.eu lfc
-$ &lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;X&lt;/span>&lt;span style="color:#000">$LFC_HOST&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;X&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">then&lt;/span> &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">LFC_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;backup LFC FQDN&amp;gt;&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">fi&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="the-voms-case">The VOMS case&lt;/h3>
 &lt;h4 id="a-working-example">A working example&lt;/h4>
 &lt;ul>

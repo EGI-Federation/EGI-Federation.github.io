@@ -610,11 +610,11 @@ all these operations, only the following are necessary:&lt;/p>
 $ mkdir /storage1
 $ mount -t ext4 /dev/mapper/storage1 /storage1
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="access-via-egi-data-transfer">Access via EGI Data Transfer&lt;/h2>
-&lt;p>&lt;a href="../../../data/management/data-transfer">EGI Data Transfer&lt;/a> allows you to move any type of
-data files asynchronously from one storage to another. If you want to copy data
-from/to one VM running on the EGI cloud, you will need to run a compatible
-server (Webdav/https, GridFTP, xrootd, SRM, S3, GCloud) that can interact with
-the FTS3 software.&lt;/p>
+&lt;p>&lt;a href="../../../data/management/data-transfer">EGI Data Transfer&lt;/a> allows you to move
+any type of data files asynchronously from one storage to another. If you want
+to copy data from/to one VM running on the EGI cloud, you will need to run a
+compatible server (Webdav/HTTPS, GridFTP, xrootd, SRM, S3, GCloud) that can
+interact with the FTS3 software.&lt;/p>
 &lt;p>An easy way to provide a GridFTP server on your VM is to use the
 &lt;a href="https://github.com/cern-fts/ready2go/tree/master/gridftp-le">gridftp-le ready2go docker stack&lt;/a>
 for deploying a GridFTP Docker Container with certificates from Let&amp;rsquo;s Encrypt.

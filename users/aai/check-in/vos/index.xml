@@ -82,8 +82,7 @@ someone at your home institute, and will generally need some kind of ID to prove
 your identity.&lt;/p>
 &lt;h3 id="install-a-certificate">Install a Certificate&lt;/h3>
 &lt;p>After approval, the certificate is generated and delivered to you. This can be
-done via e-mail, or by giving instructions to you to download it from a web
-page.&lt;/p>
+done via email, or by giving instructions to you to download it from a web page.&lt;/p>
 &lt;h4 id="browser-installation">Browser installation&lt;/h4>
 &lt;p>Install the certificate in your browser. If you don’t know how to upload your
 certificate in your browser have a look at the
@@ -248,8 +247,8 @@ information can be found at
 &lt;strong>Again, this is usually guided by the EGI support team. You should already
 have a meeting with them to discuss your requirements. They will help you to
 get resources from EGI providers, and sign
-&lt;a href="https://confluence.egi.eu/display/EGISLM/EGI+OLA+SLA+framework">SLA&lt;/a>
-with you.&lt;/strong>&lt;/p>
+&lt;a href="https://confluence.egi.eu/display/EGISLM/EGI+OLA+SLA+framework">SLA&lt;/a> with
+you.&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Request your VO membership at VO VOMS page. You will have to enter required

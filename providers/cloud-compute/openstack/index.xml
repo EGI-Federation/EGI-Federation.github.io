@@ -629,7 +629,7 @@ repository.&lt;/li>
 ssmsend every six hours.&lt;/p>
 &lt;h3 id="using-the-vm-appliance">Using the VM Appliance&lt;/h3>
 &lt;p>&lt;a href="http://caso.readthedocs.org/en/latest/configuration.html">cASO configuration&lt;/a>
-is stored at &lt;code>/etc/caso/caso.conf&lt;/code>. Most default values should be ok, but you
+is stored at &lt;code>/etc/caso/caso.conf&lt;/code>. Most default values should be OK, but you
 must set:&lt;/p>
 &lt;ul>
 &lt;li>
