@@ -35,7 +35,7 @@ the &lt;code>oneclient&lt;/code> component or the &lt;a href="../api">API&lt;/a>
 and a specific &lt;a href="../../../../tutorials/vm-datahub">tutorial&lt;/a> on how to install
 and use it from a Virtual Machine is also available.&lt;/p>
 &lt;h2 id="using-the-web-interface">Using the web interface&lt;/h2>
-&lt;p>Using EGI Check-in it's possible to connect with your institute credentials.&lt;/p>
+&lt;p>Using EGI Check-in allows you to connect with your institute&amp;rsquo;s credentials.&lt;/p>
 &lt;p>&lt;img src="datahub-connect-check-in.png" alt="Selecting EGI to connect using EGI Check-in">&lt;/p>
 &lt;p>On this page it&amp;rsquo;s possible to have an overview of all the spaces and their
 supporting providers.&lt;/p>
