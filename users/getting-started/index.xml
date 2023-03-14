@@ -146,7 +146,7 @@ available for visualisation at
 &lt;a href="https://accounting.egi.eu">EGI Accounting portal&lt;/a>.&lt;/p>
 &lt;h4 id="cloud-usage-record">Cloud Usage Record&lt;/h4>
 &lt;p>The federated cloud task force has agreed on a Cloud Usage Record, which
-inherits from the &lt;a href="https://www.ogf.org/documents/GFD.98.pdf">OGF Usage Record&lt;/a>.
+inherits from the &lt;a href="https://ogf.org/documents/GFD.204.pdf">OGF Usage Record (GFD.204)&lt;/a>.
 This record defines the data that resource providers must send to EGI&amp;rsquo;s central
 Accounting repository.&lt;/p>
 &lt;p>Version 0.4 of the Cloud Accounting Usage Record was agreed at the FedCloud Face
