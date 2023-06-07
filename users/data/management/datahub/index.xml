@@ -32,7 +32,7 @@ discoverability and access to datasets.&lt;/p>
 the &lt;code>oneclient&lt;/code> component or the &lt;a href="../api">API&lt;/a>.&lt;/p>
 &lt;p>The official documentation for &lt;code>oneclient&lt;/code> is hosted on the
 &lt;a href="https://onedata.org/#/home/documentation/doc/using_onedata/oneclient.html">Onedata homepage&lt;/a>,
-and a specific &lt;a href="../../../../tutorials/vm-datahub">tutorial&lt;/a> on how to install
+and a specific &lt;a href="../../../../tutorials/adhoc/vm-datahub">tutorial&lt;/a> on how to install
 and use it from a Virtual Machine is also available.&lt;/p>
 &lt;h2 id="using-the-web-interface">Using the web interface&lt;/h2>
 &lt;p>Using EGI Check-in allows you to connect with your institute&amp;rsquo;s credentials.&lt;/p>
