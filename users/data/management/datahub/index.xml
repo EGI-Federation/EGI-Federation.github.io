@@ -102,7 +102,7 @@ pages.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker run -it --privileged &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">ONECLIENT_ACCESS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$ONECLIENT_ACCESS_TOKEN&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">ONECLIENT_PROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$ONECLIENT_PROVIDER_HOST&lt;/span> &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> onedata/oneclient:20.02.7
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> onedata/oneclient:21.02.2
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Connecting to provider &lt;span style="color:#4e9a06">&amp;#39;plg-cyfronet-01.datahub.egi.eu:443&amp;#39;&lt;/span> using session ID: &lt;span style="color:#4e9a06">&amp;#39;4138963898952098752&amp;#39;&lt;/span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Getting configuration...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Oneclient has been successfully mounted in &lt;span style="color:#4e9a06">&amp;#39;/mnt/oneclient&amp;#39;&lt;/span>
@@ -128,7 +128,7 @@ mount manually the Onedata spaces.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker run -it --privileged &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">ONECLIENT_ACCESS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$ONECLIENT_ACCESS_TOKEN&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">ONECLIENT_PROVIDER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$ONECLIENT_PROVIDER_HOST&lt;/span> &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -v &lt;span style="color:#000">$PWD&lt;/span>:/mnt/src --entrypoint bash onedata/oneclient:20.02.7
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -v &lt;span style="color:#000">$PWD&lt;/span>:/mnt/src --entrypoint bash onedata/oneclient:21.02.2
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>root@aca612a84fb4:/tmp# oneclient /mnt/oneclient
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Connecting to provider &lt;span style="color:#4e9a06">&amp;#39;plg-cyfronet-01.datahub.egi.eu:443&amp;#39;&lt;/span> using session ID: &lt;span style="color:#4e9a06">&amp;#39;1641165171427694510&amp;#39;&lt;/span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Getting configuration...
