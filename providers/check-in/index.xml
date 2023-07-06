@@ -1070,13 +1070,6 @@ using any of the supported backend authentication mechanisms, such as
 institutional IdPs registered with eduGAIN or Social Providers. Once the user
 has signed in, EGI Check-in can return OIDC Claims containing information about
 the authenticated user.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Important&lt;/h4>
-The EGI Check-in OpenID Provider
-will be migrated to Keycloak. Please check
-&lt;a href="#client-migration-to-keycloak">OIDC Client Migration to Keycloak&lt;/a> for more
-details
-&lt;/div>
 &lt;h3 id="client-registration">Client registration&lt;/h3>
 &lt;p>Before your service can use the EGI Check-in OpenID Provider for user login, you
 must submit a service registration request using
@@ -1728,32 +1721,32 @@ You can find the &lt;code>TOKEN_ENDPOINT&lt;/code> in the
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="endpoints">Endpoints&lt;/h3>
 &lt;p>The most important OIDC/OAuth2 endpoints are listed below:&lt;/p>
 &lt;!-- markdownlint-disable no-inline-html -->
-&lt;ul class="nav nav-tabs" id="tabs-21" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-20" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active"
-id="tabs-21-0-tab" data-toggle="tab" href="#tabs-21-0" role="tab"
-aria-controls="tabs-21-0" aria-selected="true">
+id="tabs-20-0-tab" data-toggle="tab" href="#tabs-20-0" role="tab"
+aria-controls="tabs-20-0" aria-selected="true">
 Production
 &lt;/a>
 &lt;/li>
 &lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-21-1-tab" data-toggle="tab" href="#tabs-21-1" role="tab"
-aria-controls="tabs-21-1" aria-selected="false">
+id="tabs-20-1-tab" data-toggle="tab" href="#tabs-20-1" role="tab"
+aria-controls="tabs-20-1" aria-selected="false">
 Demo
 &lt;/a>
 &lt;/li>
 &lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-21-2-tab" data-toggle="tab" href="#tabs-21-2" role="tab"
-aria-controls="tabs-21-2" aria-selected="false">
+id="tabs-20-2-tab" data-toggle="tab" href="#tabs-20-2" role="tab"
+aria-controls="tabs-20-2" aria-selected="false">
 Development
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tabx-content" id="tabs-21-content">
+&lt;div class="tabx-content" id="tabs-20-content">
 &lt;div class="tab-pane show active"
-id="tabs-21-0" role="tabpanel" aria-labelled-by="tabs-21-0-tab">
+id="tabs-20-0" role="tabpanel" aria-labelled-by="tabs-20-0-tab">
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1802,7 +1795,7 @@ id="tabs-21-0" role="tabpanel" aria-labelled-by="tabs-21-0-tab">
 &lt;/table>
 &lt;/div>
 &lt;div class="tab-pane "
-id="tabs-21-1" role="tabpanel" aria-labelled-by="tabs-21-1-tab">
+id="tabs-20-1" role="tabpanel" aria-labelled-by="tabs-20-1-tab">
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1851,7 +1844,7 @@ id="tabs-21-1" role="tabpanel" aria-labelled-by="tabs-21-1-tab">
 &lt;/table>
 &lt;/div>
 &lt;div class="tab-pane "
-id="tabs-21-2" role="tabpanel" aria-labelled-by="tabs-21-2-tab">
+id="tabs-20-2" role="tabpanel" aria-labelled-by="tabs-20-2-tab">
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2435,25 +2428,25 @@ derived from &lt;strong>personal&lt;/strong> end-entity certificates, an EGI Sci
 make use of the IGTF-approved IOTA-type RCauth.eu online CA. The actual
 integration goes via an intermediary service, called a Master Portal. EGI is
 running two Master Portal instances, one development, one production instance.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-29" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-28" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active"
-id="tabs-29-0-tab" data-toggle="tab" href="#tabs-29-0" role="tab"
-aria-controls="tabs-29-0" aria-selected="true">
+id="tabs-28-0-tab" data-toggle="tab" href="#tabs-28-0" role="tab"
+aria-controls="tabs-28-0" aria-selected="true">
 Production
 &lt;/a>
 &lt;/li>
 &lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-29-1-tab" data-toggle="tab" href="#tabs-29-1" role="tab"
-aria-controls="tabs-29-1" aria-selected="false">
+id="tabs-28-1-tab" data-toggle="tab" href="#tabs-28-1" role="tab"
+aria-controls="tabs-28-1" aria-selected="false">
 Development
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tabx-content" id="tabs-29-content">
+&lt;div class="tabx-content" id="tabs-28-content">
 &lt;div class="tab-pane show active"
-id="tabs-29-0" role="tabpanel" aria-labelled-by="tabs-29-0-tab">
+id="tabs-28-0" role="tabpanel" aria-labelled-by="tabs-28-0-tab">
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2490,7 +2483,7 @@ id="tabs-29-0" role="tabpanel" aria-labelled-by="tabs-29-0-tab">
 &lt;/table>
 &lt;/div>
 &lt;div class="tab-pane "
-id="tabs-29-1" role="tabpanel" aria-labelled-by="tabs-29-1-tab">
+id="tabs-28-1" role="tabpanel" aria-labelled-by="tabs-28-1-tab">
 &lt;table>
 &lt;thead>
 &lt;tr>
