@@ -46,9 +46,11 @@ site name.&lt;/p>
 &lt;p>&lt;code>manual_spec1&lt;/code> must equal the CE identifier, spec type and average spec
 value of the cluster. The format is:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">manual_spec1&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;lt;fqdn&amp;gt;:9619/&amp;lt;fqdn&amp;gt;-condor,&amp;lt;spec_type&amp;gt;,&amp;lt;spec_value&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For example, if the CE has the Fully Qualified Domain Name (FQDN)
-&lt;code>my-htcondor-ce.example.com&lt;/code> and resources averaging 12.5
-&lt;a href="https://w3.hepix.org/benchmarking.html">HEPSPEC&lt;/a> per core:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Commonly, the spec type is one of
+&lt;a href="https://w3.hepix.org/benchmarking.html">&lt;code>HEPscore23&lt;/code> or &lt;code>HEPSPEC&lt;/code>&lt;/a>.
+The spec value is per core.&lt;/p>
+&lt;p>For example, if the CE has the Fully Qualified Domain Name (FQDN)
+&lt;code>my-htcondor-ce.example.com&lt;/code> and resources average 12.5 HEPSPEC per core:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">manual_spec1&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">my-htcondor-ce.example.com:9619/my-htcondor-ce.example.com-condor,HEPSPEC,12.5&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ul>
@@ -65,25 +67,22 @@ improved by adding performance information per machine.&lt;/p>
 separate ways to do so:&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>An &lt;em>absolute&lt;/em> performance spec value can be assigned to the &lt;code>StartD&lt;/code>, similar
-to the average spec value assigned to the CE. HTCondor-CE APEL accounting
-weights resource usage by comparing the &lt;code>StartD&lt;/code> spec value to the average
-spec value.&lt;/p>
+&lt;p>An &lt;em>absolute&lt;/em> spec value, similar to the average spec value on to the CE.
+HTCondor-CE APEL accounting then weights resource usage by comparing the
+&lt;code>StartD&lt;/code> spec value to the average spec value.&lt;/p>
 &lt;p>In the &lt;code>StartD&lt;/code> configuration, define &lt;code>ApelSpecs&lt;/code> as a new-style classad
-mapping between a spec type and its value; multiple spec types are supported,
-but in practice &lt;code>HEPSPEC&lt;/code> is currently the only one needed. Also add
-&lt;code>ApelSpecs&lt;/code> to the attributes of the &lt;code>StartD&lt;/code>.&lt;/p>
+mapping of spec types and their values; multiple spec types are supported.
+Also add &lt;code>ApelSpecs&lt;/code> to the classad attributes of the &lt;code>StartD&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># The absolute performance per core on this StartD&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ApelSpecs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">[HEPSPEC=14.37; SI2K=2793]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ApelSpecs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">[HEPSPEC=14.37; HEPscore23=14.409; SI2K=2793]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">STARTD_ATTRS&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">$(STARTD_ATTRS) ApelSpecs&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>
-&lt;p>A &lt;em>relative&lt;/em> performance spec value can be assigned to the &lt;code>StartD&lt;/code>, as a
-factor to the average spec value assigned to the CE. HTCondor-CE APEL
-accounting directly weights resource usage by the relative StartD spec factor.&lt;/p>
+&lt;p>A &lt;em>relative&lt;/em> spec value, as a factor to the average spec value on to the CE.
+HTCondor-CE APEL accounting then weights resource usage by the relative spec factor.&lt;/p>
 &lt;p>In the &lt;code>StartD&lt;/code> configuration, define &lt;code>ApelScaling&lt;/code> as a number; values above
-1 means the performance is above average. Also add &lt;code>ApelScaling&lt;/code> to the
-attributes of the &lt;code>StartD&lt;/code>.&lt;/p>
+1 mean the performance is above average. Also add &lt;code>ApelScaling&lt;/code> to the
+classad attributes of the &lt;code>StartD&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># The relative performance per core on this StartD&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ApelScaling&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">1.15&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">STARTD_ATTRS&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">$(STARTD_ATTRS) ApelScaling&lt;/span>
