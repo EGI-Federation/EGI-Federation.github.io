@@ -34,66 +34,7 @@ It was also presented in one of the
 &lt;a href="https://indico.egi.eu/event/5495/">indico page&lt;/a> and the video recording is available on
 &lt;a href="https://youtu.be/Q9VsYjI1mD4">YouTube&lt;/a>.
 &lt;/div>
-&lt;p>The following sections document how to use IM from its GUI or CLI.&lt;/p></description></item><item><title>Users: Elastic Cloud Compute Clusters</title><link>/users/compute/orchestration/ec3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/ec3/</guid><description>
-&lt;h2 id="what-is-it">What is it?&lt;/h2>
-&lt;p>&lt;a href="https://servproject.i3m.upv.es/ec3-ltos/">Elastic Cloud Compute Cluster&lt;/a> (EC3)
-is a tool to &lt;strong>create elastic virtual clusters on top of
-Infrastructure-as-a-Service (IaaS) providers&lt;/strong>.&lt;/p>
-&lt;p>Being based on &lt;a href="../im">Infrastructure Manager&lt;/a>, EC3 supports the same wide
-choices of backends, either public (such as
-&lt;a href="https://aws.amazon.com/">Amazon Web Services&lt;/a>,
-&lt;a href="https://cloud.google.com/">Google Cloud&lt;/a> or
-&lt;a href="https://azure.microsoft.com/">Microsoft Azure&lt;/a>) or on-premises (such as
-&lt;a href="../../../getting-started/openstack">OpenStack&lt;/a>). EC3 can provision clusters
-running &lt;a href="https://github.com/adaptivecomputing/torque">TORQUE&lt;/a>,
-&lt;a href="https://slurm.schedmd.com/">SLURM&lt;/a>,
-&lt;a href="https://research.cs.wisc.edu/htcondor/">HTCondor&lt;/a>,
-&lt;a href="https://mesos.apache.org/">Apache Mesos&lt;/a>, &lt;a href="https://www.nomadproject.io/">Nomad&lt;/a>,
-&lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> and others, which will be automatically
-resized to fit the load (e.g. number of jobs at the batch system).&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-EC3 was presented in one of the
-&lt;a href="https://www.egi.eu/trainings-and-webinars/">EGI Webinars&lt;/a>. Please see more details on the
-&lt;a href="https://indico.egi.eu/event/5092/">Indico page&lt;/a> and check out the video
-recording on &lt;a href="https://youtu.be/cN0tTBjV3I8">YouTube&lt;/a>.
-&lt;/div>
-&lt;p>The following section of the documentation will guide you on how to:&lt;/p>
-&lt;ul>
-&lt;li>Deploy a simple EC3 elastic cluster on top of the IaaS providers of the EGI
-Cloud, either using the web interface or the command-line interface, and&lt;/li>
-&lt;li>Run pre-configured scientific applications in the EC3 elastic cluster.&lt;/li>
-&lt;/ul></description></item><item><title>Users: Dynamic On-Demand Analysis Software</title><link>/users/compute/orchestration/dodas/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/dodas/</guid><description>
-&lt;h2 id="what-is-it">What is it?&lt;/h2>
-&lt;p>&lt;a href="https://dodas-iam.cloud.cnaf.infn.it/login">Dynamic On-Demand Analysis Software (DODAS)&lt;/a>
-enables the execution of user analysis code both in batch mode and
-interactively via the Jupyter interface. DODAS is highly customizable and offers
-several building blocks that can be combined together in order to create the
-best service composition for a given use case. The currently available blocks
-allow to combine Jupyter and HTCondor as well as Jupyter and Spark or simply a
-jupyter interface. In addition, they allow the management of data via caches to
-optimize the processing of remote data. This can be done either via XCache or
-MinIO S3 object storage capabilities. DODAS is based on docker containers and
-the related orchestration relies on Kubernetes that enables the possibility to
-compose the building blocks via a web-based user interface thanks to Kubeapps.&lt;/p>
-&lt;p>In order to deploy it services over various backend, DODAS relies on
-&lt;a href="../im">Infrastructure Manager&lt;/a> and
-&lt;a href="https://indigo-paas.cloud.ba.infn.it/home/login">INDIGO PaaS&lt;/a>&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Tip&lt;/h4>
-If you want to give it a try and deploy
-your cluster in the EGI Federation:
-&lt;a href="https://dodas-iam.cloud.cnaf.infn.it/login">DODAS&lt;/a>.
-&lt;/div>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-For detailed information about DODAS
-please see its &lt;a href="https://web.infn.it/dodas/index.php/en/">documentation&lt;/a>. It was
-also presented in one of the &lt;a href="https://www.egi.eu/trainings-and-webinars/">EGI Webinars&lt;/a>, more
-details are available on the &lt;a href="https://indico.egi.eu/event/5695/">indico page&lt;/a>
-and the video recording is available on
-&lt;a href="https://www.youtube.com/watch?v=bcURl4ESRW8&amp;amp;ab_channel=EGI">YouTube&lt;/a>.
-&lt;/div></description></item><item><title>Users: EGI Workload Manager</title><link>/users/compute/orchestration/workload-manager/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/workload-manager/</guid><description>
+&lt;p>The following sections document how to use IM from its GUI or CLI.&lt;/p></description></item><item><title>Users: EGI Workload Manager</title><link>/users/compute/orchestration/workload-manager/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/workload-manager/</guid><description>
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
 &lt;p>&lt;a href="https://www.egi.eu/service/workload-manager/">EGI Workload Manager&lt;/a> is a
 service provided to the EGI community to efficiently &lt;strong>manage and distribute
