@@ -82,21 +82,19 @@ Subsequently, the user is identified with the two DNs. If the old DN is no more
 valid please just clear the DN field and save the change. Once the old
 certificate has expired before updating the account data, users can request an
 update via GGUS ticket against Helpdesk(GGUS) support unit.&lt;/p>
-&lt;h2 id="linking-the-egi-sso-persistent-id-to-the-ggus-account">Linking the EGI SSO persistent ID to the GGUS account&lt;/h2>
+&lt;h2 id="linking-the-egi-sso-vopersonid-to-the-ggus-account">Linking the EGI SSO VOPersonID to the GGUS account&lt;/h2>
 &lt;p>&lt;strong>Pre-requisites: the email address of your EGI SSO account must be equal to the
 email address registered in GGUS!&lt;/strong>&lt;/p>
-&lt;p>For adding your EGI SSO persistent ID to your account data please do the
+&lt;p>For adding your EGI SSO VOPersonID to your account data please do the
 following:&lt;/p>
 &lt;ul>
 &lt;li>login to GGUS using your EGI SSO account&lt;/li>
 &lt;li>on GGUS home click the &lt;a href="https://ggus.eu/?mode=register_info">Registration&lt;/a>
 link&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="GGUS_EGI_AAI_1.png" alt="your account information">&lt;/p>
-&lt;ul>
 &lt;li>click the button &amp;ldquo;Add my Shibboleth ID to my account&amp;rdquo; at the bottom of the
 yellow box.&lt;/li>
 &lt;/ul>
+&lt;p>&lt;img src="https://github.com/EGI-Federation/documentation/assets/94046531/78883c1b-dcad-4a47-bd93-cec6ad72fcaf" alt="RegisterInfo_AAI_VOPersonID">&lt;/p>
 &lt;h2 id="getting-supporter-privileges">Getting supporter privileges&lt;/h2>
 &lt;p>In order to process tickets assigned to the support unit you belong to, or in
 general tickets submitted by other users and assigned to other support units,
