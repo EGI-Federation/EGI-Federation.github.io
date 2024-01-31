@@ -211,12 +211,12 @@ the Keystone Federation support.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ openstack domain &lt;span style="color:#204a87">set&lt;/span> --name egi.eu &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>openstack identity provider show -f value -c domain_id egi.eu&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Create a group per VO that you want to support:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Support for https://operations-portal.egi.eu/vo/view/voname/ops&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ openstack group create --domain egi.eu ops
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ openstack group create ops
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Support for https://operations-portal.egi.eu/vo/view/voname/cloud.egi.eu&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ openstack group create --domain egi.eu egi-staff
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add groups to the desired local project:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ openstack role add --domain egi.eu --group ops --project ops member
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ openstack role add --group ops --project ops member
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add a domain-wide role for auditing purposes (see below):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ openstack role add --domain egi.eu --group egi-staff reader
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Define a mapping of users from EGI Check-in to the group just created and
