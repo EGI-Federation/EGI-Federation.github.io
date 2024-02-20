@@ -908,4 +908,13 @@ have admin privileges:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>openstack role add member --user &amp;lt;your caso user&amp;gt; --project &amp;lt;your new vo project&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="information-system--vm-image-management">Information system / VM Image management&lt;/h2>
 &lt;p>If you are correctly setting the &lt;code>egi.VO&lt;/code> property to your projects, the
-configuration will be automatically retrieved by the catch-all components.&lt;/p></description></item></channel></rss>
+configuration will be automatically retrieved by the catch-all components.&lt;/p></description></item><item><title>Providers: Useful Resources</title><link>/providers/cloud-compute/openstack/useful-resources/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/useful-resources/</guid><description>
+&lt;p>In this page we gather a list of useful resources for OpenStack administrators.&lt;/p>
+&lt;h2 id="openstack-idle-vm-detector-osidle">OpenStack IDLE VM Detector (osidle)&lt;/h2>
+&lt;p>Our partners from &lt;a href="https://grycap.upv.es/">GRyCAP UPV&lt;/a> have created a tool
+to analyze the usage of Virtual Machines running in OpenStack. For more
+information please visit:
+&lt;a href="https://github.com/grycap/osidle/">https://github.com/grycap/osidle/&lt;/a>.&lt;/p>
+&lt;h2 id="share-yours">Share yours&lt;/h2>
+&lt;p>Would you like to share your favourite tool to make OpenStack management easier?
+Then &lt;a href="../../../../support/">contact us&lt;/a>!&lt;/p></description></item></channel></rss>
