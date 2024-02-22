@@ -179,8 +179,8 @@ operation:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es:31443/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Infrastructure successfully destroyed
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: Infrastructure Manager Dashboard</title><link>/users/compute/orchestration/im/dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/im/dashboard/</guid><description>
-&lt;p>The IM Dashboard is a graphical interface for the IM Server specially developed
-for EOSC users to access EGI Cloud Compute resources.&lt;/p>
+&lt;p>The &lt;a href="https://im.egi.eu/">IM Dashboard&lt;/a> is a graphical interface for the IM Server
+specially developed for users to access EGI Cloud Compute resources.&lt;/p>
 &lt;p>Functionalities:&lt;/p>
 &lt;ul>
 &lt;li>OIDC authentication&lt;/li>
@@ -198,10 +198,11 @@ configuring the dashboard are available in the
 &lt;a href="https://imdocs.readthedocs.io/en/latest/dashboard.html">IM Dashboard documentation&lt;/a>.
 &lt;/div>
 &lt;h2 id="usage">Usage&lt;/h2>
-&lt;p>The dashboard of the IM enables non advanced users to manage their
-infrastructures by launching a set of predefined TOSCA templates on top of EGI
-Cloud Compute resources. The dashboard does not provide all the features
-provided by the IM service. In case you need more advanced features use the
+&lt;p>The &lt;a href="https://im.egi.eu/">dashboard&lt;/a> of the IM enables non advanced users
+to manage their infrastructures by launching a set of predefined TOSCA
+templates on top of EGI Cloud Compute resources. The dashboard does not
+provide all the features provided by the IM service. In case you need more
+advanced features use the
 &lt;a href="https://imdocs.readthedocs.io/en/latest/web.html">IM Web interface&lt;/a> or the
 &lt;a href="../cli">IM-CLI&lt;/a>.&lt;/p>
 &lt;p>&lt;img src="dash_login.png" alt="Landing page">&lt;/p>
