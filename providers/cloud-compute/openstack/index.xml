@@ -903,9 +903,9 @@ members of all the matching groups.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ol>
-&lt;p>Be sure to include the user running cASO as member of the project if it does not
-have admin privileges:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>openstack role add member --user &amp;lt;your caso user&amp;gt; --project &amp;lt;your new vo project&amp;gt;
+&lt;p>Be sure to include the user running cASO at least as &lt;code>reader&lt;/code> of the project if
+it does not have admin privileges:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>openstack role add --user &amp;lt;your caso user&amp;gt; --project &amp;lt;your new vo project&amp;gt; reader
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="information-system--vm-image-management">Information system / VM Image management&lt;/h2>
 &lt;p>If you are correctly setting the &lt;code>egi.VO&lt;/code> property to your projects, the
 configuration will be automatically retrieved by the catch-all components.&lt;/p></description></item><item><title>Providers: Useful Resources</title><link>/providers/cloud-compute/openstack/useful-resources/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/useful-resources/</guid><description>
