@@ -594,7 +594,7 @@ with your Check-In account. More information is available in the
 &lt;a href="../../../aai//check-in/joining-virtual-organisation">Check-in&lt;/a> section.&lt;/p>
 &lt;p>GPUs sites can be accessed in different ways: via site-specific dashboards and
 endpoints or via common federated-cloud services like the OpenStack Horizon
-dashboards, &lt;a href="../monitor">VMOps Dashboard&lt;/a>, or a &lt;a href="../automate">cloud orchestrator&lt;/a>.&lt;/p>
+dashboards or a &lt;a href="../automate">cloud orchestrator&lt;/a>.&lt;/p>
 &lt;p>It is also possible to use the
 &lt;a href="../../../getting-started/cli">FedCloud Client&lt;/a> for command-line access. Below is
 an example on how to use the &lt;code>fedcloud&lt;/code> command to show the GPU properties of
