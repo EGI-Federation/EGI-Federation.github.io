@@ -92,10 +92,11 @@ It's also possible to create indexes and query them.&lt;/p>
 &lt;h2 id="how-to-get-access">How to get access&lt;/h2>
 &lt;p>The EGI DataHub Web interface can be accessed by any user authenticated via
 &lt;a href="../../../aai/check-in">EGI Check-in&lt;/a>. Users authenticated have access to the
-&lt;code>PLAYGROUND&lt;/code> space, where they can tests some of the available features. Users
-have also read-only access to the &lt;code>open-datasets&lt;/code> space where some example
-datasets are stored.
-In order to access via oneclient or API please check the related &lt;a href="./clients/#generating-tokens-for-using-oneclient-or-apis">documentation&lt;/a>.&lt;/p>
+&lt;code>PLAYGROUND&lt;/code> space, with a 30 GB quota, where they can tests some of the available
+features. Users have also read-only access to the &lt;code>open-datasets&lt;/code> space where
+some example datasets are stored.&lt;/p>
+&lt;p>In order to access via oneclient or API please check the related
+&lt;a href="./clients/#generating-tokens-for-using-oneclient-or-apis">documentation&lt;/a>.&lt;/p>
 &lt;p>Advanced users willing to install their own Oneprovider can check the dedicated
 &lt;a href="../../../../providers/datahub/oneprovider">installation instructions&lt;/a>.&lt;/p></description></item><item><title>Users: EGI Data Transfer</title><link>/users/data/management/data-transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/data/management/data-transfer/</guid><description>
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
