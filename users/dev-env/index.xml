@@ -127,6 +127,8 @@ Before using the service, you need to have an EGI account and be a member of
 &lt;a href="../notebooks/#notebooks-for-researchers">one of the supported resource pools&lt;/a>
 (alias Virtual Organisations). Follow the instructions on the
 &lt;a href="https://replay.notebooks.egi.eu">EGI Replay login page&lt;/a> for access.&lt;/p>
+&lt;p>The default capacity allocated for users includes up to &lt;strong>4 vCPU cores and 6GB
+of RAM&lt;/strong> for every user.&lt;/p>
 &lt;h2 id="creating-a-binder-repository">Creating a Binder repository&lt;/h2>
 &lt;p>Replay starts from a code repository that contains the code or notebook you’d
 like to run and a set of configuration files that specify what’s the exact
@@ -169,6 +171,6 @@ information.&lt;/p>
 try to launch a second instance while there is already one running you will get
 an error like shown in the screenshot:&lt;/p>
 &lt;p>&lt;img src="launch-error.png" alt="Launch Error">&lt;/p>
-&lt;p>In that case, you can either stop your existing server or connect to it from your
-&lt;a href="https://replay.notebooks.egi.eu/hub/home">Replay JupyterHub home&lt;/a>:&lt;/p>
+&lt;p>In that case, you can either stop your existing server or connect to it from
+your &lt;a href="https://replay.notebooks.egi.eu/hub/home">Replay JupyterHub home&lt;/a>:&lt;/p>
 &lt;p>&lt;img src="replay-hub-home.png" alt="Replay JupyterHub home">&lt;/p></description></item></channel></rss>
