@@ -104,6 +104,33 @@ federation, and will show how these services benefit research, science and innov
 &lt;table>
 &lt;tr>
 &lt;td>
+&lt;b>Target Audience&lt;/b>: Scientific communities, developers, IT service providers, and end users.
+&lt;/td>
+&lt;td>
+&lt;i>"Webinar: Reproducible Open Science with EGI Replay" (April, 2024)&lt;/i>
+&lt;br/>&lt;br/>
+Agenda, slides and recording:
+&lt;a href="https://www.egi.eu/event/reproducible-open-science-with-egi-replay/">https://www.egi.eu/event/reproducible-open-science-with-egi-replay/&lt;/a>
+&lt;br/>&lt;br/>
+&lt;iframe
+width="560"
+height="315"
+src="https://www.youtube.com/embed/YbEoX1JH8_4"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+&lt;/iframe>
+&lt;br/>&lt;br/>
+&lt;b>About&lt;/b>: In this webinar we showcase EGI Replay, a managed service for the EGI Community based on Binder.
+EGI Replay offers users the ability to effortlessly reproduce intricate calculations, simulations, and
+visualizations by importing Jupyter Notebooks and their respective runtime environments. With a single link,
+users can easily share their work with collaborators, making Replay an invaluable tool for workshops,
+scientific workflows, and team collaboration.
+&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>
 &lt;b>Target Audience&lt;/b>: Scientific communities, developers, integrators and end users.
 &lt;/td>
 &lt;td>
@@ -710,6 +737,32 @@ and reliable management of their long-term data storage and processing needs.
 --></description></item><item><title>Users: Advanced level</title><link>/users/tutorials/advanced/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/tutorials/advanced/</guid><description>
 &lt;!-- markdownlint-disable no-inline-html -->
 &lt;table>
+&lt;tr>
+&lt;td>
+&lt;b>Target Audience&lt;/b>: Scientific communities, developers, integrators and end users.
+&lt;/td>
+&lt;td>
+&lt;i>"Webinar: Introduction to the new generation EGI container execution platform" (January, 2024)&lt;/i>
+&lt;br/>&lt;br/>
+Agenda, slides and recording:
+&lt;a href="https://www.egi.eu/event/webinar-introduction-to-the-container-platform/">https://www.egi.eu/event/webinar-introduction-to-the-container-platform/&lt;/a>
+&lt;br/>&lt;br/>
+&lt;iframe
+width="560"
+height="315"
+src="https://www.youtube.com/embed/Jm_7BBcQHc8"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+&lt;/iframe>
+&lt;br/>&lt;br/>
+&lt;b>About&lt;/b>: The new generation EGI container execution platform is a system that delivers fully
+managed Kubernetes clusters for end users. The webinar covers how to build container images,
+how to store and share them through the Harbor repository, and how to run them on fully managed
+Kubernetes clusters with the Rancher service.
+&lt;/td>
+&lt;/tr>
 &lt;tr>
 &lt;td>
 &lt;b>Target Audience&lt;/b>: e-Infrastructure platform and technology providers and those researching

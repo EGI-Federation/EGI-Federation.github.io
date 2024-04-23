@@ -106,6 +106,9 @@ access to GPUs, integration with community specific data repositories and
 services). EGI offers consultancy and support the setup of these instances,
 and provides operational oversight for them.&lt;/li>
 &lt;/ul>
+&lt;p>EGI Replay has been presented in the
+&lt;a href="https://www.egi.eu/trainings-and-webinars/">EGI Webinars&lt;/a>. See
+&lt;a href="https://www.egi.eu/event/reproducible-open-science-with-egi-replay/">slides and recording&lt;/a>.&lt;/p>
 &lt;h2 id="reproducible-research">Reproducible research&lt;/h2>
 &lt;p>Replay facilitates the sharing and reproducibility of digital data analysis:&lt;/p>
 &lt;ol>

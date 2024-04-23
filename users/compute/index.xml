@@ -90,10 +90,20 @@ containers that need to cooperate to deliver the expected functionality.&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;p>Follow the guides below to learn more about them.&lt;/p>
-&lt;p>The EGI Cloud Container Compute service was presented in one of the
-&lt;a href="https://www.egi.eu/trainings-and-webinars/">EGI Webinars&lt;/a>. See more details on the
-&lt;a href="https://indico.egi.eu/event/5492/">indico page&lt;/a> and a video recording on
-&lt;a href="https://youtu.be/cZ3M47ON0pg">YouTube&lt;/a>.&lt;/p></description></item><item><title>Users: High Throughput Compute</title><link>/users/compute/high-throughput-compute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/high-throughput-compute/</guid><description>
+&lt;p>The EGI Cloud Container Compute service has been presented in the
+&lt;a href="https://www.egi.eu/trainings-and-webinars/">EGI Webinars&lt;/a>.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>January 2024: &lt;em>Introduction to the new generation EGI container execution
+platform&lt;/em>. See
+&lt;a href="https://www.egi.eu/event/webinar-introduction-to-the-container-platform/">slides and recording&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>April 2021: &lt;em>Managing Singularity, Docker and udocker containers, Kubernetes
+clusters in the EGI Cloud&lt;/em>. See
+&lt;a href="https://indico.egi.eu/event/5492/">slides and recording&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Users: High Throughput Compute</title><link>/users/compute/high-throughput-compute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/high-throughput-compute/</guid><description>
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
 &lt;p>High Throughput Compute (HTC) is a computing paradigm that focuses on the
 &lt;strong>efficient execution of a large number of loosely-coupled tasks&lt;/strong> (e.g. data
