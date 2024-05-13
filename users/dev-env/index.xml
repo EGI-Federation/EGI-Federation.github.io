@@ -36,9 +36,6 @@ in, write and play and re-play notebooks by:&lt;/p>
 &lt;a href="https://aai.egi.eu/registry/co_petitions/start/coef:111">vo.notebooks.egi.eu VO&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://notebooks.egi.eu/">accessing https://notebooks.egi.eu/&lt;/a>&lt;/li>
 &lt;/ol>
-&lt;p>This instance has limits on the amount of resources available for each user (up
-to 4 CPU core, 6 GB RAM and 10 GB of storage). It will also kill inactive
-sessions after 1 hour.&lt;/p>
 &lt;p>The central instance supports the following VOs:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://operations-portal.egi.eu/vo/view/voname/vo.notebooks.egi.eu">vo.notebooks.egi.eu&lt;/a>,

@@ -21,14 +21,14 @@ the Notebooks Support Unit in &lt;a href="https://ggus.eu">GGUS&lt;/a>.&lt;/p>
 &lt;p>Additionally, you can build your own environment via &lt;a href="../../replay">Replay&lt;/a>.
 This will allow you to build reproducible and shareable environments for your
 notebooks.&lt;/p></description></item><item><title>Users: Data Management in Notebooks</title><link>/users/dev-env/notebooks/data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/data/</guid><description>
-&lt;p>Every user of the EGI Notebooks catch-all instance has a 20GB persistent home to
+&lt;p>Every user of the EGI Notebooks catch-all instance has a persistent home to
 store any notebooks and associated data. The content of this home directory will
 be kept even if your notebook server is stopped (which can happen if there is no
 activity for more than 1 hour). &lt;strong>Modifications to the notebooks environment
 outside the home directory are not kept&lt;/strong> (e.g. installation of libraries). If
 you need those changes to persist, let us know via a
 &lt;a href="https://ggus.eu">GGUS ticket to the Notebooks Support Unit&lt;/a>. You can also ask
-for increasing the 20GB home via ticket.&lt;/p>
+for increasing your default home allocation via ticket.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Your home directory is backed up daily.
@@ -64,7 +64,7 @@ the EGI DataHub documentation for more information on how to upload files.&lt;/p
 &lt;p>&lt;a href="https://eudat.eu/services/b2drop">EUDAT B2DROP&lt;/a> is a low-barrier, user-friendly
 and trustworthy storage environment which allows users to synchronise their
 active data across different desktops and to easily share this data with peers.
-EUDAT offers a free public instance of B2DROP for any researcher with a 20 GB
+EUDAT offers a free public instance of B2DROP for any researcher with a limited
 quota.&lt;/p>
 &lt;p>The data on B2DROP can be synchronised with EGI Notebooks so you can share
 content between the two services. This offers an easy-to-use storage and compute
