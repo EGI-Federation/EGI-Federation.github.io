@@ -12,7 +12,7 @@ are available on the
 &lt;p>Follow the steps below to access the web interface of EGI Secrets Store:&lt;/p>
 &lt;!-- markdownlint-disable no-bare-urls -->
 &lt;ul>
-&lt;li>Open &lt;a href="https://vault.services.fedcloud.eu:8200">https://vault.services.fedcloud.eu:8200&lt;/a> in your browser.&lt;/li>
+&lt;li>Open &lt;a href="https://secrets.egi.eu">https://secrets.egi.eu&lt;/a> in your browser.&lt;/li>
 &lt;li>Choose the &lt;em>OIDC authentication&lt;/em> method in the pulldown menu, then click
 &lt;em>Sign in with OIDC provider&lt;/em>.&lt;/li>
 &lt;li>Login via &lt;em>EGI Check-in&lt;/em> and authorize the Vault GUI.&lt;/li>
@@ -115,7 +115,7 @@ id="tabs-0-2" role="tabpanel" aria-labelled-by="tabs-0-2-tab">
 &lt;h2 id="access-via-fedcloud-client">Access via FedCloud client&lt;/h2>
 &lt;p>The &lt;a href="../../../getting-started/cli">FedCloud client&lt;/a> is integrated with the EGI
 Secrets Store service, so that users can access the service immediately with
-simple commands. Below is a quickstart to using the service.&lt;/p>
+simple commands. Below is a quick start to using the service.&lt;/p>
 &lt;h3 id="basic-usage">Basic usage&lt;/h3>
 &lt;p>Let&amp;rsquo;s assume you want to create a secret &lt;code>my_app_secrets&lt;/code> and store passwords
 for two services in it:&lt;/p>
@@ -621,7 +621,7 @@ Windows
 &lt;div class="tab-pane show active"
 id="tabs-12-0" role="tabpanel" aria-labelled-by="tabs-12-0-tab">
 &lt;p>To get a Vault token:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VAULT_ADDR&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://vault.services.fedcloud.eu:8200
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VAULT_ADDR&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://secrets.egi.eu
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VAULT_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>vault write auth/jwt/login &lt;span style="color:#000">jwt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$OIDC_ACCESS_TOKEN&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> grep -Po &lt;span style="color:#4e9a06">&amp;#39;token\s+\K[^\s]+$&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -629,7 +629,7 @@ id="tabs-12-0" role="tabpanel" aria-labelled-by="tabs-12-0-tab">
 &lt;div class="tab-pane "
 id="tabs-12-1" role="tabpanel" aria-labelled-by="tabs-12-1-tab">
 &lt;p>To get a Vault token:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">$env:VAULT_ADDR&lt;/span>&lt;span style="color:#000;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;https://vault.services.fedcloud.eu:8200&amp;#34;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">$env:VAULT_ADDR&lt;/span>&lt;span style="color:#000;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;https://secrets.egi.eu&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">$env:VAULT_TOKEN&lt;/span>&lt;span style="color:#000;font-weight:bold">=$(&lt;/span>&lt;span style="color:#000">vault&lt;/span> &lt;span style="color:#204a87">write &lt;/span>&lt;span style="color:#000">auth&lt;/span>&lt;span style="color:#000;font-weight:bold">/&lt;/span>&lt;span style="color:#000">jwt&lt;/span>&lt;span style="color:#000;font-weight:bold">/&lt;/span>&lt;span style="color:#000">login&lt;/span> &lt;span style="color:#000">jwt&lt;/span>&lt;span style="color:#000;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$env:OIDC_ACCESS_TOKEN&lt;/span> &lt;span style="color:#000;font-weight:bold">`&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> &lt;span style="color:#204a87">Select-String&lt;/span> &lt;span style="color:#000">-Pattern&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;(?&amp;lt;=token\s+)[^\s]+(?=$)&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">`&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> &lt;span style="color:#000;font-weight:bold">%{&lt;/span>&lt;span style="color:#000">$_&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Matches&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">value&lt;/span>&lt;span style="color:#000;font-weight:bold">})&lt;/span>
@@ -638,7 +638,7 @@ id="tabs-12-1" role="tabpanel" aria-labelled-by="tabs-12-1-tab">
 &lt;div class="tab-pane "
 id="tabs-12-2" role="tabpanel" aria-labelled-by="tabs-12-2-tab">
 &lt;p>To get a Vault token:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&amp;gt; &lt;span style="color:#204a87">set&lt;/span> &lt;span style="color:#000">VAULT_ADDR&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://vault.services.fedcloud.eu:8200
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&amp;gt; &lt;span style="color:#204a87">set&lt;/span> &lt;span style="color:#000">VAULT_ADDR&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://secrets.egi.eu
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> /f &lt;span style="color:#4e9a06">&amp;#34;delims=&amp;#34;&lt;/span> %a in &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;vault write auth/jwt/login &amp;#34;jwt=%OIDC_ACCESS_TOKEN%&amp;#34; ^| findstr /r /c:&amp;#34;token[ ][ ]*[^^ ]*&amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> @set &lt;span style="color:#000">VAULT_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>%a:token&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>%
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; &lt;span style="color:#204a87">set&lt;/span> &lt;span style="color:#000">VAULT_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>%VAULT_TOKEN: &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>%
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -787,7 +787,7 @@ id="tabs-16-2" role="tabpanel" aria-labelled-by="tabs-16-2-tab">
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Tip&lt;/h4>
 Use quotes if the key or value includes
-whitespaces. You can include in the same quote both the key and the value.
+white spaces. You can include in the same quote both the key and the value.
 &lt;/div>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -920,7 +920,7 @@ node endpoints is not recommended: if a server is down, its endpoint is not
 accessible.
 &lt;/div>
 &lt;p>For convenience and high availability, you should use the
-&lt;a href="https://vault.services.fedcloud.eu:8200">generic endpoint&lt;/a> to access the
+&lt;a href="https://secrets.egi.eu">generic endpoint&lt;/a> to access the
 service. This generic endpoint will be pointed to one of the service nodes
 automatically via &lt;a href="../../../compute/cloud-compute/dynamic-dns/">Dynamic DNS&lt;/a>.
 A simple cron script periodically checks and assigns the generic hostname to
