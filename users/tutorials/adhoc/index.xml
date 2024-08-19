@@ -413,7 +413,7 @@ manage OpenID Connect tokens and make them easily usable from the command
 line.&lt;/p>
 &lt;/blockquote>
 &lt;p>Install &lt;code>oidc-agent&lt;/code> according to
-&lt;a href="https://indigo-dc.gitbook.io/oidc-agent/installation">official documentation&lt;/a>,
+&lt;a href="https://indigo-dc.gitbook.io/oidc-agent/intro">official documentation&lt;/a>,
 once &lt;code>oidc-agent&lt;/code> is installed it can be used to retrieve an OIDC access token
 from EGI Check-in.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Generating configuration for EGI Check-in&lt;/span>
