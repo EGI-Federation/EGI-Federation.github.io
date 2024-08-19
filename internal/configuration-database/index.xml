@@ -808,6 +808,11 @@ tag, please contact the FedCloud operators / EGI Operations.&lt;/li>
 tag, please contact the operators of the ‘ELIXIR’ NGI in the EGI Configuration
 Database.&lt;/li>
 &lt;/ul>
+&lt;h3 id="greendigit-reserved-tag">GreenDIGIT Reserved Tag&lt;/h3>
+&lt;ul>
+&lt;li>Tag for resources that contribute to the GreenDIGIT project. To request this
+tag, please contact EGI Operations.&lt;/li>
+&lt;/ul>
 &lt;h3 id="wlcg-reserved-tags">WLCG Reserved Tags&lt;/h3>
 &lt;ul>
 &lt;li>A number of reserved scope tags have been defined for the WLCG:
