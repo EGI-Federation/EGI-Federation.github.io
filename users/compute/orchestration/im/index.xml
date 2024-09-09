@@ -47,7 +47,7 @@ config file &lt;code>im_client.cfg&lt;/code> in the current directory or a file 
 in their home directory. In the config file the user can specify the following
 parameters:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">[im_client]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">restapi_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://appsgrycap.i3m.upv.es/im&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">restapi_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://im.egi.eu/im&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">auth_file&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">auth.dat&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="authentication-data-file">Authentication data file&lt;/h3>
 &lt;p>An authentication file must be created to access the IM service. It must have
@@ -129,18 +129,18 @@ deploy a single VM:&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then we can call the &lt;code>create&lt;/code> operation of the IM client tool using a RADL
 or a TOSCA YAML file:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ im_client.py create infra.radl
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Infrastructure successfully created with ID: 457273ea-85e4-11ec-aa81-faaae69bc911
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then we can call get the current state of infrastructure using the &lt;code>getstate&lt;/code>
 operation of the IM client tool:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ im_client.py getstate 457273ea-85e4-11ec-aa81-faaae69bc911
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The infrastructure is in state: pending
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>VM ID: &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> is in state: pending.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The valid VM and infrastructure states are the following:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>pending&lt;/code>, launched, but still in initialization stage;&lt;/li>
-&lt;li>&lt;code>running&lt;/code>, created successfully and running, but still in the
+&lt;li>&lt;code>configuring&lt;/code>, created successfully and running, but still in the
 configuration stage;&lt;/li>
 &lt;li>&lt;code>configured&lt;/code>, running and contextualized;&lt;/li>
 &lt;li>&lt;code>unconfigured&lt;/code>, running but not correctly contextualized;&lt;/li>
@@ -153,7 +153,7 @@ configuration stage;&lt;/li>
 &lt;p>Once the configuration step has started we can get the output of the Ansible
 process using the &lt;code>getcontmsg&lt;/code> operation:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ im_client.py getcontmsg 457273ea-85e4-11ec-aa81-faaae69bc911
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Connected with: http://localhost:8800
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Msg Contextualizator:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -168,7 +168,7 @@ process using the &lt;code>getcontmsg&lt;/code> operation:&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When using a TOSCA yaml document to create the infrastructure,
 we can get the TOSCA output values with the &lt;code>getoutputs&lt;/code> operation:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ im_client.py getoutputs 457273ea-85e4-11ec-aa81-faaae69bc911
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The infrastructure outputs:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">node_ip&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> 8.8.8.8
@@ -176,7 +176,7 @@ we can get the TOSCA output values with the &lt;code>getoutputs&lt;/code> operat
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once we no more need the Infrastructure, we can destroy it using the &lt;code>destroy&lt;/code>
 operation:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ im_client.py destroy 457273ea-85e4-11ec-aa81-faaae69bc911
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://appsgrycap.i3m.upv.es/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secure connection with: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Infrastructure successfully destroyed
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: Infrastructure Manager Dashboard</title><link>/users/compute/orchestration/im/dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/im/dashboard/</guid><description>
 &lt;p>The &lt;a href="https://im.egi.eu/">IM Dashboard&lt;/a> is a graphical interface for the IM Server

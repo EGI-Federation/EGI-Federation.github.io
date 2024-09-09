@@ -1,6 +1,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation – Compute Orchestration</title><link>/users/compute/orchestration/</link><description>Recent content in Compute Orchestration on Documentation</description><generator>Hugo -- gohugo.io</generator><atom:link href="/users/compute/orchestration/index.xml" rel="self" type="application/rss+xml"/><item><title>Users: Infrastructure Manager</title><link>/users/compute/orchestration/im/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/orchestration/im/</guid><description>
 &lt;h2 id="what-is-it">What is it?&lt;/h2>
-&lt;p>&lt;a href="https://www.grycap.upv.es/im">Infrastructure Manager&lt;/a> (IM) is a tool that
+&lt;p>&lt;a href="https://im.egi.eu/">Infrastructure Manager&lt;/a> (IM) is a tool that
 &lt;strong>orchestrates the deployment of custom virtual infrastructures on multiple
 backends&lt;/strong>. It streamlines the access and usability of Infrastructure-as-a-Service
 (IaaS) clouds by automating the configuration, deployment, software installation
@@ -13,7 +13,7 @@ a wide variety of backends, either federated (such as
 &lt;a href="https://azure.microsoft.com/">Microsoft Azure&lt;/a>) or on-premises (such as
 &lt;a href="../../../getting-started/openstack">OpenStack&lt;/a>),
 thus making user applications cloud agnostic.
-IM features a &lt;a href="https://appsgrycap.i3m.upv.es:31443/im-dashboard/">web-based GUI&lt;/a>,
+IM features a &lt;a href="https://im.egi.eu/">web-based GUI&lt;/a>,
 an XML-RPC API, a REST API and a &lt;a href="cli">command-line interface&lt;/a> (CLI).
 It supports
 &lt;a href="https://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.0/csprd01/TOSCA-Simple-Profile-YAML-v1.0-csprd01.html">OASIS TOSCA Simple Profile in YAML&lt;/a>.&lt;/p>
@@ -21,7 +21,7 @@ It supports
 &lt;h4 class="alert-heading">Tip&lt;/h4>
 An easy way to deploy your first VM
 in the EGI Federation is from the
-&lt;a href="https://appsgrycap.i3m.upv.es:31443/im-dashboard/">Infrastructure Manager dashboard&lt;/a>.
+&lt;a href="https://im.egi.eu/">Infrastructure Manager dashboard&lt;/a>.
 A &lt;a href="https://imdocs.readthedocs.io/en/latest/dashboard.html#usage">tutorial&lt;/a> and
 &lt;a href="https://youtube.com/playlist?list=PLgPH186Qwh_37AMhEruhVKZSfoYpHkrUp">demo videos&lt;/a> are also available.
 &lt;/div>

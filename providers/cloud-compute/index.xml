@@ -212,7 +212,7 @@ additional metadata properties that can help to identify the workload:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>properties:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eu.egi.cloud.orchestrator: es.upv.grycap.im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eu.egi.cloud.orchestrator.id: 0afdc7ba-bf5d-11ed-9e89-86ce117c3fcf
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eu.egi.cloud.orchestrator.url: https://appsgrycap.i3m.upv.es:31443/im
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eu.egi.cloud.orchestrator.url: https://im.egi.eu/im
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eu.egi.cloud.orchestrator.user: __OPENID__XXXXXXredacted
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Providers: GOCDB Registration</title><link>/providers/cloud-compute/registration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/registration/</guid><description>
 &lt;p>Site endpoints must be registered in
