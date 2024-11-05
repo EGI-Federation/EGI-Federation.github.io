@@ -406,6 +406,8 @@ software used to process experiment data.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>The list of EGI repositories can also be found online via
+&lt;a href="http://cvmfs-release01.gridpp.rl.ac.uk/cvmfsmonitor/">the CVMFS monitor&lt;/a>.&lt;/p>
 &lt;p>This documentation is for the VO content managers.&lt;/p>
 &lt;h2 id="official-cvmfs-pages">Official CVMFS pages&lt;/h2>
 &lt;ul>
