@@ -1,4 +1,115 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation – Notebooks</title><link>/users/dev-env/notebooks/</link><description>Recent content in Notebooks on Documentation</description><generator>Hugo -- gohugo.io</generator><atom:link href="/users/dev-env/notebooks/index.xml" rel="self" type="application/rss+xml"/><item><title>Users: Notebooks Environments</title><link>/users/dev-env/notebooks/kernels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/kernels/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation – Notebooks</title><link>/users/dev-env/notebooks/</link><description>Recent content in Notebooks on Documentation</description><generator>Hugo -- gohugo.io</generator><atom:link href="/users/dev-env/notebooks/index.xml" rel="self" type="application/rss+xml"/><item><title>Users: Notebooks Quick Start</title><link>/users/dev-env/notebooks/quickstart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/quickstart/</guid><description>
+&lt;p>The Notebooks Service is based on &lt;a href="https://jupyter.org/hub">JupyterHub&lt;/a>. It
+enables remote use of &lt;a href="https://jupyter.org/">Jupyter Notebooks&lt;/a> in a managed
+environment integrated with other EGI services. Notebooks main interface uses
+&lt;a href="https://jupyterlab.readthedocs.io">JupyterLab&lt;/a>, a highly extensible environment
+for running and authoring computational notebooks.&lt;/p>
+&lt;p>You can find links below to the upstream documentation of the EGI Notebooks
+components:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://jupyterlab.readthedocs.io">JupyterLab Documentation&lt;/a> for use of the
+integrated user environment (menus, working tabs, etc.)&lt;/li>
+&lt;li>&lt;a href="https://jupyterhub.readthedocs.io/en/latest/">JupyterHub Documentation&lt;/a> to
+manage your remote resources (starting and stopping servers, collaborative
+sharing, etc.)&lt;/li>
+&lt;li>Documentation for your core programming languages:
+&lt;ul>
+&lt;li>&lt;a href="https://docs.python.org/">Python&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.julialang.org/">Julia&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html">R&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.octave.org/latest/">Octave&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Start by &lt;a href="../../../aai/check-in/signup">creating an EGI account&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Then enroll
+&lt;a href="https://aai.egi.eu/registry/co_petitions/start/coef:111">vo.notebooks.egi.eu VO&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Go to &lt;a href="https://notebooks.egi.eu/">https://notebooks.egi.eu/&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Start the authentication process by clicking on &lt;strong>Continue with EGI
+Check-in!&lt;/strong> button&lt;/p>
+&lt;p>&lt;img src="notebooks-front.png" alt="Notebooks welcome page">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Once logged in, you will prompted to select the &lt;a href="../kernels/">environment&lt;/a>,
+pick the &amp;ldquo;Default EGI environment&amp;rdquo;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click on &amp;ldquo;Start&amp;rdquo; to get your JupyterLab instance You will see the Jupyter
+interface once your personal server is started&lt;/p>
+&lt;p>&lt;img src="lab.png" alt="JupyterLab">&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="launching-a-notebook">Launching a notebook&lt;/h2>
+&lt;p>Click on the &amp;ldquo;Python 3 (ipykernel)&amp;rdquo; option to launch your notebook with Python 3
+kernel. When you create this notebook, a new tab will be presented with a
+notebook named &lt;code>Untitled.ipynb&lt;/code>. You can easily rename it by right-clicking on
+the current name.&lt;/p>
+&lt;h3 id="structure-of-a-notebook">Structure of a notebook&lt;/h3>
+&lt;p>The notebook consists of a sequence of cells. A cell is a multiline text input
+field, and its contents can be executed by using &lt;code>Shift-Enter&lt;/code>, or by clicking
+either the &amp;ldquo;Play&amp;rdquo; button in the toolbar, or Cell -&amp;gt; Run in the menu bar.&lt;/p>
+&lt;p>The execution behaviour of a cell is determined by the cell&amp;rsquo;s type.&lt;/p>
+&lt;p>There are three types of cells: cells, Markdown, and raw cells. Every cell
+starts off being a code cell, but its type can be changed by using a drop-down
+on the toolbar (which will be &amp;ldquo;Code&amp;rdquo;, initially).&lt;/p>
+&lt;h4 id="code-cells">Code cells&lt;/h4>
+&lt;p>A code cell allows you to edit and write new code, with full syntax highlighting
+and tab completion. The programming language you use depends on the kernel.&lt;/p>
+&lt;p>When a code cell is executed, its content is sent to the kernel associated with
+the notebook. The results that are returned from this computation are then
+displayed in the notebook as the cell&amp;rsquo;s output. The output is not limited to
+text, with many other possible forms of output are also possible, including
+figures and HTML tables.&lt;/p>
+&lt;h4 id="markdown-cells">Markdown cells&lt;/h4>
+&lt;p>You can document the computational process in a literate way, alternating
+descriptive text with code, using rich text. This is accomplished by marking up
+text with the Markdown language. The corresponding cells are called Markdown
+cells. The Markdown language provides a simple way to perform this text markup,
+that is, to specify which parts of the text should be emphasized (italics),
+bold, form lists, etc.&lt;/p>
+&lt;p>If you want to provide structure for your document, you can also use markdown
+headings. Markdown headings consist of 1 to 6 hash &lt;code>#&lt;/code> signs followed by a space
+and the title of your section. The Markdown heading will be converted to a
+clickable link for a section of the notebook. It is also used as a hint when
+exporting to other document formats, like PDF.&lt;/p>
+&lt;p>When a Markdown cell is executed, the Markdown code is converted into the
+corresponding formatted rich text. Markdown allows arbitrary HTML code for
+formatting.&lt;/p>
+&lt;h4 id="raw-cells">Raw cells&lt;/h4>
+&lt;p>Raw cells provide a place in which you can write output directly. Raw cells are
+not evaluated by the notebook.&lt;/p>
+&lt;h3 id="keyboard-shortcuts">Keyboard shortcuts&lt;/h3>
+&lt;p>All actions in the notebook can be performed with the mouse, but keyboard
+shortcuts are also available for the most common ones. These are some of the
+most common:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Shift-Enter&lt;/code>: run cell. Execute the current cell, show any output, and jump
+to the next cell below. If &lt;code>Shift-Enter&lt;/code> is invoked on the last cell, it
+creates a new cell below. This is equivalent to clicking the Cell -&amp;gt; Run menu
+item, or the Play button in the toolbar.&lt;/li>
+&lt;li>&lt;code>Esc&lt;/code>: Command mode. In command mode, you can navigate around the notebook
+using keyboard shortcuts.&lt;/li>
+&lt;li>&lt;code>Enter&lt;/code> : Edit mode. In edit mode, you can edit text in cells.&lt;/li>
+&lt;/ul>
+&lt;h2 id="tutorials">Tutorials&lt;/h2>
+&lt;p>You can find links to sample notebooks that we have used in past trainings that
+may be useful to explore the system:&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/00-first-notebook.ipynb">A very basic notebook to get started&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-climate-change/blob/master/cckp_historical_temperature.ipynb">Getting data and doing a simple plot&lt;/a>.&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/02-wind-nowcast.ipynb">Connect to NOAA's GrADS Data Server to plot wind speed&lt;/a>.&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/03-customizing.ipynb">Installing new libraries&lt;/a>.&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/04-check-in.ipynb">Interact with Check-in&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Users: Notebooks Environments</title><link>/users/dev-env/notebooks/kernels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/kernels/</guid><description>
 &lt;p>JupyterHub is an extensible platform that supports different combination of
 software and hardware for running your applications. For the EGI service, you
 have the choice to run:&lt;/p>
@@ -181,99 +292,7 @@ sample:&lt;/p>
 &lt;h2 id="other-third-party-services">Other third-party services&lt;/h2>
 &lt;p>We are open for integration with other services that may be relevant for your
 research. Please contact &lt;code>support &amp;lt;at&amp;gt; egi.eu&lt;/code> with your request so we can
-investigate the best way to support your needs.&lt;/p></description></item><item><title>Users: Training Instance</title><link>/users/dev-env/notebooks/training/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/training/</guid><description>
-&lt;p>EGI provides a training instance of the Notebooks service for training events.&lt;/p>
-&lt;p>To get started:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Go to &lt;a href="https://training.notebooks.egi.eu">https://training.notebooks.egi.eu&lt;/a>.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-This instance may not use the same
-software version as in production and may not be always available, as it is
-typically configured only for specific training events.
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>Start the authentication process by clicking on &lt;strong>Start your notebooks!&lt;/strong>
-button&lt;/p>
-&lt;p>&lt;img src="training-front.png" alt="image">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Select the Identity Provider you belong to from the discovery page. If this
-is the first time you access an EGI service, Check-in will guide you through
-a registration process.&lt;/p>
-&lt;p>&lt;img src="checkin.png" alt="Check-in auth">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You will see the Jupyter interface once your personal server is started&lt;/p>
-&lt;p>&lt;img src="classic.png" alt="Classic Jupyter Notebook">&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="launching-a-notebook">Launching a notebook&lt;/h2>
-&lt;p>Click on the New &amp;gt; Python 3 option to launch your notebook with Python 3
-kernel. When you create this notebook, a new tab will be presented with a
-notebook named &lt;code>Untitled.ipynb&lt;/code>. You can easily rename it by right-clicking on
-the current name.&lt;/p>
-&lt;p>&lt;img src="new-classic.png" alt="New notebook">&lt;/p>
-&lt;h3 id="structure-of-a-notebook">Structure of a notebook&lt;/h3>
-&lt;p>The notebook consists of a sequence of cells. A cell is a multiline text input
-field, and its contents can be executed by using &lt;code>Shift-Enter&lt;/code>, or by clicking
-either the &amp;ldquo;Play&amp;rdquo; button in the toolbar, or Cell -&amp;gt; Run in the menu bar.&lt;/p>
-&lt;p>The execution behaviour of a cell is determined by the cell&amp;rsquo;s type.&lt;/p>
-&lt;p>There are three types of cells: cells, Markdown, and raw cells. Every cell
-starts off being a code cell, but its type can be changed by using a drop-down
-on the toolbar (which will be &amp;ldquo;Code&amp;rdquo;, initially).&lt;/p>
-&lt;h4 id="code-cells">Code cells&lt;/h4>
-&lt;p>A code cell allows you to edit and write new code, with full syntax highlighting
-and tab completion. The programming language you use depends on the kernel.&lt;/p>
-&lt;p>When a code cell is executed, its content is sent to the kernel associated with
-the notebook. The results that are returned from this computation are then
-displayed in the notebook as the cell&amp;rsquo;s output. The output is not limited to
-text, with many other possible forms of output are also possible, including
-figures and HTML tables.&lt;/p>
-&lt;h4 id="markdown-cells">Markdown cells&lt;/h4>
-&lt;p>You can document the computational process in a literate way, alternating
-descriptive text with code, using rich text. This is accomplished by marking up
-text with the Markdown language. The corresponding cells are called Markdown
-cells. The Markdown language provides a simple way to perform this text markup,
-that is, to specify which parts of the text should be emphasized (italics),
-bold, form lists, etc.&lt;/p>
-&lt;p>If you want to provide structure for your document, you can also use markdown
-headings. Markdown headings consist of 1 to 6 hash &lt;code>#&lt;/code> signs followed by a space
-and the title of your section. The Markdown heading will be converted to a
-clickable link for a section of the notebook. It is also used as a hint when
-exporting to other document formats, like PDF.&lt;/p>
-&lt;p>When a Markdown cell is executed, the Markdown code is converted into the
-corresponding formatted rich text. Markdown allows arbitrary HTML code for
-formatting.&lt;/p>
-&lt;h4 id="raw-cells">Raw cells&lt;/h4>
-&lt;p>Raw cells provide a place in which you can write output directly. Raw cells are
-not evaluated by the notebook.&lt;/p>
-&lt;h3 id="keyboard-shortcuts">Keyboard shortcuts&lt;/h3>
-&lt;p>All actions in the notebook can be performed with the mouse, but keyboard
-shortcuts are also available for the most common ones. These are some of the
-most common:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>Shift-Enter&lt;/code>: run cell. Execute the current cell, show any output, and jump
-to the next cell below. If &lt;code>Shift-Enter&lt;/code> is invoked on the last cell, it
-creates a new cell below. This is equivalent to clicking the Cell -&amp;gt; Run menu
-item, or the Play button in the toolbar.&lt;/li>
-&lt;li>&lt;code>Esc&lt;/code>: Command mode. In command mode, you can navigate around the notebook
-using keyboard shortcuts.&lt;/li>
-&lt;li>&lt;code>Enter&lt;/code> : Edit mode. In edit mode, you can edit text in cells.&lt;/li>
-&lt;/ul>
-&lt;h2 id="hands-on">Hands-on&lt;/h2>
-&lt;p>We pre-populate your home directory with some sample notebooks to get started,
-below you can find links to other notebooks that we have used in past trainings
-that may be useful to explore the system:&lt;/p>
-&lt;ol>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/00-first-notebook.ipynb">A very basic notebook to get started&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-climate-change/blob/master/cckp_historical_temperature.ipynb">Getting data and doing a simple plot&lt;/a>.&lt;/li>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/02-wind-nowcast.ipynb">Connect to NOAA's GrADS Data Server to plot wind speed&lt;/a>.&lt;/li>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/03-customizing.ipynb">Installing new libraries&lt;/a>.&lt;/li>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/training-notebooks-di4r-2018/blob/master/04-check-in.ipynb">Interact with Check-in&lt;/a>&lt;/li>
-&lt;/ol></description></item><item><title>Users: Frequently Asked Questions</title><link>/users/dev-env/notebooks/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/faq/</guid><description>
+investigate the best way to support your needs.&lt;/p></description></item><item><title>Users: Frequently Asked Questions</title><link>/users/dev-env/notebooks/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/dev-env/notebooks/faq/</guid><description>
 &lt;h2 id="how-do-i-install-library-_x_">How do I install library &lt;em>X&lt;/em>?&lt;/h2>
 &lt;p>You can install new software easily on the notebooks using &lt;code>conda&lt;/code> or &lt;code>pip&lt;/code>. The
 &lt;code>%conda&lt;/code> and &lt;code>%pip&lt;/code>
