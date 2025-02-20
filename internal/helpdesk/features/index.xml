@@ -329,33 +329,66 @@ members.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>// jscpd:ignore-end&lt;/p></description></item><item><title>Internal: 'Notify Site' field and tickets to multiple sites</title><link>/internal/helpdesk/features/tickets-to-multiple-sites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/tickets-to-multiple-sites/</guid><description>
-&lt;h2 id="notify-site-field">Notify Site field&lt;/h2>
+&lt;p>// jscpd:ignore-end&lt;/p></description></item><item><title>Internal: 'SITES' field and tickets to multiple sites</title><link>/internal/helpdesk/features/tickets-to-multiple-sites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/tickets-to-multiple-sites/</guid><description>
+&lt;h2 id="sites-field">SITES field&lt;/h2>
 &lt;ul>
-&lt;li>The list of sites included in the drop-down menu of the &amp;ldquo;Notify site&amp;rdquo; field is
-taken from GOCDB (EGI sites) and from OIM DB (OSG sites).
+&lt;li>The list of sites included in the drop-down menu of the &amp;ldquo;SITES&amp;rdquo; field is taken
+from GOCDB (EGI sites) and from OIM DB (OSG sites).
 &lt;ul>
-&lt;li>Sites registered in OIM are only visible if they have status &amp;ldquo;enabled&amp;rdquo;.&lt;/li>
-&lt;li>Sites registered in GOC DB are only visible if they have status &amp;ldquo;certified&amp;rdquo;.&lt;/li>
-&lt;li>Sites in other states (e.g. &amp;ldquo;suspended&amp;rdquo;) are not visible in the &amp;ldquo;Notify
-sites&amp;rdquo; drop-down list.&lt;/li>
+&lt;li>Sites registered in OIM are only visible if they have certification status
+&amp;ldquo;enabled&amp;rdquo;.&lt;/li>
+&lt;li>Sites registered in GOC DB are only visible if they have certification status
+&amp;ldquo;certified&amp;rdquo;.&lt;/li>
+&lt;li>Sites in other statuses (e.g. &amp;ldquo;suspended&amp;rdquo;) are not visible in the &amp;ldquo;SITES&amp;rdquo;
+drop-down list.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>the sites information is synchronized once per night.&lt;/li>
-&lt;li>In case a site&amp;rsquo;s status changes, the site disappears from the &amp;ldquo;Notify sites&amp;rdquo;
-drop-down list. Existing GGUS tickets related to this site get the &amp;ldquo;Notify
-sites&amp;rdquo; field flushed. The NGI to which the site belongs inherits the ticket
-from the site and is in charge of further processing this ticket.&lt;/li>
+&lt;li>In case a site&amp;rsquo;s status changes, the site disappears from the &amp;ldquo;SITES&amp;rdquo;
+drop-down list. Existing GGUS tickets related to this site get the &amp;ldquo;SITES&amp;rdquo;
+field flushed. The NGI to which the site belongs inherits the ticket from the
+site and is in charge of further processing this ticket.&lt;/li>
 &lt;/ul>
-&lt;h2 id="notify-multiple-sites-option">Notify multiple sites option&lt;/h2>
+&lt;h2 id="tickets-to-multiple-sites-option-the-multisite-ticket">Tickets to multiple sites option: the &amp;ldquo;Multisite&amp;rdquo; ticket&lt;/h2>
 &lt;ul>
-&lt;li>Notifying multiple sites is a feature for submitting tickets with the same
-topic against an unlimited number of sites in GGUS.&lt;/li>
-&lt;li>This feature can be used only by users owning a dedicated privileges.&lt;/li>
+&lt;li>The Multisite ticket is a feature for submitting tickets with the same
+topic against an unlimited number of sites in GGUS. After the submission,
+the ticket is cloned and sent as separate ticket to each of the sites
+selected during the ticket creation.
+&lt;ul>
+&lt;li>All the sites displayed in GGUS can be notified using this option.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>This feature can be used only by users owning the &amp;ldquo;Multisites&amp;rdquo; role.&lt;/li>
 &lt;li>There is a specific submit form linked from GGUS ticket submit area. In the
 &amp;ldquo;Notify SITE&amp;rdquo; drop-down menu sites can be checked for receiving a ticket.&lt;/li>
-&lt;li>All sites registered in GGUS can be notified using this option.&lt;/li>
-&lt;/ul></description></item><item><title>Internal: Alarm tickets</title><link>/internal/helpdesk/features/alarm-tickets/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/alarm-tickets/</guid><description>
+&lt;/ul>
+&lt;h3 id="creation-of-a-multisite-ticket">Creation of a Multisite ticket&lt;/h3>
+&lt;p>When the users with the “Multisites” role click on the &amp;ldquo;+&amp;rdquo; button to create a
+ticket, they will see the option &amp;ldquo;New Multisite Ticket&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="create-multi-tickets.png" alt="Create Multisite ticket">&lt;/p>
+&lt;p>By clicking on that option, they will end up in an interface allowing the
+submission to multiple sites.&lt;/p>
+&lt;p>&lt;img src="multiple-tickets.png" alt="Multiple tickets interface">&lt;/p>
+&lt;p>In addition to the usual fields, the users can also select proper values for:&lt;/p>
+&lt;ul>
+&lt;li>SITE TYPE: EGI or OSG&lt;/li>
+&lt;li>TIER LEVELS&lt;/li>
+&lt;li>NGIs&lt;/li>
+&lt;/ul>
+&lt;p>Then the &amp;ldquo;NOTIFIED SITES&amp;rdquo; field will be filled automatically based on the
+selections made for the aforementioned fields (it is also possible to further
+edit manually the values of this field).&lt;/p>
+&lt;p>When all the necessary fields of the ticket creation form have been filled in
+properly, the users can click on the &amp;ldquo;Create&amp;rdquo; button to submit the tickets.&lt;/p>
+&lt;p>At this point, a notification email for each submitted ticket is sent to the
+submitter (to be changed in the future to a single email containing all the
+created tickets in order to reduce the spam to the submitter). At the same
+time, all the selected sites in the list are notified and the tickets are
+assigned to the parent NGIs.&lt;/p>
+&lt;p>The list of submitted tickets is available through the link &amp;ldquo;Search related
+tickets&amp;rdquo;:&lt;/p>
+&lt;p>&lt;img src="multisite-search.png" alt="Search multi tickets">&lt;/p></description></item><item><title>Internal: Alarm tickets</title><link>/internal/helpdesk/features/alarm-tickets/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/alarm-tickets/</guid><description>
 &lt;h2 id="introduction-purpose-and-conditions">Introduction: purpose and conditions&lt;/h2>
 &lt;ul>
 &lt;li>The purpose of ALARM tickets is to notify WLCG Tier-0 and Tier-1
