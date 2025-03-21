@@ -848,378 +848,167 @@ solution. The users of the service should not need to know any of the details of
 what happens to the ticket in order to get it from creation to solution.
 However, an understanding of the operation of the system may be helpful to
 explaining what happens when you request help.&lt;/p>
-&lt;p>Tickets can be created through the GGUS &lt;a href="https://ggus.eu/">web interface&lt;/a>, which
-is described in section &amp;ldquo;Accessing the web interface to GGUS&amp;rdquo; of this note.&lt;/p>
-&lt;p>Once the ticket has entered GGUS, it is processed by assigning it to the
-appropriate group to deal with the issue. The groups are generally addressed via
-mailing lists, and so GGUS assigns the ticket to a group, and an email message
-is sent to people on the appropriate list. Sometimes, a ticket is simple and it
-is assigned to the correct group immediately and dealt with immediately.&lt;/p>
+&lt;p>Tickets can be created through the GGUS
+&lt;a href="https://helpdesk.ggus.eu/">web interface&lt;/a>, whose access is described in the
+page &lt;a href="../access-and-roles">Access and roles&lt;/a>&lt;/p>
+&lt;p>Once the ticket has been created in GGUS, it is processed by supporters and
+assigned to the appropriate group to deal with the issue. The groups are
+generally addressed via mailing lists, so when a ticket is assigned to a support
+group, an email message is sent to people included to the associated list.&lt;/p>
 &lt;h2 id="submitting-a-ticket-using-the-web-interface">Submitting a ticket using the web interface&lt;/h2>
-&lt;p>Before using this route, it is essential to have either a digital certificate
-installed in the appropriate manner in the web browser or an EGI Check-in
-account.&lt;/p>
-&lt;h3 id="accessing-the-web-interface-to-ggus">Accessing the web interface to GGUS&lt;/h3>
-&lt;p>If the user carries out all of the steps above, but is not registered to use
-GGUS, then the home page is like the one shown in the following figure:&lt;/p>
-&lt;p>&lt;img src="UG_Unregistered_User.png" alt="GGUS home page for unregistered users">&lt;/p>
-&lt;p>If the user faces problems with their certificate, they may get help at
-&lt;a href="https://wiki.egi.eu/wiki/USG_Getting_Certificate">wiki.egi.eu: Getting certificate&lt;/a>&lt;/p>
-&lt;p>For accessing GGUS users have to register first. Registration process is
-described in chapter Registering at GGUS.&lt;/p>
-&lt;h3 id="registering-at-ggus">Registering at GGUS&lt;/h3>
-&lt;p>For getting supporter privileges users need to be registered. For registering at
-GGUS the user should go to &lt;a href="https://ggus.eu/index.php?mode=index">GGUS home&lt;/a> and
-click the &lt;a href="https://ggus.eu/index.php?mode=register_info">registration link&lt;/a>.
-This link opens the registration form that the user has to fill in. In addition,
-there are some links where the user can find information about X509 personal
-certificates. Users who do not have a valid digital certificate can access GGUS
-via EGI SSO. After filling in the registration form, the user receives an email
-from the GGUS team with his access data to GGUS.&lt;/p>
-&lt;h3 id="accessing-ggus-with-certificate">Accessing GGUS with certificate&lt;/h3>
-&lt;p>The primary address of the GGUS portal is: &lt;a href="https://ggus.eu">https://ggus.eu&lt;/a>.
-If the user enters this in the browser, a warning will be displayed by the
-browser prompting the user to specify which certificate to use (if the user has
-not selected to automatically select the certificate in the browser settings).
-The reason for this warning is that GGUS has to validate the user in order to
-allow access. After that, the user will no longer be asked to identify himself.&lt;/p>
-&lt;p>The user identifies themselves with their digital certificate. At this point in
-time, GGUS has identified the user and displays the start page as shown in the
-following figure:&lt;/p>
-&lt;p>&lt;img src="GGUS_Home.png" alt="GGUS home page for recognized users">&lt;/p>
-&lt;p>Note that in this case, the user&amp;rsquo;s identity is displayed on the page and GGUS
-has recognized that this user is registered to submit tickets. If authentication
-by certificate fails, you will be taken to the login page.&lt;/p>
-&lt;h3 id="accessing-ggus-via-egi-check-in">Accessing GGUS via EGI Check-in&lt;/h3>
-&lt;p>When choosing &amp;ldquo;Login via EGI AAI CheckIn&amp;rdquo; on the login page the user is guided
-to the EGI Check-in page were the users Identity Provider can be selected. After
-authenticating there, the user will be redirected to GGUS.&lt;/p>
+&lt;p>To submit a ticket through GGUS you first need to login through EGI Check-in, as
+explained in the page &lt;a href="../access-and-roles">Access and roles&lt;/a>.&lt;/p>
+&lt;p>After login, you are prompted to the dashboard page:&lt;/p>
+&lt;p>&lt;img src="dashboard-page.png" alt="Dashboard page">&lt;/p>
+&lt;p>In the lower left corner, you can find a &amp;ldquo;+&amp;rdquo; button:&lt;/p>
+&lt;p>&lt;img src="create-ticket.png" alt="Create ticket">&lt;/p>
+&lt;p>Click on it and select &amp;ldquo;New ticket&amp;rdquo;: you will be prompted to the ticket submit
+form.&lt;/p>
 &lt;h3 id="the-ticket-submit-form-on-web-interface">The ticket submit form on web interface&lt;/h3>
-&lt;p>The tickets submit form offers a set of fields which should help the user to
-describe his issue as detailed as possible. Most of the fields on the submit
-form are optional. Only field “Subject” is required. The submit form consists of
-three main sections: the &lt;strong>user information&lt;/strong>, the &lt;strong>issue information&lt;/strong> and the
-&lt;strong>routing information&lt;/strong>.&lt;/p>
-&lt;p>&lt;img src="Ticket_Submit_Form.png" alt="Ticket submit form on web interface">&lt;/p>
-&lt;ol>
-&lt;li>User information&lt;/li>
-&lt;/ol>
-&lt;p>Most fields in the user information section are pre-filled by GGUS system.&lt;/p>
+&lt;p>The tickets submit form offers a set of fields which should help you to
+describe the issue you want to record as detailed as possible. Most of the
+fields on the submit form are optional.&lt;/p>
+&lt;p>&lt;img src="new-ticket-form.png" alt="Ticket submit form on web interface">&lt;/p>
 &lt;ul>
-&lt;li>“Name/Login” is taken from the GGUS user database.&lt;/li>
-&lt;li>“E-Mail” is also taken from the GGUS user database.&lt;/li>
-&lt;li>“Notification mode” defaults to “on solution”. The “Notification mode” manages
-the update notifications the user receives. “On solution” means that the user
-only gets notified when the ticket status is set to “solved” or a comment is
-added to the public diary. Additional information is available by clicking on
-the question mark on the right hand side of the field label.&lt;/li>
-&lt;li>“CC to” could be filled with any mail address of people who should be informed
-about this ticket. Notifications are sent on every ticket update. The field
-content could only be changed by people who have support access. Additional
-information is available by clicking on the question mark.&lt;/li>
+&lt;li>“TITLE” is a mandatory field. It should give a short description of the
+issue.&lt;/li>
+&lt;li>&amp;ldquo;CUSTOMER&amp;rdquo;: name and email address of the user creating the ticket&lt;/li>
+&lt;li>&amp;ldquo;CC&amp;rdquo;: you can notify other people about the ticket creation by adding their
+email address into this field&lt;/li>
+&lt;li>&amp;ldquo;TEXT&amp;rdquo;: here you can add a detailed description of the issue.&lt;/li>
+&lt;li>“CATEGORY” (mandatory) provides a drop-down list with possible values, like
+Incidents and Service Request. Choose the appropriate value according to the
+issue you are going to record.&lt;/li>
+&lt;li>&amp;ldquo;GROUP&amp;rdquo;: provides a drop-down list of all the support groups enabled in GGUS,
+which are grouped by category: click on the green arrow besides the name
+of each category to see eventual sub-categories and finally the support
+groups. If you already know the name of the support group, you can start to
+type it in the field to display it and then to select it. If you don&amp;rsquo;t know
+whom to address your ticket, you can leave this field unselected, and the
+ticket will be automatically assigned to TPM, the
+&lt;a href="https://confluence.egi.eu/display/EGIPP/TPM+-+Ticket+Processing+Manager">EGI First Level support&lt;/a>
+who will process your ticket and assign it to the most appropriate support
+group.&lt;/li>
 &lt;/ul>
-&lt;ol>
-&lt;li>Issue information&lt;/li>
-&lt;/ol>
-&lt;p>Although only one field is mandatory in this section, as much fields as possible
-should be filled with information.&lt;/p>
+&lt;p>&lt;img src="support-groups-field.png" alt="Support Groups field">&lt;/p>
 &lt;ul>
-&lt;li>“Date/Time of issue” defaults to the submitting time. This field should be set
-if the ticket is submitted much later than the issue occurred.&lt;/li>
-&lt;li>“Subject” is a mandatory field. It should give a short description of the
-issue. This field is limited to 250 characters.&lt;/li>
-&lt;li>“Describe your issue…” is limited to 4000 characters. It should be used for a
-detailed description of the issue. If the user does not know which information
-to add here he could click on the question mark for getting additional
-information.&lt;/li>
-&lt;li>“Concerned VO” provides a drop-down list of all VOs supported by GGUS.&lt;/li>
-&lt;li>“VO specific” is a flag indicating whether an issue is VO specific or not. It
-defaults to “no”. This flag could only be set to “yes” in combination with a
-VO selected in field “Concerned VO”.&lt;/li>
-&lt;li>“Affected Site” The site impacted by the issue. A drop-down list with all EGI
-sites registered in GOC DB and OSG sites registered in OIM DB is available.
-This is no routing information!&lt;/li>
-&lt;li>“Affected ROC/NGI” The NGI/ROC impacted by the issue. A drop-down list of all
-NGIs/ROCs integrated in GGUS is provided.&lt;/li>
-&lt;li>“Ticket category” provides a drop-down list with possible values. This field
-is for categorizing the issue. It defaults to “Incident”.&lt;/li>
-&lt;li>“Type of issue” provides a drop-down list with possible values. This field is
-for categorizing the issue. It defaults to “Other”.&lt;/li>
-&lt;li>“Priority” provides a drop-down list with possible priority values. They are
-“less urgent” which is the default, “urgent”, “very urgent” and “top
-priority”.&lt;/li>
-&lt;li>“Attach file(s)” offers the possibility to upload 4 attachments (e.g. log
-files etc.) at a time. Attachments are limited to 2 MB. Please avoid uploading
-file formats “.exe”, “.php”, “.htm(l)”.&lt;/li>
+&lt;li>“SITE” provides a drop-down list with all the EGI sites registered in GOCDB
+and OSG sites registered in OIM DB. When selecting a site from the list, the
+appropriate NGI/ROC is set automatically, and they will be both notified about
+this ticket by email once created.&lt;/li>
+&lt;li>“TICKET AREA” provides a drop-down list with possible values. This field is
+for categorizing the issue. It defaults to “Other”.
+Check &amp;ldquo;Issue type values&amp;rdquo; page .&lt;/li>
+&lt;li>“PRIORITY” (mandatory) provides a drop-down list with possible priority
+values. They are “less urgent” (which is the default), “urgent”, and “very
+urgent”. See the page
+&lt;a href="https://docs.egi.eu/internal/helpdesk/features/ticket-priority/">Ticket priority&lt;/a>&lt;/li>
+&lt;li>“AFFECTED VO” provides a drop-down list of all VOs supported by GGUS.&lt;/li>
+&lt;li>“TIME OF ISSUE” defaults to the submitting time.&lt;/li>
+&lt;li>&amp;ldquo;NOTIFIED GROUPS&amp;rdquo;: with this field you can select other support groups that
+might be interested in following the progress of your ticket.&lt;/li>
+&lt;li>&amp;ldquo;NOTIFICATION MODE&amp;rdquo; defaults to “on every change”. The Notification mode
+manages the update notifications the user receives. If “On solution” is
+selected, then you only get notified when the ticket status is set to
+“solved”.&lt;/li>
 &lt;/ul>
-&lt;ol>
-&lt;li>Routing Information&lt;/li>
-&lt;/ol>
-&lt;ul>
-&lt;li>“Notify SITE” provides a drop-down list with all EGI sites registered in GOC
-DB and OSG sites registered in OIM DB. If selecting a site from the list this
-site will be notified about this ticket by mail. Additionally the ticket is
-assigned to the appropriate NGI/ROC directly, bypassing the TPM (Some words
-about TPM). If setting a site value the appropriate NGI/ROC is set
-automatically. Choosing an NGI/ROC simultaneously is not possible.&lt;/li>
-&lt;li>“Assign to ROC/NGI” provides a drop-down list of all NGIs/ROCs integrated in
-GGUS. Choosing a value in this field assigns the ticket to the appropriate ROC
-directly, bypassing the TPM. If assigning a ticket to an NGI/ROC choosing a
-site value simultaneously is not possible.&lt;/li>
-&lt;/ul>
-&lt;p>After clicking the “Submit” button the user gets a confirmation page showing the
+&lt;p>After clicking the “Create” button you get a confirmation page showing the
 information submitted and the ticket ID.&lt;/p>
-&lt;p>&lt;img src="GGUS_Confirm_Submit.png" alt="Confirmation after ticket submit">&lt;/p>
-&lt;h3 id="bypassing-the-tpm">Bypassing the TPM&lt;/h3>
-&lt;p>The TPM (Ticket Processing Manager) is the 1st Line Support in GGUS. Users can
-bypass the TPM if they have good knowledge about where the problem is. For this
-purpose at the bottom of ticket submit form there is a section &amp;ldquo;Routing
-information&amp;rdquo;. Selecting either a site from the
-&lt;a href="../features/tickets-to-multiple-sites">&amp;ldquo;Notify SITE&amp;rdquo;&lt;/a> drop-down menu
-or a support unit from the &amp;ldquo;Assign to support unit&amp;rdquo; drop-down menu routes the
-ticket directly to the selected support unit. If selecting a site name the
-NGI/ROC the site belongs to is set automatically. Hence the ticket is assigned
-to the relevant NGI/ROC. Additionally the site will receive a notification about
-the ticket. Selecting both, the &amp;ldquo;Notify SITE&amp;rdquo; and the &amp;ldquo;Assign to support unit&amp;rdquo;
-is not possible.&lt;/p>
-&lt;p>Tickets of type &lt;a href="../features/team-tickets">TEAM&lt;/a> and
-&lt;a href="../features/alarm-tickets">ALARM&lt;/a> are always routed to
-the relevant NGI/ROC by default.&lt;/p>
-&lt;h2 id="browsing-your-own-tickets">Browsing your own tickets&lt;/h2>
-&lt;p>After authenticating themselves the user has access to the GGUS homepage. On
-this page they see a list of their own open tickets and a list of the latest
-open tickets of all users (Figure 2). Below the list of the user’s own open
-tickets there are two links for further browsing possibilities of the user’s own
-tickets:&lt;/p>
+&lt;h3 id="special-tickets">Special tickets&lt;/h3>
+&lt;p>Users with special roles can submit special kind of tickets, such as:&lt;/p>
 &lt;ul>
-&lt;li>Show my complete ticket list,&lt;/li>
-&lt;li>My Team Tickets.&lt;/li>
+&lt;li>&lt;a href="../features/tickets-to-multiple-sites">Multisite tickets&lt;/a>&lt;/li>
+&lt;li>&lt;a href="../features/alarm-tickets">ALARM tickets&lt;/a>&lt;/li>
+&lt;li>&lt;a href="../features/team-tickets">TEAM tickets&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>The system only shows the user tickets which have been created with the same
-authentication information the user is currently logged in. This means if a user
-submits tickets with different certificates he does not see all of their
-tickets. The reason for this is that the DN string of the certificate is stored
-in each ticket. Showing all tickets of a user can be done by using the GGUS
-search engine. In the GGUS search engine users can search by username amongst
-others. This search will show all tickets of a user independent from the
-authentication information.&lt;/p>
-&lt;h3 id="show-my-complete-ticket-list">Show my complete ticket list&lt;/h3>
-&lt;p>This link opens a new window showing tables of all open and closed tickets of
-the user and all tickets of other users the user has subscribed to. Information
-on how to subscribe to a ticket is available in section &amp;ldquo;Subscribing to a ticket
-of another user.&amp;rdquo;&lt;/p>
-&lt;p>&lt;img src="Complete_Ticket_List.png" alt="Complete ticket list on GGUS home">&lt;/p>
+&lt;h2 id="tickets-overview">Tickets overview&lt;/h2>
+&lt;p>After the login, you land to the dashboard page as explained above. If you click
+on &amp;ldquo;Overviews&amp;rdquo; in the menu on the left you will have an overview of the tickets
+created in the helpdesk. Several views are available: in each view you can
+further filter the list of tickets by GROUP, STATUS, and PRIORITY; besides,
+depending on the roles you own, in the displayed lists you will see only the
+tickets you are allowed to access.&lt;/p>
+&lt;ul>
+&lt;li>&amp;ldquo;My Tickets&amp;rdquo;: here you have the list of tickets that you created.&lt;/li>
+&lt;li>&amp;ldquo;My Subscribed Tickets&amp;rdquo;: the list of tickets you subscribed to.&lt;/li>
+&lt;li>&amp;ldquo;My Assigned Tickets Open&amp;rdquo;: the list of tickets specifically assigned to you
+in any of the open statuses.&lt;/li>
+&lt;li>&amp;ldquo;My Assigned Tickets All&amp;rdquo;: the list of tickets specifically assigned to you
+in any status.&lt;/li>
+&lt;li>&amp;ldquo;Tickets Open&amp;rdquo;: all the tickets in any open status&lt;/li>
+&lt;li>&amp;ldquo;Tickets All&amp;rdquo;: all the tickets, also the ones that were closed.&lt;/li>
+&lt;li>&amp;ldquo;Alarm Tickets&amp;rdquo;: the list of Alarm tickets.&lt;/li>
+&lt;li>&amp;ldquo;Site Tickets Open&amp;rdquo;: the list of tickets in any of the open statuses where a
+site is involved.&lt;/li>
+&lt;li>&amp;ldquo;EGI Services Tickets Open&amp;rdquo;: the list of tickets in any of the open statuses
+assigned to the GROUPS within the ticket category &amp;ldquo;EGI Services and Service
+Components&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;VO Support Tickets Open&amp;rdquo;: the list of tickets in any of the open statuses
+assigned to the GROUPS within the ticket category &amp;ldquo;VO Support&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;Second Level Tickets Open&amp;rdquo;: the list of tickets in any of the open statuses
+assigned to the GROUPS within the ticket categories &amp;ldquo;LifeScience Services&amp;rdquo;,
+&amp;ldquo;Networking&amp;rdquo;, &amp;ldquo;Other Middleware&amp;rdquo;, &amp;ldquo;PITHIA Community&amp;rdquo;, and &amp;ldquo;WLCG&amp;rdquo;.&lt;/li>
+&lt;li>&amp;ldquo;Other Infrastructures Tickets Open&amp;rdquo;: the list of tickets in any of the open
+statuses assigned to the OSG related groups.&lt;/li>
+&lt;li>&amp;ldquo;Other Projects Tickets Open&amp;rdquo;: the list of tickets in any of the open statuses
+assigned to the GROUPS representing the several middleware products (3rd
+level support).&lt;/li>
+&lt;/ul>
 &lt;h2 id="modifying-tickets">Modifying tickets&lt;/h2>
-&lt;h3 id="modifying-your-tickets-using-the-web">Modifying your tickets using the web&lt;/h3>
-&lt;p>For modifying a ticket the user can just click on the ticket ID. He is guided to
-another page. On this page are three main sections:&lt;/p>
+&lt;p>The easiest way to modify a ticket is to add a response by replying to the email
+notification you get when a ticket is modified by someone else: to do this in
+the correct way, please pay attention on not to change the subject line of the
+email message you received.&lt;/p>
+&lt;p>The other way is to use the web interface, which allows you to modify also other
+aspects of a ticket. When you display a ticket in your web browser, if you
+scroll down at the bottom of the page you can find a text box to add your reply
+to the ticket.&lt;/p>
+&lt;p>&lt;img src="text-box.png" alt="Text box">&lt;/p>
+&lt;p>You also have the opportunity to attach files along with your text reply, in a
+similar way as explained in the previous section. When you have completed your
+reply, click on the &amp;ldquo;Update&amp;rdquo; button in the bottom right corner of the screen to
+add your response to the ticket.&lt;/p>
+&lt;p>If you click on the copybook icon on the left side of the text box, it will
+appear also a mail envelope icon:&lt;/p>
+&lt;p>&lt;img src="text-box-icons1.png" alt="Text box icons">&lt;/p>
+&lt;p>Clicking on this icon will offer you the option to send your answer also to
+other recipients not directly involved in the ticket: two new fields will be
+displayed (&amp;ldquo;TO&amp;rdquo; and &amp;ldquo;CC&amp;rdquo;) where you can add their email address. &lt;strong>Note: in this
+way only your answer will be sent to those additional recipients&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="text-box-involve.png" alt="Text box involve">&lt;/p>
+&lt;p>If you are have a supporter role and you want to share your reply only with the
+other supporters following up the ticket, you can click on the &lt;em>lock&lt;/em> icon to
+keep your comment as &amp;ldquo;internal&amp;rdquo;: in this way the ticket submitter will not
+receive any notification related to your reply.&lt;/p>
+&lt;p>In addition to the reply to the ticket, you can also modify the other fields
+associated to it (if you the required permissions associated to the role owned
+in the system). Besides the fields that were mentioned in the previous sections,
+you can now see also:&lt;/p>
 &lt;ul>
-&lt;li>the ticket information,&lt;/li>
+&lt;li>&amp;ldquo;Owner&amp;rdquo;: (Only if you have a at least supporter role) The given support group
+can appoint one of their members to directly follow-up the ticket.&lt;/li>
+&lt;li>&amp;ldquo;TAGS&amp;rdquo;: you can tag your ticket with a word (useful for example if you want to
+associate tickets per topic without directly linking them, but that topic is
+not included in the &amp;ldquo;TICKET AREA&amp;rdquo; field).&lt;/li>
+&lt;li>&amp;ldquo;LINKS&amp;rdquo;: you can link your ticket to another one, using in case the
+PARENT/CHILD relation.&lt;/li>
+&lt;li>&amp;ldquo;RELATED ANSWERS&amp;rdquo;: you can link a page from the Knowledge page if related to
+the topic discussed in the ticket.&lt;/li>
+&lt;li>Subscribe button: if you have the rights to see a ticket and you are
+interested in follow its progress, you can subscribe to it: at any update of
+the ticket you will get an email notification.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="Ticket_Information.png" alt="Ticket information section">&lt;/p>
-&lt;ul>
-&lt;li>the ticket history,&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="Ticket_History.png" alt="Ticket history">&lt;/p>
-&lt;ul>
-&lt;li>the modify section.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="GGUS_Modifysection_User.png" alt="Ticket modify section">&lt;/p>
-&lt;p>The ticket information gives an overview of the personal data the user provided,
-the issue description and the ticket status. The ticket history shows all
-actions that have been taken to solve the ticket, the date and time these
-actions have been taken and the name of the supporter who did them. In the
-modify section the user can add some additional information or comment on a
-question of a supporter to them. The user can add attachments, change the email
-notification behavior of the system and change some other attributes of his
-ticket.&lt;/p>
-&lt;h4 id="escalating-a-ticket">Escalating a ticket&lt;/h4>
-&lt;p>Between the information section and the ticket history there is a button which
-allows the user to escalate a ticket (Figure 9).&lt;/p>
-&lt;p>&lt;img src="GGUS_Escal_Button.png" alt="Escalation button">&lt;/p>
-&lt;p>Three escalation levels are available in GGUS:&lt;/p>
-&lt;ul>
-&lt;li>Escalating ticket to the support unit it is assigned to.&lt;/li>
-&lt;li>Escalating the ticket to the support unit and the TPM on shift.&lt;/li>
-&lt;li>Escalating the ticket to the support unit, the TPM and the GGUS ticket
-monitoring.&lt;/li>
-&lt;/ul>
-&lt;p>The escalation levels are reached one by one. It is not possible to choose one
-of them. Additional information is available by clicking on the little question
-mark on the left hand side of the button.&lt;/p>
-&lt;h4 id="reopen-a-solved-ticket">Reopen a solved ticket&lt;/h4>
-&lt;p>If a ticket is already closed it could be reopened by adding a comment and
-changing the status to “reopened” in the “Modify section” (Figure 8). In this
-case the support unit which solved the ticket and the TPM receive an email about
-the ticket reopening.&lt;/p>
-&lt;h4 id="verifying-the-solution">Verifying the solution&lt;/h4>
-&lt;p>When a ticket is solved, the user could confirm that the solution has solved
-their issue by verifying it. A solution could be verified by either:&lt;/p>
-&lt;ul>
-&lt;li>Clicking the “Verify” button in the web portal or&lt;/li>
-&lt;li>Replying to the solution mail without changing anything.&lt;/li>
-&lt;/ul>
-&lt;p>Verifying a solution can help to increase the quality of solutions in GGUS.&lt;/p>
-&lt;p>&lt;img src="GGUS_Verify_Button.png" alt="Verify button">&lt;/p>
-&lt;h3 id="modify-your-tickets-using-email">Modify your tickets using email&lt;/h3>
-&lt;p>Updating a ticket using email is also possible if one fundamental requirement is
-achieved. The mail subject must contain the typical GGUS string “GGUS-Ticket-ID:
-#Ticket-ID” where &amp;ldquo;Ticket-ID&amp;rdquo; is the ID of the ticket which should be updated.
-The easiest way to do this is to reply to an update notification received from
-GGUS. When updating a ticket using email the whole mail body will be added to
-the ticket. Changing any other field (e.g. status, priority,…) is impossible&lt;/p>
+&lt;p>&lt;img src="tags-links.png" alt="Tags and Links">&lt;/p>
 &lt;h2 id="ticket-participation">Ticket Participation&lt;/h2>
-&lt;p>GGUS system offers various possibilities for participating in tickets. They are&lt;/p>
+&lt;p>As described in the previous sections, GGUS system offers various possibilities
+for involving additional people in the tickets. In summary, there are three
+ways:&lt;/p>
 &lt;ul>
-&lt;li>the CC field,&lt;/li>
-&lt;li>the Involve others field and&lt;/li>
-&lt;li>the Subscribe field.&lt;/li>
-&lt;/ul>
-&lt;p>An overview on these fields is given in the table below. Ticket participation
-can be done by adding a valid mail address to one of these fields. Please avoid
-adding closed mailing lists as such produce a lot of mail errors! Several mail
-addresses have to be separated by semicolon.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>&lt;/th>
-&lt;th>User submit&lt;/th>
-&lt;th>User modify&lt;/th>
-&lt;th>Supporter modify&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>CC&lt;/td>
-&lt;td>Yes&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>Yes&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Involve others&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>Yes&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Subscribe&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>Yes&lt;/td>
-&lt;td>Yes&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="the-cc-field">The “CC” field&lt;/h3>
-&lt;p>The CC field can be set by the user in the ticket submit form. Updates are only
-possible for supporters for correcting or removing invalid mail addresses. Every
-ticket update triggers a notification email to the mail address specified in the
-“CC” field.&lt;/p>
-&lt;h3 id="the-involve-others-field">The “Involve others” field&lt;/h3>
-&lt;p>The “Involve others” field is only for supporters use. Every ticket update
-triggers a notification email to the mail address specified in the “Involve
-others” field.&lt;/p>
-&lt;h3 id="subscribing-to-a-ticket-of-another-user">Subscribing to a ticket of another user&lt;/h3>
-&lt;p>Figure 11: Ticket subscribe Every user could subscribe to tickets of other users
-if he is interested in the solution of any. For subscribing a valid email
-address has to be provided. The user gets a notification once the ticket is
-solved. After subscribing to a ticket the user could change the notification
-mode or unsubscribe if he wants to (Figure 11). Accessing the system with the
-same credentials as used for subscription is necessary for this. Additional
-information on subscribing to tickets is available by clicking on the question
-mark at the right hand side of the label “Subscribe to this ticket”.&lt;/p>
-&lt;p>&lt;img src="GGUS_Subscribe.png" alt="Ticket subscribe">&lt;/p>
-&lt;h3 id="who-gets-what-email-notification-from-ggus">Who gets what email notification from GGUS?&lt;/h3>
-&lt;p>The ticket &amp;ldquo;submitter&amp;rdquo; gets emails according to the &amp;ldquo;Notification mode&amp;rdquo; value
-(s)he selected when submitting the ticket. If the selected &amp;ldquo;Notification mode&amp;rdquo;
-value is &amp;ldquo;on every change&amp;rdquo; then all updates are sent to the &amp;ldquo;submitter&amp;rdquo;. &amp;ldquo;Public
-Diary&amp;rdquo; entries are sent to the submitter regardless the value of the
-&amp;ldquo;Notification mode&amp;rdquo;. &amp;ldquo;Internal Diary&amp;rdquo; entries never go to the &amp;ldquo;submitter&amp;rdquo;. They
-are reserved for exchanges amongst supporters.&lt;/p>
-&lt;p>The email addresses in the &amp;ldquo;Cc:&amp;rdquo; field can be entered by the &amp;ldquo;submitter&amp;rdquo; and
-receive the same notifications as the submitter. &amp;ldquo;Public Diary&amp;rdquo; entries are sent
-to the addresses in the &amp;ldquo;Cc:&amp;rdquo; field. &amp;ldquo;Internal Diary&amp;rdquo; entries never go to the
-people in the &amp;ldquo;Cc:&amp;rdquo; field. They are reserved for exchanges amongst supporters.&lt;/p>
-&lt;p>The email addresses in the &amp;ldquo;Involve others:&amp;rdquo; field can be entered by supporters
-only and receive the same notifications as the Support Unit (SU) to which the
-ticket is assigned. &amp;ldquo;Internal Diary&amp;rdquo; entries are sent to the relevant SU members
-AND the people in the &amp;ldquo;Involve others:&amp;rdquo; field, as they are supposed to be
-experts and contribute to the ticket solution.&lt;/p>
-&lt;p>The email address in the &amp;ldquo;Assign to one person:&amp;rdquo; field can be entered by
-supporters only and receive the same notifications as the Support Unit (SU) to
-which the ticket is assigned. &amp;ldquo;Internal Diary&amp;rdquo; entries are sent to the relevant
-SU members AND the people in the &amp;ldquo;Involve others:&amp;rdquo; field AND the email address
-in the &amp;ldquo;Assign to one person:&amp;rdquo; field as they are, all, supposed to be experts
-and contribute to the ticket solution.&lt;/p>
-&lt;p>Every ticket update triggers an email to the addresses in the &amp;ldquo;Cc:&amp;rdquo;, &amp;ldquo;Involve
-others:&amp;rdquo; and to ticket subscribers, i.e. GGUS users, unrelated to the specific
-ticket, who entered their own email in the &amp;ldquo;Subscribe to this ticket&amp;rdquo; field.&lt;/p>
-&lt;p>GGUS email notifications highlight the fields changed with the specific update.&lt;/p>
-&lt;p>Please avoid including closed mailing lists, e-groups in these fields as mail
-delivery will fail.&lt;/p>
-&lt;h2 id="browsing-all-tickets">Browsing all tickets&lt;/h2>
-&lt;p>At the bottom of the home page there are additional links for browsing:&lt;/p>
-&lt;ul>
-&lt;li>Search ticket database,&lt;/li>
-&lt;li>Show all open tickets,&lt;/li>
-&lt;/ul>
-&lt;h3 id="ggus-search-engine">GGUS search engine&lt;/h3>
-&lt;p>For browsing all tickets the GGUS search engine is a useful tool.&lt;/p>
-&lt;p>&lt;img src="GGUS_User_Search.png" alt="GGUS search engine">&lt;/p>
-&lt;p>The GGUS search engine can be entered by clicking on link “Search ticket
-database”. When accessing the search engine a default search is performed like
-shown in Figure 12: GGUS search engine. Searching via Ticket ID is the easiest
-and fastest way to look at a ticket. When searching via Ticket ID all other
-search parameters were ignored. Besides searching for all open tickets this is
-the recommended kind of search, because it avoids needless workload on the
-system. When searching via ticket ID the ticket details are shown in the same
-window. For getting back to the main page use the &amp;ldquo;Back&amp;rdquo; button of your browser.
-The various search parameters can be combined in any way wanted except
-“Untouched since”. Description fields “Keyword”, “Involved supporter” and
-“Assigned to person” trigger a LIKE search to the database. Concatenating
-keywords with “AND” or “OR” is currently not possible. The search can either be
-started by clicking on &amp;ldquo;go&amp;rdquo; or just hitting the return key. The result of a
-search by parameters is shown in the result list. For viewing ticket details
-just click on the ID. A new window opens showing ticket details. For getting
-back to the search result just close the window with the ticket details.&lt;/p>
-&lt;h3 id="showing-all-open-tickets">Showing all open tickets&lt;/h3>
-&lt;p>Clicking on this link shows all open tickets that are currently in the system.
-Unlike “Showing all open tickets” the default search in GGUS search engine uses
-a timeframe of one week for showing open tickets.&lt;/p>
-&lt;h2 id="contacting-the-ggus-team">Contacting the GGUS team&lt;/h2>
-&lt;p>Users can click on the “Envelope” icon in the menu bar for sending an email to
-the GGUS team with any comments. Note: This must not be used for submitting
-support requests as it does not create a ticket in the system!&lt;/p>
-&lt;h2 id="ggus-development-plans">GGUS development plans&lt;/h2>
-&lt;p>On GGUS home page there are a couple of links where users can get more
-information on the
-&lt;a href="https://ggus.eu/index.php?mode=development">GGUS development plans&lt;/a> as well as
-submit own feature requests. Feature requests are collected in the GGUS shopping
-lists in JIRA (only for users having a CERN account) and EGI RT.&lt;/p>
-&lt;h2 id="operation-of-ggus">Operation of GGUS&lt;/h2>
-&lt;p>The GGUS system is running on servers located at Karlsruhe Institute of
-Technology (KIT), Germany. Besides the GGUS production system a backup system is
-in place. Switching from production system to backup system currently needs
-manual interaction. An automatic switch in case of fail-over will be
-implemented. GGUS staffs at Karlsruhe are not providing support apart from
-requests concerning GGUS system itself. They can be contacted by email to
-support &amp;ldquo;at&amp;rdquo; ggus.eu. Usual office hours for GGUS staffs are from 07:00 to 15:00
-o’clock (UTC).&lt;/p>
-&lt;h3 id="tpm">TPM&lt;/h3>
-&lt;p>TPM (Ticket Processing Manager) is the most important part of the support system
-for the grid. The purpose of TPM is:&lt;/p>
-&lt;ul>
-&lt;li>closing simple trouble tickets,&lt;/li>
-&lt;li>ensuring that other tickets are sent to the correct place for processing,&lt;/li>
-&lt;li>reacting to alarms that tickets have not been processed,&lt;/li>
-&lt;/ul>
-&lt;p>The TPM teams consist of people with a broad knowledge of the Grid.&lt;/p>
-&lt;h3 id="ticket-monitoring">Ticket Monitoring&lt;/h3>
-&lt;p>Besides developing and maintaining GGUS system the GGUS team is also doing the
-ticket monitoring. The ticket monitoring team is responsible for:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="../workflows/waiting-for-submitter">reminding users&lt;/a> in case their input is
-required for further ticket processing&lt;/li>
-&lt;li>reminding supporters in case tickets are not processed&lt;/li>
-&lt;li>assisting in any problem during ticket processing&lt;/li>
+&lt;li>involve other support groups in the progress of a ticket (&amp;ldquo;Notified groups&amp;rdquo;
+field).&lt;/li>
+&lt;li>Send to additional people an email notification related to an answer to a
+ticket by specifically adding their email address in the &amp;ldquo;TO&amp;rdquo; and &amp;ldquo;CC&amp;rdquo; fields
+when filling in the reply to a ticket.&lt;/li>
+&lt;li>Subscribe yourself to a ticket.&lt;/li>
 &lt;/ul></description></item><item><title>Internal: Workflows</title><link>/internal/helpdesk/workflows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/workflows/</guid><description>
 &lt;p>Description of some of the Helpdesk workflows.&lt;/p></description></item></channel></rss>
