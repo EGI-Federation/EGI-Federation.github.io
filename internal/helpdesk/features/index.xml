@@ -874,9 +874,8 @@ convert to ALARM”.&lt;/p>
 &lt;p>See the
 &lt;a href="GGUS_Graph_TEAM_Ticket_Process.pdf">schema of the Team Tickets process&lt;/a>.&lt;/p></description></item><item><title>Internal: Ticket Priority</title><link>/internal/helpdesk/features/ticket-priority/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/ticket-priority/</guid><description>
 &lt;h2 id="priority-definition">Priority definition&lt;/h2>
-&lt;p>If you plan to adjust the ticket priority from the default value &amp;rsquo;less urgent'
-to &amp;lsquo;urgent&amp;rsquo;, &amp;lsquo;very urgent&amp;rsquo; or &amp;rsquo;top priority&amp;rsquo;, please make sure you add a
-justification for this change in the problem description field.&lt;/p>
+&lt;p>If you plan to adjust the ticket priority of a ticket we kindly ask you to
+provide also justification for this change in the reply text box of the ticket.&lt;/p>
 &lt;p>The following table will help you to find an appropriate priority value:&lt;/p>
 &lt;table>
 &lt;thead>
@@ -887,16 +886,12 @@ justification for this change in the problem description field.&lt;/p>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>top priority&lt;/td>
+&lt;td>very urgent&lt;/td>
 &lt;td>service interrupted; needs to be addressed as soon as possible&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>very urgent&lt;/td>
-&lt;td>service degraded; no workaround available&lt;/td>
-&lt;/tr>
-&lt;tr>
 &lt;td>urgent&lt;/td>
-&lt;td>service degraded; workaround available&lt;/td>
+&lt;td>service degraded; a workaround might or might not be available&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>less urgent&lt;/td>
@@ -904,262 +899,13 @@ justification for this change in the problem description field.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>In particular, be very economical when choosing &amp;rsquo;top priority&amp;rsquo;. This value, when
+&lt;p>In particular, be very economical when choosing &amp;lsquo;very urgent&amp;rsquo;. This value, when
 reaching the supporters via another ticketing system interface, might become a
 beep or phone alert even in the middle of the night. This level of support is
 ONLY committed by WLCG Tier0 and Tier1s and ONLY for ALARM tickets.&lt;/p>
 &lt;p>Finally, please be aware that the supporter who will try to solve your problem
 may change the value you have chosen to a more realistic one, putting their
-justification in the ticket&amp;rsquo;s public diary.&lt;/p>
-&lt;h2 id="priority-colours">Priority colours&lt;/h2>
-&lt;h3 id="the-purpose-of-the-priority-colours-in-ggus">The purpose of the priority colours in GGUS&lt;/h3>
-&lt;p>The priority colours in GGUS should help supporters getting an overview of the
-most important tickets. The priority colours have no impact on the metrics
-generated with the GGUS report generator or manually by the GGUS team.&lt;/p>
-&lt;h3 id="the-colours-used">The colours used&lt;/h3>
-&lt;p>Currently the following colours are used for open states:&lt;/p>
-&lt;ul>
-&lt;li>green&lt;/li>
-&lt;li>yellow&lt;/li>
-&lt;li>amber&lt;/li>
-&lt;li>red&lt;/li>
-&lt;/ul>
-&lt;p>For terminal states GGUS uses:&lt;/p>
-&lt;ul>
-&lt;li>light blue for status “unsolved” and&lt;/li>
-&lt;li>blue for status “solved” and “verified”.&lt;/li>
-&lt;/ul>
-&lt;h3 id="fields-affecting-the-priority-colour-algorithm">Fields affecting the priority colour algorithm&lt;/h3>
-&lt;p>The priority colour algorithm is affected by the status value and the priority
-of a ticket. The priority colour calculation for tickets in status &amp;ldquo;assigned&amp;rdquo; is
-based on different values than for tickets in any other open status.&lt;/p>
-&lt;h3 id="office-hours-and-weekends">Office hours and weekends&lt;/h3>
-&lt;p>Office hours and weekends are taken into consideration when calculating the
-priority colour. The system assumes usual office hours from 07:00 to 15:00
-o’clock UTC from Monday to Friday for all support units. Different time zones
-are considered as far as possible.&lt;/p>
-&lt;h3 id="priority-colour-and-status-values">Priority colour and status values&lt;/h3>
-&lt;p>The priority colour calculation starts after a ticket gets assigned to any
-support unit. The support units should change the ticket status to &amp;ldquo;in progress&amp;rdquo;
-or any other open status after receiving the ticket. Thus the support unit has
-responded to the ticket (response time). After such a status change the priority
-is reset to &amp;ldquo;green&amp;rdquo; and the calculation of the priority colour starts again from
-scratch.&lt;/p>
-&lt;h3 id="algorithm-for-middleware-related-tickets">Algorithm for middleware related tickets&lt;/h3>
-&lt;p>The priority colour for tickets dealing with middleware related problems is
-calculated according to the Quality of Support the PTs voted for. The priority
-colour changes after a dedicated amount of working hours as listed in the table
-below. The priority colour calculation is processed every 15 minutes.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>QoS Level&lt;/th>
-&lt;th>Ticket priority&lt;/th>
-&lt;th>Colour&lt;/th>
-&lt;th>Working hours&lt;/th>
-&lt;th>Colour&lt;/th>
-&lt;th>Working hours&lt;/th>
-&lt;th>Colour&lt;/th>
-&lt;th>Working hours&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>Base&lt;/td>
-&lt;td>less urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>very urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>top priority&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Medium&lt;/td>
-&lt;td>less urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>very urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>4&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>6&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>8&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>top priority&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>4&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>6&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>8&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Advanced&lt;/td>
-&lt;td>less urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>20&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>30&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>4&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>6&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>8&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>very urgent&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>4&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>6&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>8&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>top priority&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>2&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>3&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>4&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="algorithm-for-tickets-other-than-middleware">Algorithm for tickets other than middleware&lt;/h3>
-&lt;p>The priority colour changes after a dedicated amount of working hours as listed
-in the table below. The priority colour calculation is running every 15 minutes.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Ticket priority&lt;/th>
-&lt;th>Colour&lt;/th>
-&lt;th>Working hours&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>less urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>20&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>30&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>20&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>30&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>40&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>very urgent&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>16&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>24&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>32&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>top priority&lt;/td>
-&lt;td>Yellow&lt;/td>
-&lt;td>12&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Amber&lt;/td>
-&lt;td>18&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;/td>
-&lt;td>Red&lt;/td>
-&lt;td>24&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item><item><title>Internal: Ticket Scope</title><link>/internal/helpdesk/features/ticket-scope/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/ticket-scope/</guid><description>
+justification in the ticket.&lt;/p></description></item><item><title>Internal: Ticket Scope</title><link>/internal/helpdesk/features/ticket-scope/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/internal/helpdesk/features/ticket-scope/</guid><description>
 &lt;h2 id="priority-definition">Priority definition&lt;/h2>
 &lt;p>The GGUS ticket &lt;strong>scope&lt;/strong> filter is available in GGUS ticket search. It offers
 filtering for tickets in &lt;strong>EGI&lt;/strong> or &lt;strong>WLCG&lt;/strong> scope. The ticket scope field is
