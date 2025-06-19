@@ -609,7 +609,7 @@ flavors available at the OpenStack for the federation users. It runs as a single
 python application
 &lt;a href="https://github.com/EGI-Federation/cloud-info-provider">cloud-info-provider&lt;/a>
 that pushes information through the
-&lt;a href="../../../internal/messaging/">Messaging Service&lt;/a>.&lt;/p>
+&lt;a href="../../../../internal/messaging/">Messaging Service&lt;/a>.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">BDII is deprecated&lt;/h4>
 Cloud providers no longer
@@ -622,8 +622,9 @@ entry for the &lt;code>org.openstack.nova&lt;/code>.&lt;/p>
 &lt;h2 id="catch-all-operations">Catch-all operations&lt;/h2>
 &lt;p>EGI can manage the operation of the &lt;code>cloud-info-provider&lt;/code> for the site so you
 don&amp;rsquo;t need to do it. In order for your site to be included in the centrally
-operated &lt;code>cloud-info-provider&lt;/code>, you need to create a Pull Request at the
-&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/">EGI-Federation/fedcloud-catchall-operations repository&lt;/a>
+operated &lt;code>cloud-info-provider&lt;/code>, you need to create a Pull Request at the&lt;/p>
+&lt;!-- cspell:disable-next-line -->
+&lt;p>&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/">EGI-Federation/fedcloud-catchall-operations repository&lt;/a>
 adding your site configuration in the &lt;code>sites&lt;/code> directory with a file like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;your endpoint as declared in GOCDB&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">gocdb&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;your site name as declared in GOCDB&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -655,10 +656,11 @@ OpenStack and the AMS are passed as command-line options:&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --ams-cert &amp;lt;your host certificate&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --ams-key &amp;lt;your host secret key&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --ams-topic &amp;lt;your endpoint topic&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For authentication, you should be able to use any authentication method
-supported by &lt;a href="https://opendev.org/openstack/keystoneauth">keystoneauth&lt;/a>, for
-username and password use: &lt;code>--os-password&lt;/code> and &lt;code>--os-username&lt;/code>. Check the
-complete list of options with &lt;code>cloud-info-provider-service --help&lt;/code>.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For authentication, you should be able to use any authentication method supported by&lt;/p>
+&lt;!-- cspell:disable-next-line -->
+&lt;p>&lt;a href="https://opendev.org/openstack/keystoneauth">&lt;code>keystoneauth&lt;/code>&lt;/a>.
+For username and password use: &lt;code>--os-password&lt;/code> and &lt;code>--os-username&lt;/code>.
+Check the complete list of options with &lt;code>cloud-info-provider-service --help&lt;/code>.&lt;/p>
 &lt;p>The AMS topic has the format: &lt;code>SITE_&amp;lt;SITE_NAME&amp;gt;_ENDPOINT_&amp;lt;GOCDB_ID&amp;gt;&lt;/code>, where
 &lt;code>&amp;lt;SITE_NAME&amp;gt;&lt;/code> is the name of the site as declared in GOCDB and &lt;code>&amp;lt;GOCDB_ID&amp;gt;&lt;/code> is
 the ID of the endpoint in GOCDB. For example,
