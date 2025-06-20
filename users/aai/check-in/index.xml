@@ -1,23 +1,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation – EGI Check-in</title><link>/users/aai/check-in/</link><description>Recent content in EGI Check-in on Documentation</description><generator>Hugo -- gohugo.io</generator><atom:link href="/users/aai/check-in/index.xml" rel="self" type="application/rss+xml"/><item><title>Users: Sign up for an EGI Account</title><link>/users/aai/check-in/signup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/aai/check-in/signup/</guid><description>
 &lt;h2 id="why-do-i-have-to-sign-up">Why do I have to sign up?&lt;/h2>
-&lt;p>Before accessing EGI services, you’ll first need an account through EGI Check-in, which is the Identity and Access Management (IAM) system used by EGI. An Identity Manager (or IAM system) is a secure layer that handles who you are, how you log in, and what you’re allowed to access across all participating platforms and services.&lt;/p>
+&lt;p>Before accessing EGI services, you’ll first need an account through EGI
+Check-in, which is the Identity and Access Management (IAM) system used by EGI.
+An Identity Manager (or IAM system) is a secure layer that handles who you are,
+how you log in, and what you’re allowed to access across all participating
+platforms and services.&lt;/p>
 &lt;p>&lt;img src="./check-in-graph.png" alt="Check-in Graph">&lt;/p>
-&lt;p>Instead of creating a new username and password for every service, EGI Check-in allows you to log in using an existing identity you already trust — like your institutional account, ORCID, Google, or even an X.509 certificate. It does this by acting as a central gateway that connects your trusted login with the services and resources you need across the European research ecosystem.&lt;/p>
+&lt;p>Instead of creating a new username and password for every service, EGI Check-in
+allows you to log in using an existing identity you already trust — like your
+institutional account, ORCID, Google, or even an X.509 certificate. It does this
+by acting as a central gateway that connects your trusted login with the
+services and resources you need across the European research ecosystem.&lt;/p>
 &lt;p>This approach offers major benefits:&lt;/p>
 &lt;ul>
 &lt;li>You don’t need to remember another password.&lt;/li>
 &lt;li>You can access multiple services with a single, consistent profile.&lt;/li>
 &lt;li>Your permissions and roles are automatically applied based on your identity.&lt;/li>
-&lt;li>If you later switch institutions or accounts, you can still retain your access (especially if you link identities, which will be discussed later on).&lt;/li>
+&lt;li>If you later switch institutions or accounts, you can still retain your access
+(especially if you link identities, which will be discussed later on).&lt;/li>
 &lt;/ul>
 &lt;h2 id="how-do-i-sign-up">How do I sign up?&lt;/h2>
-&lt;p>Signing up is simple. You don’t create a new account from scratch — instead, you sign in once using an identity provider (IdP) you already have, and EGI Check-in creates a secure profile for you.&lt;/p>
+&lt;p>Signing up is simple. You don’t create a new account from scratch — instead, you
+sign in once using an identity provider (IdP) you already have, and EGI Check-in
+creates a secure profile for you.&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>Go to &lt;a href="https://aai.egi.eu/auth/realms/id/account/#/">https://aai.egi.eu/auth/realms/id/account/#/&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Choose your identity provider: You’ll see a list of login options — such as “University of X,” “ORCID,” “Google,” and many others. You can use the search bar to find your institution or provider.&lt;/p>
+&lt;p>Choose your identity provider: You’ll see a list of login options — such as
+“University of X,” “ORCID,” “Google,” and many others. You can use the search
+bar to find your institution or provider.&lt;/p>
 &lt;p>&lt;img src="./check-in-idp-discovery.png" alt="Check-in IdP discovery">&lt;/p>
 &lt;/li>
 &lt;li>
@@ -37,9 +50,9 @@ registration process.&lt;/p>
 &lt;li>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-EGI requires some basic information from you, depending on the attributes
-released by your Identity Provider, you may need to provide the values of the
-missing attributes.
+EGI requires some basic
+information from you, depending on the attributes released by your Identity
+Provider, you may need to provide the values of the missing attributes.
 &lt;/div>
 &lt;/li>
 &lt;li>
@@ -58,18 +71,21 @@ submit your request until you agree to the terms.
 &lt;/div>
 &lt;/li>
 &lt;li>
-&lt;p>You will receive an email to confirm your new identity linked to EGI Check-in. Confirm your identity to continue:&lt;/p>
-&lt;/li>
-&lt;/ol>
+&lt;p>You will receive an email to confirm your new identity linked to EGI
+Check-in. Confirm your identity to continue:&lt;/p>
 &lt;p>&lt;img src="./check-in-email-verification.png" alt="Check-in Email verification">&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Important&lt;/h4>
-&lt;ul>
-&lt;li>You do not need a new password for EGI Check-in — it always uses your existing account&amp;rsquo;s login system.&lt;/li>
-&lt;li>If you don’t see your institution in the list, check whether they are part of the eduGAIN federation, or consider using ORCID or another supported identity.&lt;/li>
-&lt;li>If you plan to use certificates, make sure they are installed in your browser before logging in.&lt;/li>
-&lt;/ul>
+&lt;pre>&lt;code>- You do not need a new password for EGI Check-in — it always uses your existing
+account's login system.
+- If you don’t see your institution in the list, check whether they are part of
+the eduGAIN federation, or consider using ORCID or another supported identity.
+- If you plan to use certificates, make sure they are installed in your browser
+before logging in.
+&lt;/code>&lt;/pre>
 &lt;/div>
+&lt;/li>
+&lt;/ol>
 &lt;h2 id="viewing-user-profile-information">Viewing user profile information&lt;/h2>
 &lt;p>The profile includes all the information related to the user. This information
 can be categorised as follows:&lt;/p>
@@ -82,9 +98,9 @@ can be categorised as follows:&lt;/p>
 &lt;/ul>
 &lt;p>&lt;img src="./check-in-profile-basic.png" alt="User profile">&lt;/p>
 &lt;h3 id="vogroup-membership-and-roles">VO/Group membership and roles&lt;/h3>
-&lt;p>Includes information about the Virtual Organisations (VOs) and groups the user is
-member of and the roles assigned to the user within those VOs.
-Check the &lt;a href="../joining-virtual-organisation">guide about VOs&lt;/a> for more details.&lt;/p>
+&lt;p>Includes information about the Virtual Organisations (VOs) and groups the user
+is member of and the roles assigned to the user within those VOs. Check the
+&lt;a href="../vos">guide about VOs&lt;/a> for more details.&lt;/p>
 &lt;p>&lt;img src="./check-in-profile-vos.png" alt="VO/Group membership">&lt;/p>
 &lt;h3 id="linked-identities">Linked identities&lt;/h3>
 &lt;p>Information about linked identities to your account. Check the
@@ -93,7 +109,7 @@ Check the &lt;a href="../joining-virtual-organisation">guide about VOs&lt;/a> fo
 &lt;h2 id="next-steps">Next steps&lt;/h2>
 &lt;p>Once your Check-in account is ready you can check
 &lt;a href="../linking">how to link it with different identities&lt;/a> or
-&lt;a href="../joining-virtual-organisation">how to join an existing Virtual Organisation (VO)&lt;/a>.&lt;/p></description></item><item><title>Users: Linking Identities</title><link>/users/aai/check-in/linking/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/aai/check-in/linking/</guid><description>
+&lt;a href="../vos/#how-to-join-a-virtual-organisation">how to join an existing Virtual Organisation (VO)&lt;/a>.&lt;/p></description></item><item><title>Users: Linking Identities</title><link>/users/aai/check-in/linking/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/aai/check-in/linking/</guid><description>
 &lt;!--
 // jscpd:ignore-start
 -->

@@ -966,10 +966,10 @@ providers. &lt;strong>Back-up frequently to avoid losing your work!&lt;/strong>&
 &lt;/ul>
 &lt;/div>
 &lt;p>For joining this VO, please click on the
-&lt;a href="https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.access.egi.eu">enrollment URL&lt;/a>
+&lt;a href="https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.access.egi.eu">enrolment URL&lt;/a>
 using your &lt;a href="../../../aai/check-in/">EGI account&lt;/a>.&lt;/p>
 &lt;h3 id="other-vos">Other VOs&lt;/h3>
-&lt;p>Preexisting VOs of EGI can be also used on IaaS cloud providers. Consult with
+&lt;p>Pre-existing VOs of EGI can be also used on IaaS cloud providers. Consult with
 your VO manager or browse the existing VOs at the
 &lt;a href="https://operations-portal.egi.eu/vo/a/list">EGI Operations Portal&lt;/a>.&lt;/p>
 &lt;h2 id="check-in-and-access-tokens">Check-in and access tokens&lt;/h2>
@@ -1210,6 +1210,8 @@ available as specific &lt;strong>flavours&lt;/strong> that when used to instanti
 Machine will make the hardware available to the user.&lt;/p>
 &lt;p>The table below summarises the available options:&lt;/p>
 &lt;!-- markdownlint-disable line-length -->
+&lt;!-- VO names do not need spell checking -->
+&lt;!-- cSpell:words sarscov neanias carouseldancing clarin cryoem glados beamide -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1262,9 +1264,9 @@ Machine will make the hardware available to the user.&lt;/p>
 &lt;a href="https://confluence.egi.eu/display/EGIG/Virtual+organisation">Virtual Organisations (VOs)&lt;/a>.
 If you are not sure what VO to join, request access to the pilot VO
 &lt;a href="https://operations-portal.egi.eu/vo/view/voname/vo.access.egi.eu">vo.access.egi.eu&lt;/a>
-by visiting the &lt;a href="https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.access.egi.eu">enrollment URL&lt;/a>
+by visiting the &lt;a href="https://aai.egi.eu/auth/realms/id/account/#/enroll?groupPath=/vo.access.egi.eu">enrolment URL&lt;/a>
 with your Check-In account. More information is available in the
-&lt;a href="../../../aai//check-in/joining-virtual-organisation">Check-in&lt;/a> section.&lt;/p>
+&lt;a href="../../../aai/check-in/vos/#how-to-join-a-virtual-organisation">Check-in&lt;/a> section.&lt;/p>
 &lt;p>GPUs sites can be accessed in different ways: via site-specific dashboards and
 endpoints or via common federated-cloud services like the OpenStack Horizon
 dashboards or a &lt;a href="../automate">cloud orchestrator&lt;/a>.&lt;/p>

@@ -90,7 +90,7 @@ of several subgroups.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>The &lt;strong>Unique User Identifier&lt;/strong> is the string that uniquely identifies a user,
-and it is made of a long alphanumerical string suffixed by “@egi.eu”.&lt;/p>
+and it is made of a long alphanumerical string suffixed by &lt;code>@egi.eu&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Name / email shows the full name and email address of the user.&lt;/p>

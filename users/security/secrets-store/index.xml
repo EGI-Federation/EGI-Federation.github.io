@@ -70,8 +70,8 @@ advanced Vault features not exposed via other tools.&lt;/p>
 &lt;p>To access the EGI Secrets Store service from the command-line you need a valid
 &lt;a href="../../../aai/check-in">EGI Check-in&lt;/a> access token. Get it either from the
 &lt;a href="https://aai.egi.eu/token">EGI Check-in Token Portal&lt;/a>, or from the
-&lt;strong>oidc-agent&lt;/strong> (see &lt;a href="../../../getting-started/cli#authentication">here&lt;/a> for
-details), then set it to an environment variable:&lt;/p>
+&lt;strong>oidc-agent&lt;/strong> (see &lt;a href="../../../getting-started/cli#authentication">cli guide&lt;/a>
+for details), then set it to an environment variable:&lt;/p>
 &lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active"
@@ -268,7 +268,7 @@ virtual machine) as follows:&lt;/p>
 The size of the secret object (all the
 values in it) is limited to 512kB, which is sufficient for storing tokens,
 certificates, configuration files and so on. For larger datasets, please use
-&lt;a href="../../../data/storage/block-storage#storage-encryption">encrypted cloud storage&lt;/a>.
+&lt;a href="../../../compute/cloud-compute/block-storage/#storage-encryption">encrypted cloud storage&lt;/a>.
 &lt;/div>
 &lt;h3 id="secret-values-from-small-binary-files">Secret values from small binary files&lt;/h3>
 &lt;p>It is recommended to store secret values as text for compatibility and ease of
