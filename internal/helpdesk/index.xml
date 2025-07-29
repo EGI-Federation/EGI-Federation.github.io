@@ -43,7 +43,7 @@
 &lt;/tr>
 &lt;tr>
 &lt;td>Release notes&lt;/td>
-&lt;td>&lt;a href="https://ggus.eu/index.php?mode=release_notes">https://ggus.eu/index.php?mode=release_notes&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://confluence.egi.eu/display/EGIHLPDSK/Update+Notes">https://confluence.egi.eu/display/EGIHLPDSK/Update+Notes&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Source code&lt;/td>
@@ -51,15 +51,15 @@
 &lt;/tr>
 &lt;tr>
 &lt;td>Issue tracker for developers&lt;/td>
-&lt;td>N/A&lt;/td>
+&lt;td>&lt;a href="https://confluence.egi.eu/display/EGIHLPDSK/To-Do">https://confluence.egi.eu/display/EGIHLPDSK/To-Do&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>License&lt;/td>
-&lt;td>BMC Software Inc.&lt;/td>
+&lt;td>Zammad&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Privacy Policy&lt;/td>
-&lt;td>&lt;a href="https://ggus.eu/?mode=privacy">https://ggus.eu/?mode=privacy&lt;/a>&lt;/td>
+&lt;td>&lt;a href="https://ggus.eu/?mode=privacy_notice">https://ggus.eu/?mode=privacy_notice&lt;/a> (new location to be defined)&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
