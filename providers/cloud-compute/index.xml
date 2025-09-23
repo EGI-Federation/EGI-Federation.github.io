@@ -349,9 +349,9 @@ components can be run on a single VM that encapsulates them for convenience.&lt;
 &lt;p>For the most part daily operations will not change.&lt;/p>
 &lt;p>A resource centre part of the EGI Federation, and supporting international
 communities, needs to provide support through the EGI channels. This means
-following up &lt;a href="https://ggus.eu">GGUS tickets&lt;/a>. This includes requests from user
-communities and tickets triggered by failures detected by the monitoring
-infrastructure.&lt;/p>
+following up &lt;a href="https://helpdesk.ggus.eu">GGUS tickets&lt;/a>. This includes requests
+from user communities and tickets triggered by failures detected by the
+monitoring infrastructure.&lt;/p>
 &lt;p>A resource centre needs to maintain the services federated in EGI properly
 configured with the EGI AAI.&lt;/p>
 &lt;p>The resource centre will have to comply with the operational and security

@@ -1371,6 +1371,7 @@ the available GPU flavors on all sites for the specific VO in the command:&lt;/p
 &lt;/tbody>
 &lt;/table>
 &lt;!-- markdownlint-enable line-length --></description></item><item><title>Users: Dynamic DNS</title><link>/users/compute/cloud-compute/dynamic-dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/cloud-compute/dynamic-dns/</guid><description>
+&lt;!-- cSpell:words noip -->
 &lt;p>The Dynamic DNS service provides a unified, federation-wide Dynamic DNS support
 for VMs in EGI infrastructure. Users can register their chosen meaningful and
 memorable DNS hostnames in given domains (e.g. &lt;code>my-server.vo.fedcloud.eu&lt;/code>) and
@@ -1470,10 +1471,10 @@ button in the host edit page. The old secret will be invalid.&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="support">Support&lt;/h2>
-&lt;p>Support for Dynamic DNS service is provided via &lt;a href="https://helpdesk.ggus.eu/">EGI Helpdesk&lt;/a>
-in &lt;strong>&amp;ldquo;Dynamic DNS&amp;rdquo;&lt;/strong> support unit, where users can ask questions, report issues
-or make requests for additional domains for specific projects or user
-communities.&lt;/p></description></item><item><title>Users: Automating Deployments</title><link>/users/compute/cloud-compute/automate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/cloud-compute/automate/</guid><description>
+&lt;p>Support for Dynamic DNS service is provided via
+&lt;a href="https://helpdesk.ggus.eu/">EGI Helpdesk&lt;/a> &lt;strong>&amp;ldquo;Dynamic DNS&amp;rdquo;&lt;/strong> support unit, where
+users can ask questions, report issues or make requests for additional domains
+for specific projects or user communities.&lt;/p></description></item><item><title>Users: Automating Deployments</title><link>/users/compute/cloud-compute/automate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/cloud-compute/automate/</guid><description>
 &lt;p>The &lt;a href="../../../getting-started/openstack">OpenStack&lt;/a> sites in the EGI Cloud that
 provide compute resources to run virtual machines (VMs) allow nearly everything
 to be done via an Application Programming Interface (API) or a

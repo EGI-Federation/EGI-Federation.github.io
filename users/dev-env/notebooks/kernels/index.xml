@@ -54,7 +54,7 @@ directory &lt;code>/home/jovyan/cvmfs&lt;/code>. These repositories are availabl
 &lt;/ul>
 &lt;!-- cSpell:enable -->
 &lt;p>If you need access to any other repositories, please open a request in
-&lt;a href="https://ggus.eu">GGUS&lt;/a>.&lt;/p>
+&lt;a href="https://helpdesk.ggus.eu">GGUS&lt;/a>.&lt;/p>
 &lt;h2 id="installing-your-own-kernelsenvironments-permanently">Installing your own kernels/environments permanently&lt;/h2>
 &lt;p>If you want to have a completely customised environment for your Notebooks that
 persists across sessions, you can create your own conda environment in your home
