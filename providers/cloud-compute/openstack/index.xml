@@ -587,10 +587,18 @@ You can set specific tags and properties as needed as described in the
 &lt;/li>
 &lt;/ul>
 &lt;p>cASO will write records to &lt;code>/var/spool/apel&lt;/code> from where ssmsend will take them.&lt;/p>
-&lt;p>SSM configuration is available at &lt;code>/etc/apel&lt;/code>. Defaults should be OK for most
-cases. SSM will use &lt;code>/etc/grid-security&lt;/code> for the certificate CAs and the host
-certificate and private keys (&lt;code>/etc/grid-security/hostcert.pem&lt;/code> and
-&lt;code>/etc/grid-security/hostkey.pem&lt;/code>).&lt;/p>
+&lt;p>SSM configuration is available at &lt;code>/etc/apel&lt;/code>. Set the destination to
+&lt;code>eu-egi-cloud-accounting&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">[messaging]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># If using AMS this is the project that SSM will connect to. Ignored for STOMP.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ams_project: accounting&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Queue to which SSM will send messages&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">destination: eu-egi-cloud-accounting&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Other default values available in the configuration file should be ok
+for your site. SSM expects &lt;code>/etc/grid-security&lt;/code> to contain the host certificate
+(&lt;code>/etc/grid-security/hostcert.pem&lt;/code>), private key
+(&lt;code>/etc/grid-security/hostkey.pem&lt;/code>) and CAs (&lt;code>/etc/grid-security/certificates&lt;/code>).&lt;/p>
 &lt;h4 id="running-the-services">Running the services&lt;/h4>
 &lt;p>Both caso and ssmsend should run periodically, e.g. with a cron job, at least
 once a day. We recommend running them every 4 hours.&lt;/p></description></item><item><title>Providers: Catch-all components</title><link>/providers/cloud-compute/openstack/catch-all/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/catch-all/</guid><description>
