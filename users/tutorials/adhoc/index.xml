@@ -1506,4 +1506,211 @@ as before using the new job ID.&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -s https://fts3-public.cern.ch:8446 &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> c1d4a8e6-4c81-11ec-8926-fa163e5dcbe0
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FINISHED
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: Data redundancy</title><link>/users/tutorials/adhoc/data-redundancy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/tutorials/adhoc/data-redundancy/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Data redundancy in cloud environments is crucial to ensure high availability, data integrity, and disaster recovery.
+In federated infrastructures like EGI, redundancy mitigates risks such as hardware failures, accidental deletions, and
+data corruption. Without proper redundancy, critical data may be lost permanently or become inaccessible during
+infrastructure failures.
+Redundancy enables resilience against failures and provides consistent service availability in Kubernetes (k8s) and
+OpenStack deployments. Relying on multiple geographically distributed sites supporting redundancy is essential for use
+cases that require cross-site data protection, compliance, and disaster recovery strategies.&lt;/p>
+&lt;p>This guide covers two approaches to achieving redundancy:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Using Rsync and Snapshot Replication&lt;/strong> between two OpenStack installations.&lt;/li>
+&lt;li>&lt;strong>Using MinIO for Object Storage&lt;/strong>, providing an S3-compatible alternative for data redundancy.&lt;/li>
+&lt;/ol>
+&lt;p>Both solutions provide redundancy but cater to different use cases. The OpenStack rsync method is best for VM failover,
+while MinIO offers flexible object storage redundancy.&lt;/p>
+&lt;blockquote>
+&lt;p>For a blend of security and granular control, &lt;code>Restic&lt;/code>&amp;rsquo;s encrypted, deduplicated backups offer a compelling
+alternative to solely relying on OpenStack or MinIO redundancy.
+&lt;a href="https://github.com/restic/restic">https://github.com/restic/restic&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="solution-1-redundant-openstack-setup">Solution 1: Redundant OpenStack Setup&lt;/h2>
+&lt;p>&lt;em>&lt;strong>Using Rsync and Snapshot Replication&lt;/strong>&lt;/em>&lt;/p>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;p>This solution synchronizes virtual machine (VM) snapshots between two OpenStack instances, ensuring high availability
+and data redundancy.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>A virtual organization with access to two OpenStack sites (Source and Destination sites)&lt;/li>
+&lt;li>A migration instance on both sites&lt;/li>
+&lt;li>SSH access between sites&lt;/li>
+&lt;li>OpenStack command-line tools installed&lt;/li>
+&lt;li>Sufficient storage capacity&lt;/li>
+&lt;/ul>
+&lt;h3 id="step-1-configure-ssh-for-passwordless-authentication">Step 1: Configure SSH for Passwordless Authentication&lt;/h3>
+&lt;p>On the source migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># If you don&amp;#39;t have an SSH key pair already&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ssh-keygen -t rsa
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Replace user@destination_migration_host with the actual username and hostname/IP&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ssh-copy-id &lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_USER&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>@&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_HOST&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Test the connection:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ssh user@destination_host &lt;span style="color:#4e9a06">&amp;#34;hostname&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This should execute hostname on the destination migration instance without asking for a password.&lt;/p>
+&lt;h3 id="step-2-manual-snapshot-replication-testing-the-process">Step 2: Manual Snapshot Replication (Testing the Process)&lt;/h3>
+&lt;p>Steps for testing the process manually before automating it.&lt;/p>
+&lt;h4 id="21-define-variables-source-site">2.1 Define Variables (Source Site)&lt;/h4>
+&lt;p>On the source migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># --- Configuration ---&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">INSTANCE_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;12345678-90ab-cdef-1234-567890abcdef&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># ID of the VM to snapshot&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">BASE_SNAPSHOT_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;instance_snapshot&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># Base name for snapshots&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">LOCAL_OPENRC_PATH&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$HOME&lt;/span>&lt;span style="color:#4e9a06">/source_openrc&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># Path to the OpenStack RC file for the source site&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DESTINATION_USER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;cloudadm&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># SSH user on the destination migration instance&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DESTINATION_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;destination_host&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># Hostname or IP of the destination migration instance&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DESTINATION_OPENRC_PATH&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;~/destination_openrc&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># Path to OpenStack RC file on destination instance&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REMOTE_TMP_DIR&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;/tmp&amp;#34;&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># Temporary directory on destination for the image&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># --- Dynamic Variables ---&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">TODAYS_DATE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>date +%Y-%m-%d&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">BASE_SNAPSHOT_NAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">-&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">TODAYS_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;/tmp/&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">.img&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REMOTE_IMAGE_FILE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">REMOTE_TMP_DIR&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">/&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">.img&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="22-create-a-snapshot-on-the-source">2.2 Create a Snapshot on the Source&lt;/h4>
+&lt;p>On the source migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Sourcing OpenStack RC file for source: &lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_OPENRC_PATH&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_OPENRC_PATH&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Creating snapshot &amp;#39;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#39; for instance &amp;#39;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">INSTANCE_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">SNAPSHOT_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>openstack server image create &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --name &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">INSTANCE_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -f value -c id&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Wait until the snapshot becomes active&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">STATUS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>openstack image show &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> -f value -c status&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">while&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">STATUS&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> !&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;active&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Waiting for snapshot to become active...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sleep &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">STATUS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>openstack image show &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> -f value -c status&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span> -z &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$SNAPSHOT_ID&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Error: Failed to create snapshot. SNAPSHOT_ID is empty.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">exit&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Snapshot created with ID: &lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="23-transfer-the-snapshot-to-the-destination">2.3 Transfer the Snapshot to the Destination&lt;/h4>
+&lt;p>On the source migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Saving snapshot image to &amp;#39;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>openstack image save --file &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_ID&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Transferring image file to &lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_USER&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">@&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_HOST&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">:&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">REMOTE_TMP_DIR&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">/ ...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rsync -avz --progress &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_USER&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">@&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_HOST&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">:&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">REMOTE_TMP_DIR&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="24-import-snapshot-on-destination">2.4 Import Snapshot on Destination&lt;/h4>
+&lt;p>On the destination migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Sourcing OpenStack RC file on destination: &amp;#39;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_OPENRC_PATH&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_OPENRC_PATH&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Creating image from transferred file: &amp;#39;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">REMOTE_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>openstack image create &lt;span style="color:#4e9a06">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --file &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">REMOTE_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --disk-format qcow2 &lt;span style="color:#4e9a06">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --container-format bare &lt;span style="color:#4e9a06">\\&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SNAPSHOT_NAME_WITH_DATE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Cleanup old snapshots on destination (optional)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>ssh &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_USER&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">@&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">DESTINATION_HOST&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> bash -c &lt;span style="color:#4e9a06">&amp;#34;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">MAX_KEEP=3
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">OLD_SNAPS=\$(openstack image list --name \&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">BASE_SNAPSHOT_NAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">-*\&amp;#34; -f value -c ID -c Created | sort -k2 | head -n -\$MAX_KEEP | awk \&amp;#34;{print \$1}\&amp;#34;)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">for SNAP in \$OLD_SNAPS; do
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> echo \&amp;#34;Deleting old snapshot \$SNAP on destination\&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> openstack image delete \&amp;#34;\$SNAP\&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">done
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#a40000">&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="25-cleanup-source">2.5 Cleanup (Source)&lt;/h4>
+&lt;p>On the source migration instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Cleaning up local image file: &lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rm -f &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCAL_IMAGE_FILE&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># --- Optional, cleanup old snapshots on source ---&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">MAX_KEEP&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">3&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># keep only the last 3 snapshots&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">OLD_SNAPS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>openstack image list --name &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">BASE_SNAPSHOT_NAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">-*&amp;#34;&lt;/span> -f value -c ID -c Created &lt;span style="color:#000;font-weight:bold">|&lt;/span> sort -k2 &lt;span style="color:#000;font-weight:bold">|&lt;/span> head -n -&lt;span style="color:#000">$MAX_KEEP&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> awk &lt;span style="color:#4e9a06">&amp;#39;{print $1}&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">for&lt;/span> SNAP in &lt;span style="color:#000">$OLD_SNAPS&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Deleting old snapshot &lt;/span>&lt;span style="color:#000">$SNAP&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> openstack image delete &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">$SNAP&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="step-3-automate-snapshot-replication-with-a-script">Step 3: Automate Snapshot Replication with a Script&lt;/h3>
+&lt;p>On the source migration instance, create a script file to combine all the above steps, for example, &lt;code>~/replicate_vm_snapshot.sh&lt;/code>
+Ensure INSTANCE_ID and other critical variables are correctly set within the script itself or loaded from a config file.&lt;/p>
+&lt;p>Make the script executable:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>chmod +x ~/replicate_vm_snapshot.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Test the script manually:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>~/replicate_vm_snapshot.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Check the ~/snapshot_replication.log file for output.&lt;/p>
+&lt;p>Add the script to Cron. Edit the crontab on the &lt;em>source migration instance&lt;/em>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>crontab -e
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add an entry to run the script daily at, for example, 2:00 AM:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Redirect all output (stdout and stderr) from cron to the log file handled by the script, or to /dev/null if confident.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span> * * * /bin/bash /home/your_user/replicate_vm_snapshot.sh &amp;gt;&amp;gt; /home/your_user/snapshot_replication.log 2&amp;gt;&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Replace /home/your_user/ with the actual path to the script and log file.&lt;/p>
+&lt;h3 id="results">Results&lt;/h3>
+&lt;p>By utilizing rsync and snapshot replication, VM state consistency is ensured between sites, improving failover
+readiness.&lt;/p>
+&lt;hr>
+&lt;h2 id="solution-2-redundant-object-storage">Solution 2: Redundant Object Storage&lt;/h2>
+&lt;p>&lt;em>&lt;strong>with MinIO&lt;/strong>&lt;/em>&lt;/p>
+&lt;h3 id="overview-1">Overview&lt;/h3>
+&lt;p>MinIO is an open-source, high-performance object storage solution compatible with Amazon S3. It enables redundancy and
+data replication across multiple sites, making it a good alternative for OpenStack Swift or AWS S3 in a private or
+federated cloud.&lt;/p>
+&lt;h3 id="deployment-in-fedcloud">Deployment in FedCloud&lt;/h3>
+&lt;p>MinIO is available in FedCloud with different deployment options:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Preconfigured Virtual Machines&lt;/strong> using Infrastructure Manager.&lt;/li>
+&lt;li>&lt;strong>Helm chart deployment in Kubernetes&lt;/strong>, with &lt;a href="https://docs.egi.eu/users/compute/cloud-compute/">Cloud Container Compute&lt;/a>, enabling easy setup with just a few clicks.&lt;/li>
+&lt;/ul>
+&lt;h3 id="prerequisites-1">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>MinIO installed on both source and destination sites&lt;/li>
+&lt;li>Network connectivity between sites&lt;/li>
+&lt;li>Storage capacity for object replication&lt;/li>
+&lt;/ul>
+&lt;h3 id="minio-configuration">MinIO Configuration&lt;/h3>
+&lt;p>To configure MinIO for redundancy, follow these steps:&lt;/p>
+&lt;h4 id="step-1-access-the-minio-web-interface">Step 1: Access the MinIO Web Interface&lt;/h4>
+&lt;ul>
+&lt;li>Open your browser and navigate to &lt;code>https://&amp;lt;minio_host&amp;gt;:9001&lt;/code>.&lt;/li>
+&lt;li>Log in with your MinIO credentials (admin username and password).&lt;/li>
+&lt;/ul>
+&lt;h4 id="step-2-create-buckets">Step 2: Create Buckets&lt;/h4>
+&lt;ul>
+&lt;li>In the MinIO Console, go to the &amp;ldquo;Buckets&amp;rdquo; section.&lt;/li>
+&lt;li>Click &amp;ldquo;Create Bucket&amp;rdquo; and enter a bucket name.&lt;/li>
+&lt;li>Configure access settings (private/public as required).&lt;/li>
+&lt;/ul>
+&lt;h4 id="step-3-configure-replication">Step 3: Configure Replication&lt;/h4>
+&lt;ul>
+&lt;li>Go to &amp;ldquo;Buckets&amp;rdquo; and select the bucket you created.&lt;/li>
+&lt;li>Click on the &amp;ldquo;Replication&amp;rdquo; tab.&lt;/li>
+&lt;li>Add a remote target:
+&lt;ul>
+&lt;li>Enter the remote MinIO server address.&lt;/li>
+&lt;li>Provide access credentials for the remote instance.&lt;/li>
+&lt;li>Enable &amp;ldquo;Active Sync&amp;rdquo; to keep the data continuously updated.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Save the configuration.&lt;/li>
+&lt;/ul>
+&lt;h4 id="step-4-verify-replication">Step 4: Verify Replication&lt;/h4>
+&lt;p>Upload an object to the source MinIO instance and check if it appears in the destination MinIO bucket.&lt;/p>
+&lt;h3 id="alternate-minio-configuration-using-command-line">Alternate MinIO Configuration using Command-line&lt;/h3>
+&lt;h4 id="step-1-install-and-configure-minio">Step 1: Install and Configure MinIO&lt;/h4>
+&lt;p>On each site:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>docker run -d --name minio &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -p 9000:9000 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -p 9001:9001 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#4e9a06">&amp;#34;MINIO_ROOT_USER=admin&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#4e9a06">&amp;#34;MINIO_ROOT_PASSWORD=password&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> quay.io/minio/minio server /data --console-address &lt;span style="color:#4e9a06">&amp;#34;:9001&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="step-2-set-up-site-to-site-replication">Step 2: Set Up Site-to-Site Replication&lt;/h4>
+&lt;h5 id="21-configure-replication-on-source-minio">2.1 Configure Replication on Source MinIO&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mc &lt;span style="color:#204a87">alias&lt;/span> &lt;span style="color:#204a87">set&lt;/span> &lt;span style="color:#204a87">source&lt;/span> http://source_host:9000 admin password
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mc &lt;span style="color:#204a87">alias&lt;/span> &lt;span style="color:#204a87">set&lt;/span> destination http://destination_host:9000 admin password
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mc replicate add source/bucket destination/bucket --remote-bucket destination/bucket --sync
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="22-verify-replication">2.2 Verify Replication&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mc mirror --watch source/bucket destination/bucket
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr></description></item></channel></rss>
