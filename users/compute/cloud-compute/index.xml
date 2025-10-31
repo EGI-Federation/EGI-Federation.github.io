@@ -1446,22 +1446,39 @@ Dynamic DNS:&lt;/p>
 &lt;p>IM will take care of registering the hostname, assigning the IP and eventually
 removing the hostname once the infrastructure is destroyed.&lt;/p>
 &lt;h2 id="wildcard-hosts">Wildcard hosts&lt;/h2>
-&lt;p>For some use cases, it&amp;rsquo;s convenient for all hosts within a given subdomain to
-resolve to the same IP. For example, if the hostname of the head node of a
-kubernetes cluster is &lt;code>kubernetes.fedcloud.eu&lt;/code>, all services on the cluster can
-have the same IP (e.g. &lt;code>dashboard.kubernetes.fedcloud.eu&lt;/code>,
-&lt;code>api.kubernetes.fedcloud.eu&lt;/code>, &lt;code>app1.kubernetes.fedcloud.eu&lt;/code>), so the routing of
-the requests is managed at the cluster level by using an ingress or gateway
-object.&lt;/p>
+&lt;p>For certain use cases, it is desirable for all hosts within a specific subdomain
+to resolve to the same IP address. For example, if the head node of a Kubernetes
+cluster is accessible at &lt;code>kubernetes.fedcloud.eu&lt;/code>, all services within the
+cluster can share the same IP and be represented using a wildcard entry
+&lt;code>*.kubernetes.fedcloud.eu&lt;/code>, where &lt;code>*&lt;/code> stands for any of the
+services; e.g. &lt;code>dashboard.kubernetes.fedcloud.eu&lt;/code>,
+&lt;code>api.kubernetes.fedcloud.eu&lt;/code>, &lt;code>app1.kubernetes.fedcloud.eu&lt;/code>. In such setup,
+request routing is handled internally by the cluster, typically through
+an Ingress or Gateway resource.&lt;/p>
+&lt;p>&lt;img src="wildcard-example.png" alt="wildcard-example.png">&lt;/p>
 &lt;p>This kind of names can be registered using the &lt;a href="#api">API calls&lt;/a> as described
 below.&lt;/p>
 &lt;h2 id="api">API&lt;/h2>
+&lt;p>The API is accessible via the &lt;code>API_BASE_URL&lt;/code> endpoint
+(e.g. &lt;code>https://nsupdate.fedcloud.eu&lt;/code>) and exposes several endpoints
+for domain management and related operations.&lt;/p>
+&lt;h3 id="authorization">Authorization&lt;/h3>
+&lt;p>All API requests require a valid &lt;code>ACCESS_TOKEN&lt;/code>. This token must be included
+in the HTTP request &lt;code>Authorization&lt;/code> header using the &lt;code>Bearer&lt;/code> scheme for
+authentication.&lt;/p>
 &lt;h3 id="list-domains">List domains&lt;/h3>
-&lt;p>List available domains for your user:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/domains
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Bearer {{access_token}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>access_token&lt;/code> is a valid Check-in access token.&lt;/p>
-&lt;p>Sample response:&lt;/p>
+&lt;p>Retrieves all private domains owned by the authenticated user, as well as
+all available public domains.&lt;/p>
+&lt;h4 id="endpoint">Endpoint&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/domains
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="response">Response&lt;/h4>
+&lt;p>Returns a JSON object containing two arrays:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>private&lt;/code> — Domains owned by the requesting user.&lt;/li>
+&lt;li>&lt;code>public&lt;/code> — Public domains available for use.&lt;/li>
+&lt;/ul>
+&lt;h4 id="sample-response">Sample response&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ok&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;private&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[],&lt;/span>
@@ -1479,38 +1496,139 @@ below.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;available&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;comment&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Domain for production services in EOSC-SIESTA project&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;owner&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;root&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="register-host">Register host&lt;/h3>
-&lt;p>You can register a new hostname with a call to &lt;code>/nic/register&lt;/code> either by:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>specifying &lt;code>name&lt;/code> and &lt;code>domain&lt;/code> (both mandatory):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/register?name={{host_name}}&amp;amp;domain={{domain}}&amp;amp;comment={{comment}}&amp;amp;wildcard={{true|false|1|0|yes|no}}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Bearer {{access_token}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>host_name&lt;/code> is the name of the host to register&lt;/li>
-&lt;li>&lt;code>domain&lt;/code> is the domain where to register the host&lt;/li>
-&lt;li>&lt;code>comment&lt;/code> is a comment to add to the host&lt;/li>
-&lt;li>&lt;code>wildcard&lt;/code> is whether this is a wildcard name or not (default &lt;code>false&lt;/code>)&lt;/li>
-&lt;li>&lt;code>access_token&lt;/code> is a valid Check-in access token&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>or by specifying the &lt;code>fqdn&lt;/code> (also mandatory):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/register?fqdn={{fqdn_of_host}}&amp;amp;comment={{comment}}&amp;amp;wildcard={{true|false|1|0|yes|no}}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Bearer {{access_token}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>fqdn_of_host&lt;/code> is fqdn of the host to register&lt;/li>
-&lt;li>&lt;code>comment&lt;/code> is a comment to add to the host&lt;/li>
-&lt;li>&lt;code>wildcard&lt;/code> is whether this is a wildcard name or not (default &lt;code>false&lt;/code>)&lt;/li>
-&lt;li>&lt;code>access_token&lt;/code> is a valid Check-in access token&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>Response will be a json as follows:&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="domain-fields-description">Domain Fields Description&lt;/h4>
+&lt;p>Each domain object (private or public) includes the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>The fully qualified domain name (FQDN) of the domain. Example: &lt;code>cloud.ai4eosc.eu&lt;/code>.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>public&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates whether the domain is public (&lt;code>true&lt;/code>) or private (&lt;code>false&lt;/code>). Public domains are available for multiple users, whereas private domains are owned exclusively by the requesting user.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>available&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates whether the domain is available for new host registrations. &lt;code>true&lt;/code> means the domain can be used; &lt;code>false&lt;/code> means it is in use, reserved, or restricted.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>A short description or annotation about the domain. Typically provides context or usage information.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>owner&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>The username of the domain owner. For public domains, this is the account responsible for the domain.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="register-host">Register Host&lt;/h3>
+&lt;p>This endpoint registers a host in the specified domain, optionally setting a
+wildcard and adding a comment. The response confirms whether the registration
+was successful or if an error occurred.&lt;/p>
+&lt;h4 id="endpoint-1">Endpoint&lt;/h4>
+&lt;h5 id="option-1">Option 1&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/register?fqdn={{HOSTNAME}}&amp;amp;ip={{IP}}&amp;amp;wildcard={{WILDCARD}}&amp;amp;comment={{COMMENT}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="parameters">Parameters&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Fully qualified domain name (FQDN) of the host to register.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ip&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>IP address to associate with the host. If omitted, the IP is inferred from the incoming request.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>wildcard&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Enables or disables a wildcard entry for the host. &lt;br>• &lt;code>true&lt;/code> — enable wildcard&lt;br>• &lt;code>false&lt;/code> — disable wildcard (default)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Optional comment or description for the host.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="option-2">Option 2&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/register?name={{NAME}}&amp;amp;domain={{DOMAIN}}&amp;amp;ip={{IP}}&amp;amp;wildcard={{WILDCARD}}&amp;amp;comment={{COMMENT}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="parameters-1">Parameters&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Name of the host to register.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Domain under which the host is registered.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ip&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>IP address to associate with the host. If omitted, the IP is inferred from the incoming request.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>wildcard&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Enables or disables a wildcard entry for the host. &lt;br>• &lt;code>true&lt;/code> — enable wildcard&lt;br>• &lt;code>false&lt;/code> — disable wildcard (default)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Optional comment or description for the host.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="sample-response-1">Sample Response&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ok&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;message&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Host registered.&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -1536,39 +1654,218 @@ below.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;IPv4_update_url_bearer_auth&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://nsupdate.fedcloud.eu/nic/update?hostname=test.vm.fedcloud.eu&amp;amp;myip=${myip}&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="update-dns-record">Update DNS record&lt;/h3>
-&lt;p>Dynamic DNS update server uses dyndns2 protocol, compatible with commercial
-providers like
-&lt;a href="https://help.dyn.com/remote-access-api/perform-update/">dyn.com&lt;/a>, and
-&lt;a href="https://www.noip.com/integrate/request">noip.com&lt;/a>. The API is specified as
-follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/update?hostname=yourhostname&amp;amp;myip=ipaddress
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Host: nsupdate.fedcloud.eu
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Basic base64-encoded-auth-string
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>User-Agent:
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>base64-encoded-auth-string&lt;/code>: base64 encoding of username:password&lt;/li>
-&lt;li>&lt;code>username&lt;/code>: your hostname&lt;/li>
-&lt;li>&lt;code>password&lt;/code>: your host secret&lt;/li>
-&lt;li>&lt;code>hostname&lt;/code> in the parameter string can be omitted or must be the same as
-&lt;code>username&lt;/code>&lt;/li>
-&lt;li>&lt;code>myip&lt;/code> in the parameter string if omitted, the IP address of the client
-performing the GET request will be used&lt;/li>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="response-fields">Response Fields&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>status&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Indicates the overall status of the request (e.g., &lt;code>&amp;quot;ok&amp;quot;&lt;/code> for success or &lt;code>&amp;quot;error&amp;quot;&lt;/code> for failure).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>message&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Human-readable message summarizing the result.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>host&lt;/code>&lt;/td>
+&lt;td>object&lt;/td>
+&lt;td>Contains detailed information about the registered host.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="host-object">&lt;code>host&lt;/code> Object&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Fully qualified domain name of the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Name of the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Domain under which the host is registered.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>wildcard&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Whether a wildcard entry is enabled for the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Optional comment associated with the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>available&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if the host is active and reachable.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>client_faults&lt;/code>&lt;/td>
+&lt;td>integer&lt;/td>
+&lt;td>Number of client-related errors recorded.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>server_faults&lt;/code>&lt;/td>
+&lt;td>integer&lt;/td>
+&lt;td>Number of server-related errors recorded.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>abuse_blocked&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Whether the host has been blocked due to abuse reports.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>abuse&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if the host is currently flagged for abuse.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>last_update_ipv4&lt;/code>&lt;/td>
+&lt;td>string (ISO 8601)&lt;/td>
+&lt;td>Timestamp of the last IPv4 update.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>tls_update_ipv4&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if a TLS update is pending for the IPv4 record.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ipv4&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>The assigned IPv4 address.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>last_update_ipv6&lt;/code>&lt;/td>
+&lt;td>string | null&lt;/td>
+&lt;td>Timestamp of the last IPv6 update, or &lt;code>null&lt;/code> if none.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>tls_update_ipv6&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if a TLS update is pending for the IPv6 record.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ipv6&lt;/code>&lt;/td>
+&lt;td>string | null&lt;/td>
+&lt;td>The assigned IPv6 address, or &lt;code>null&lt;/code> if none.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>update_secret&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Secret token used for authenticated updates.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>IPv4_update_url_basic_auth&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>URL for updating the IPv4 record using Basic Auth credentials.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>IPv4_update_url_bearer_auth&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>URL for updating the IPv4 record using Bearer token authentication.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="update-dns-record">Update DNS record&lt;/h3>
+&lt;p>The dynamic DNS update server uses the &lt;strong>dyndns2 protocol&lt;/strong>, compatible with commercial providers
+such as &lt;a href="https://help.dyn.com/remote-access-api/perform-update/">dyn.com&lt;/a>
+and &lt;a href="https://www.noip.com/integrate/request">noip.com&lt;/a>,
+and allows clients to update the IP address of a registered host. In addition to Basic authentication using an &lt;a href="#generate-update-secret">update
+secret&lt;/a>, this endpoint also supports authentication with the &lt;code>Bearer&lt;/code> scheme for enhanced
+security.&lt;/p>
+&lt;h4 id="endpoint-2">Endpoint&lt;/h4>
+&lt;h5 id="update-using-bearer-token-authentication">Update using Bearer token authentication&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/update?hostname={{HOSTNAME}}&amp;amp;myip={{IP_ADDRESS}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="update-using-basic-authentication-with-update-secret">Update using Basic authentication with update secret&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/update?hostname={{HOSTNAME}}&amp;amp;myip={{IP_ADDRESS}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Basic {{BASE64_ENCODED_AUTH_STRING}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h6 id="creating-basic-authentication-secret">Creating Basic authentication secret&lt;/h6>
+&lt;p>To create the Basic authentication token, encode FQDN of the target host and corresponding update secret using the
+Base64 encoding. To retrieve the update secret, use the &lt;a href="#generate-update-secret">/nic/generate_secret&lt;/a> endpoint.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">echo&lt;/span> -n &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">HOSTNAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">:&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">UPDATE_SECRET&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> base64 -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">c3Rldm8tZ3B1Og&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="parameters-2">Parameters&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>hostname&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Fully qualified domain name (FQDN) of the host to update.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>myip&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>IP address to set for the host. If omitted, the server uses the IP address of the requesting client.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="sample-response-2">Sample response&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>HTTP/2 200 OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(Headers) ...content-type: text/plain...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>good 123.45.67.89
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>The response body returns the status of the update followed by the current IP address assigned to the host.&lt;/li>
+&lt;li>Example: &lt;code>good 123.45.67.89&lt;/code> indicates the update succeeded and the host now points to &lt;code>123.45.67.89&lt;/code>.&lt;/li>
 &lt;/ul>
-&lt;h3 id="lists-hosts">Lists hosts&lt;/h3>
-&lt;p>This API lists all the registered hosts by a given user:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/hosts
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Bearer {{access_token}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>or:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>GET /nic/hosts?domain={{domain}}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Authorization: Bearer {{access_token}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>domain&lt;/code> is the domain to list hosts for&lt;/li>
-&lt;li>&lt;code>access_token&lt;/code> is a valid Check-in access token&lt;/li>
-&lt;/ul>
-&lt;p>Sample response:&lt;/p>
+&lt;h3 id="list-hosts">List Hosts&lt;/h3>
+&lt;p>Retrieves all hosts registered by the authenticated user. Optionally, you can filter hosts by a specific domain.&lt;/p>
+&lt;h4 id="endpoint-3">Endpoint&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/hosts?domain={{DOMAIN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="parameters-3">Parameters&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Optional domain to filter the hosts. If omitted, all hosts registered by the user are returned.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="sample-response-3">Sample response&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ok&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;hosts&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
@@ -1592,7 +1889,313 @@ performing the GET request will be used&lt;/li>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="security">Security&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="response-fields-1">Response Fields&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>status&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Indicates the overall status of the request (e.g., &lt;code>&amp;quot;ok&amp;quot;&lt;/code> for success or &lt;code>&amp;quot;error&amp;quot;&lt;/code> for failure).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>message&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Present only in failed responses; provides a human-readable explanation of the error.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>hosts&lt;/code>&lt;/td>
+&lt;td>array&lt;/td>
+&lt;td>Presents only in successful responses; provides a list of host objects registered by the user.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="hosts-object">&lt;code>hosts&lt;/code> Object&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Fully qualified domain name of the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Name of the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Domain under which the host is registered.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>wildcard&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates whether a wildcard entry is enabled for the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Optional comment associated with the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>available&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if the host is active and reachable.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>client_faults&lt;/code>&lt;/td>
+&lt;td>integer&lt;/td>
+&lt;td>Number of client-related errors recorded.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>server_faults&lt;/code>&lt;/td>
+&lt;td>integer&lt;/td>
+&lt;td>Number of server-related errors recorded.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>abuse_blocked&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Whether the host has been blocked due to abuse reports.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>abuse&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if the host is currently flagged for abuse.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>last_update_ipv4&lt;/code>&lt;/td>
+&lt;td>string (ISO 8601)&lt;/td>
+&lt;td>Timestamp of the last IPv4 update.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>tls_update_ipv4&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if a TLS update is pending for the IPv4 record.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ipv4&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>The assigned IPv4 address.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>last_update_ipv6&lt;/code>&lt;/td>
+&lt;td>string (ISO 8601)&lt;/td>
+&lt;td>Timestamp of the last IPv6 update, or &lt;code>null&lt;/code> if none.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>tls_update_ipv6&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates if a TLS update is pending for the IPv6 record.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ipv6&lt;/code>&lt;/td>
+&lt;td>string | null&lt;/td>
+&lt;td>The assigned IPv6 address, or &lt;code>null&lt;/code> if none.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="unregister-host">Unregister Host&lt;/h3>
+&lt;p>Removes a previously registered host from the specified domain. The response
+confirms whether the unregistration was successful or if an error occurred.&lt;/p>
+&lt;h4 id="endpoint-4">Endpoint&lt;/h4>
+&lt;h5 id="option-1-1">Option 1&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/unregister?fqdn={{HOSTNAME}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="parameters-4">Parameters&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Fully qualified domain name (FQDN) of the host to unregister.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="option-2-1">Option 2&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/unregister?name={{NAME}}&amp;amp;domain={{DOMAIN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="parameters-5">Parameters&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Name of the host to unregister.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Domain under which the host is registered.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="sample-response-4">Sample response&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ok&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;message&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Host unregistered.&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;host&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;fqdn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test.vm.fedcloud.eu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;domain&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;vm.fedcloud.eu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;wildcard&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;comment&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;host for testing purposes&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="response-fields-2">Response Fields&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>status&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Indicates the overall status of the request (e.g., &lt;code>&amp;quot;ok&amp;quot;&lt;/code> for success or &lt;code>&amp;quot;error&amp;quot;&lt;/code> for failure).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>message&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Human-readable message summarizing the result.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>host&lt;/code>&lt;/td>
+&lt;td>object&lt;/td>
+&lt;td>Contains details of the unregistered host.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="host-object-1">&lt;code>host&lt;/code> Object&lt;/h5>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Fully qualified domain name (FQDN) of the unregistered host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Name of the unregistered host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Domain under which the host was registered.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>wildcard&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>Indicates whether a wildcard entry was enabled for the host.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>comment&lt;/code>&lt;/td>
+&lt;td>string | null&lt;/td>
+&lt;td>Comment associated with the host, or &lt;code>null&lt;/code> if none.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="generate-update-secret">Generate update secret&lt;/h3>
+&lt;p>Generates a new update secret for clients to update a registered host.
+The secret can be used for authenticated dynamic updates to the host’s IP records.&lt;/p>
+&lt;h4 id="endpoint-5">Endpoint&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-http" data-lang="http">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">GET {{API_BASE_URL}}/nic/generate_secret?fqdn={{HOSTNAME}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">Authorization: Bearer {{ACCESS_TOKEN}}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="parameters-6">Parameters&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>fqdn&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>Fully qualified domain name (FQDN) of the host for which to generate the secret.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="sample-response-5">Sample response&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ok&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;secret&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;bMkzLXMr75&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="response-fields-3">Response Fields&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>status&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Indicates the overall status of the request (e.g., &lt;code>&amp;quot;ok&amp;quot;&lt;/code> for success or &lt;code>&amp;quot;error&amp;quot;&lt;/code> for failure).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>message&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Present only in failed responses; provides a human-readable explanation of the error.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>secret&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>Presents only in successful responses; provides the newly generated update secret for the specified host.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="security">Security&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>For updating IP address, only hostname and its secret are needed. No user
