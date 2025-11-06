@@ -128,7 +128,7 @@ certificate.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cfssl genkey &amp;lt;&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;{&amp;#34;hosts&amp;#34;:[&amp;#34;#FQDN#&amp;#34;],&amp;#34;CN&amp;#34;#FQDN#&amp;#34;,&amp;#34;key&amp;#34;:{&amp;#34;algo&amp;#34;:&amp;#34;rsa&amp;#34;,&amp;#34;size&amp;#34;:4096}}&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> cfssljson -bare &lt;span style="color:#8f5902;font-style:italic">##FQDN##.rsa&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="using-openssl">Using OpenSSL&lt;/h3>
-&lt;p>It can be done using the following &lt;code>OpenSSL&lt;/code> command (This will generate a
+&lt;p>It can be done using the following &lt;code>OpenSSL&lt;/code> command that will generate a
 password-protected key.&lt;/p>
 &lt;p>You will be asked for various questions, but the only important ones are the
 Common Name (CN) and Subject Alternative Names (SAN) (in case you want to
