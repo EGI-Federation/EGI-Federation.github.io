@@ -2414,6 +2414,7 @@ be configured to create accounting records:&lt;/p>
 &lt;li>Information on configuring HTCondor-CE for APEL accounting:
 &lt;a href="../../high-throughput-compute/htcondor-ce-accounting">APEL Accounting for HTCondor-CE&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>Providers: HOWTO01 Using IGTF CA distribution</title><link>/providers/operations-manuals/howto01_using_igtf_ca_distribution/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/operations-manuals/howto01_using_igtf_ca_distribution/</guid><description>
+&lt;!-- cSpell:words SLCS -->
 &lt;p>To ensure interoperability within and outside of EGI, the
 &lt;a href="https://documents.egi.eu/document/2930">Policy on Acceptable Authentication Assurance&lt;/a>
 defined a common set of trust anchors (in a PKIX implementation &amp;ldquo;Certification
@@ -2448,12 +2449,12 @@ version number. Install the meta-package &lt;code>ca-policy-egi-core&lt;/code> (
 trusted CAs.&lt;/p>
 &lt;h3 id="using-yum-package-management">Using YUM package management&lt;/h3>
 &lt;p>Add the following
-&lt;a href="https://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo">repo-file&lt;/a>
+&lt;a href="https://repository.egi.eu/sw/production/cas/1/current/repo-files/egi-trustanchors.repo">repo-file&lt;/a>
 to the &lt;code>/etc/yum.repos.d/&lt;/code> directory:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">[EGI-trustanchors]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">EGI-trustanchors&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">baseurl&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://repository.egi.eu/sw/production/cas/1/current/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">gpgkey&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">baseurl&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">http://repository.egi.eu/sw/production/cas/1/current/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">gpgkey&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-4&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">gpgcheck&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">1&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">enabled&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">1&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and then update your installation. How to update depends on your previous
@@ -2495,13 +2496,13 @@ solve your issue, or may be asked to use a temporary repository. To use it:&lt;/
 &lt;li>Install the EUGridPMA PGP key for apt:&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ wget -q -O - &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> https://dist.eugridpma.info/distribution/igtf/current/GPG-KEY-EUGridPMA-RPM-3 &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> apt-key add -
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> https://repository.egi.eu/sw/production/cas/1/current/GPG-KEY-EUGridPMA-RPM-4 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> gpg --dearmor -o /etc/apt/keyrings/GPG-KEY-EUGridPMA-RPM-4.gpg
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>Add the following line to your sources.list file for APT:&lt;/li>
+&lt;li>Add the following &lt;code>egi-trustanchors.list&lt;/code> to your sources.list.d:&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">#### EGI Trust Anchor Distribution ####&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb https://repository.egi.eu/sw/production/cas/1/current egi-igtf core
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>#### EGI Trust Anchor Distribution ####
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb [signed-by=/etc/apt/keyrings/GPG-KEY-EUGridPMA-RPM-4.gpg] http://repository.egi.eu/sw/production/cas/1/current egi-igtf core
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>Populate the cache and install the meta-package&lt;/li>
 &lt;/ul>
@@ -2587,9 +2588,7 @@ contact the EGI IGTF liaison at &lt;code>egi-igtf-liaison@nikhef.nl&lt;/code>.&l
 the
 &lt;a href="https://dist.eugridpma.info/distribution/igtf/current/">International Grid Trust Federation&lt;/a>,
 or its &lt;a href="https://www.apgridpma.org/distribution/">mirror&lt;/a>. See the IGTF and
-EUGridPMA web pages for additional information.&lt;/p>
-&lt;p>Make sure to verify your trust anchors with &lt;a href="https://www.tacar.org/">TACAR&lt;/a>, the
-&lt;a href="https://www.terena.org">TERENA&lt;/a> Academic CA Repository, where applicable.&lt;/p></description></item><item><title>Providers: HOWTO02 Site Certification Required Documentation</title><link>/providers/operations-manuals/howto02_site_certification_required_documentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/operations-manuals/howto02_site_certification_required_documentation/</guid><description>
+EUGridPMA web pages for additional information.&lt;/p></description></item><item><title>Providers: HOWTO02 Site Certification Required Documentation</title><link>/providers/operations-manuals/howto02_site_certification_required_documentation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/operations-manuals/howto02_site_certification_required_documentation/</guid><description>
 &lt;p>Documents required for Resource Centre registration and certification.&lt;/p>
 &lt;p>The Resource Centre administrators should read and understand the first five
 documents. It is a further requirement that the OLA between the NGI and RC, and
