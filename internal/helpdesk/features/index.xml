@@ -531,6 +531,29 @@ ticket priority.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>&lt;strong>new definition under discussion:&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Ticket Priority&lt;/th>
+&lt;th>Response time&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>less urgent&lt;/td>
+&lt;td>5 working days&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>urgent&lt;/td>
+&lt;td>3 working days&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>very urgent&lt;/td>
+&lt;td>1 working day&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h3 id="advanced-service">Advanced service&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -554,6 +577,29 @@ ticket priority.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td>top priority&lt;/td>
+&lt;td>4 working hours&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>new definition under discussion:&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Ticket Priority&lt;/th>
+&lt;th>Response time&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>less urgent&lt;/td>
+&lt;td>5 working days&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>urgent&lt;/td>
+&lt;td>1 working day&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>very urgent&lt;/td>
 &lt;td>4 working hours&lt;/td>
 &lt;/tr>
 &lt;/tbody>
