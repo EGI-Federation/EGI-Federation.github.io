@@ -110,14 +110,15 @@ simplify the discovery of projects.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="using-the-openstack-api">Using the OpenStack API&lt;/h3>
 &lt;p>Once you know which project to use, you can use your regular openstack cli
 commands for performing actual operations in the provider:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ fedcloud openstack image list --site &amp;lt;NAME_OF_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>fedcloud openstack image list --site &amp;lt;NAME_OF_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For third-party tools that can use token based authentication in OpenStack, use
 the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">OS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>fedcloud openstack --site &amp;lt;NAME_OF_SITE&amp;gt; --vo &amp;lt;NAME_OF_VO&amp;gt; &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> token issue -c id -f value&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="using-ssh-oidc">Using ssh-oidc&lt;/h3>
 &lt;p>&lt;a href="https://github.com/EOSC-synergy/ssh-oidc">ssh-oidc&lt;/a> is a set of tools that
-allows ssh with OIDC.&lt;/p></description></item><item><title>Users: Virtual Machine Images</title><link>/users/compute/cloud-compute/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/cloud-compute/images/</guid><description>
+allows ssh through OIDC tokens.&lt;/p>
+&lt;p>See the section of &lt;a href="../../../tutorials/adhoc/accessing-vm-with-ssh/">Token based authentication of accessing VMs with SSH&lt;/a> tutorial for more information on how to use ssh-oidc to access VMs with OIDC tokens.&lt;/p></description></item><item><title>Users: Virtual Machine Images</title><link>/users/compute/cloud-compute/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/cloud-compute/images/</guid><description>
 &lt;p>Users of the EGI Cloud create Virtual Machines (VMs) on the providers. Those VMs
 are started from images: templates for the root volume of the running instances,
 i.e. operating system and applications available initially on a VM. The Artefact

@@ -66,7 +66,7 @@ or inject some code to add additional users (i.e. with Ansible).&lt;/p>
 &lt;p>The &lt;code>private ssh-key&lt;/code> stored on your local computer is required to have
 restrictive file permissions. Depending on your local operative system you may
 need to run:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ chmod &lt;span style="color:#0000cf;font-weight:bold">600&lt;/span> ~/.ssh/id_rsa
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>chmod &lt;span style="color:#0000cf;font-weight:bold">600&lt;/span> ~/.ssh/id_rsa
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(with &lt;code>id_rsa&lt;/code> being the name of the private key associated with the public key
 in use).&lt;/p>
 &lt;h2 id="username-and-password">Username and password&lt;/h2>
@@ -191,11 +191,35 @@ username (usually &lt;code>cloudadm&lt;/code>), and the SSH key.&lt;/p>
 &lt;h2 id="token-based-authentication">Token-based authentication&lt;/h2>
 &lt;p>If supported by your virtual machine, you can also use
 &lt;a href="https://github.com/EOSC-synergy/ssh-oidc">ssh-oidc&lt;/a> which implements the
-authentication consuming under-the-hood tokens from a local demon installed on
-your local machine.&lt;/p>
-&lt;p>More details on that soon.&lt;/p>
-&lt;p>The Infrastructure Manager (IM) can &lt;code>Enable SSH OIDC access to the VM&lt;/code> in
-virtual machines by selecting the related &lt;code>Optional Features&lt;/code>.&lt;/p></description></item><item><title>Users: Access DataHub from a VM</title><link>/users/tutorials/adhoc/vm-datahub/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/tutorials/adhoc/vm-datahub/</guid><description>
+(SSH) authentication through (Check-in) OIDC tokens.
+Rather than a single software package, ssh-oidc is a set of server/client side
+tools.&lt;/p>
+&lt;p>The SSH-OIDC ecosystem has evolved along the years to support different use cases.
+There are two ways to setup a SSH-OIDC client/server configuration:&lt;/p>
+&lt;ol>
+&lt;li>Server deploys &lt;a href="https://motley-cue.readthedocs.io/">Motley-Cue&lt;/a>, client uses &lt;a href="https://mccli.readthedocs.io/">mccli&lt;/a> to login to the server.&lt;/li>
+&lt;li>Server deploys &lt;a href="https://ssh-oidc-doc.data.kit.edu/admin-installation/">oinit server tools&lt;/a> (which includes a certificate authority),
+client uses &lt;a href="https://ssh-oidc-doc.data.kit.edu/user-installation/">oinit client tools&lt;/a> to connect to the server.&lt;/li>
+&lt;/ol>
+&lt;p>In the first case, the client explicitly calls mccli to login to the SSH server;
+It is a wrapper around &lt;code>ssh&lt;/code> and &lt;code>scp&lt;/code> commands that automatically handles the
+OIDC access token to the (Motley-Cue) server.
+The advantage of this approach is the simplicity of the server and client setup;
+The disadvantage is that the wrapping of the ssh command &amp;ndash; although it works
+well for simple workflows &amp;ndash; may not be suitable for more complex workflows.&lt;/p>
+&lt;p>The second case is more complex to setup, but it allows the client to use the
+standard &lt;code>ssh&lt;/code> and &lt;code>scp&lt;/code> commands, and it is more suitable for complex workflows.&lt;/p>
+&lt;p>Both methods use &lt;a href="https://indigo-dc.github.io/oidc-agent/">oidc-agent&lt;/a> to manage the OIDC tokens on the client side
+(&lt;em>OR&lt;/em> you provide the tokens explicitly).&lt;/p>
+&lt;h3 id="infrastructure-manager-im-support-for-ssh-oidc">Infrastructure Manager (IM) support for SSH-OIDC&lt;/h3>
+&lt;p>The first use case of SSH-OIDC is currently supported by the Infrastructure Manager (IM).&lt;/p>
+&lt;p>After selecting to &lt;code>Deploy a Virtual Machine&lt;/code>, the user can select the
+&lt;code>Enable SSH OIDC access to the VM&lt;/code> option in the next &lt;code>Optional Features&lt;/code> page.&lt;/p>
+&lt;p>This will deploy the virtual machine with Motley-Cue server and the SSH server
+configured accordingly. The user can then use the &lt;code>mccli&lt;/code> client to connect to
+the virtual machine. E.g,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>mccli --token &lt;span style="color:#000">$TOKEN&lt;/span> ssh &amp;lt;VM_IP_ADDRESS&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Users: Access DataHub from a VM</title><link>/users/tutorials/adhoc/vm-datahub/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/tutorials/adhoc/vm-datahub/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>This tutorial describes the access to &lt;a href="../../../data/management/datahub">EGI DataHub&lt;/a> spaces
 from a virtual machine. In the following paragraphs you will learn how to
