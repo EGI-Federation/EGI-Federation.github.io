@@ -317,7 +317,9 @@ choose (or gets used automatically) in specific scenarios:&lt;/p>
 &lt;p>The following sections offer more details about each of these orchestrators.&lt;/p></description></item><item><title>Users: Software Distribution</title><link>/users/compute/software-distribution/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/users/compute/software-distribution/</guid><description>
 &lt;p>This page documents usage the CernVM-FS (CVMFS) service operated for EGI by UKRI-STFC.
 For information on how to install a client, follow the instruction in the
-&lt;a href="https://cvmfs.readthedocs.io/en/latest/cpt-quickstart.html">CVMFS official documentation&lt;/a>&lt;/p>
+&lt;a href="https://cvmfs.readthedocs.io/en/stable/cpt-quickstart/">CVMFS official documentation&lt;/a>.
+CVMFS can be &lt;a href="./im">automatically configured in your VMs with Infrastructure Manager&lt;/a> as
+well.&lt;/p>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The CernVM-File System (CVMFS) provides a scalable, reliable and low-maintenance
 software distribution service. It was developed to assist High Energy Physics
@@ -331,8 +333,10 @@ and verifies data integrity by cryptographic hashes. CVMFS is actively used by
 small and large collaborations. In many cases, it replaces package managers and
 shared software areas on cluster file systems as means to distribute the
 software used to process experiment data.&lt;/p>
+&lt;h3 id="repositories">Repositories&lt;/h3>
 &lt;p>The current list of EGI repositories is as follows
 (disclaimer, some of them are inactive, but we keep them for archival purposes):&lt;/p>
+&lt;!-- cSpell:disable -->
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -487,6 +491,7 @@ software used to process experiment data.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;!-- cSpell:enable -->
 &lt;p>The list of EGI repositories can also be found online via
 &lt;a href="http://cvmfs-release01.gridpp.rl.ac.uk/cvmfsmonitor/">the CVMFS monitor&lt;/a>.&lt;/p>
 &lt;p>This documentation is for the VO content managers.&lt;/p>
@@ -549,4 +554,4 @@ directory on your building host. One option is to use an actual CVMFS client, so
 you have ready all the existing content being already distributed by CVMFS. By
 default, the &lt;code>/cvmfs/&lt;/code> directory on a CVMFS client host is read-only, but that
 can be solved using an
-&lt;a href="https://cvmfs.readthedocs.io/en/latest/cpt-enter.html">ephemeral writable container&lt;/a>.&lt;/p></description></item></channel></rss>
+&lt;a href="https://cvmfs.readthedocs.io/en/stable/cpt-enter/">ephemeral writeable container&lt;/a>.&lt;/p></description></item></channel></rss>
