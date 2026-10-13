@@ -550,58 +550,7 @@ reconfiguration request through the
 &lt;/div>
 &lt;h3 id="additional-vos-1">Additional VOs&lt;/h3>
 &lt;p>Once &lt;code>ops&lt;/code> VO is working, you can include any further VOs you want to support as
-documented in the &lt;a href="../vo-config">VO Configuration guide&lt;/a>.&lt;/p></description></item><item><title>Providers: Accounting</title><link>/providers/cloud-compute/openstack/accounting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/accounting/</guid><description>
-&lt;p>There are two different processes handling the accounting integration:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/IFCA-Advanced-Computing/caso/">cASO&lt;/a>, which connects
-to the OpenStack services to get the usage information, and,&lt;/li>
-&lt;li>&lt;a href="https://github.com/apel/ssm">ssmsend&lt;/a>, which sends that usage information
-to the central EGI accounting repository.&lt;/li>
-&lt;/ul>
-&lt;h3 id="installation">Installation&lt;/h3>
-&lt;p>You can get cASO from the
-&lt;a href="https://github.com/IFCA-Advanced-Computing/caso/releases">releases page&lt;/a>,
-alternatively a container image is available in the
-&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/pkgs/container/fedcloud-caso">fedcloud-caso&lt;/a>
-repository.&lt;/p>
-&lt;p>SSM is also available in the &lt;a href="https://github.com/apel/ssm/releases">releases&lt;/a>
-or as a container in the &lt;a href="https://github.com/apel/ssm/releases">ssm&lt;/a> repository&lt;/p>
-&lt;h3 id="configuration">Configuration&lt;/h3>
-&lt;p>&lt;a href="https://caso.readthedocs.org/en/latest/configuration.html">cASO configuration&lt;/a>
-is stored at &lt;code>/etc/caso/caso.conf&lt;/code>. Most default values should be OK, but you
-must set:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;code>site_name&lt;/code> (line 12), with the name of your site as defined in GOCDB.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>credentials to access the OpenStack services to extract accounting data.
-Check
-&lt;a href="https://caso.readthedocs.org/en/latest/configuration.html#openstack-configuration">cASO documentation&lt;/a>
-for the expected permissions of the user configured here.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>cASO will discover the projects from OpenStack using tags and properties.
-You can set specific tags and properties as needed as described in the
-&lt;a href="https://caso.readthedocs.io/en/stable/configuration.html#selecting-projects-to-get-usages">Documentation&lt;/a>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>cASO will write records to &lt;code>/var/spool/apel&lt;/code> from where ssmsend will take them.&lt;/p>
-&lt;p>SSM configuration is available at &lt;code>/etc/apel&lt;/code>. Set the destination to
-&lt;code>eu-egi-cloud-accounting&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">[messaging]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># If using AMS this is the project that SSM will connect to. Ignored for STOMP.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ams_project: accounting&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Queue to which SSM will send messages&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">destination: eu-egi-cloud-accounting&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Other default values available in the configuration file should be ok
-for your site. SSM expects &lt;code>/etc/grid-security&lt;/code> to contain the host certificate
-(&lt;code>/etc/grid-security/hostcert.pem&lt;/code>), private key
-(&lt;code>/etc/grid-security/hostkey.pem&lt;/code>) and CAs (&lt;code>/etc/grid-security/certificates&lt;/code>).&lt;/p>
-&lt;h4 id="running-the-services">Running the services&lt;/h4>
-&lt;p>Both caso and ssmsend should run periodically, e.g. with a cron job, at least
-once a day. We recommend running them every 4 hours.&lt;/p></description></item><item><title>Providers: Catch-all components</title><link>/providers/cloud-compute/openstack/catch-all/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/catch-all/</guid><description>
+documented in the &lt;a href="../vo-config">VO Configuration guide&lt;/a>.&lt;/p></description></item><item><title>Providers: Catch-all components</title><link>/providers/cloud-compute/openstack/catch-all/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/catch-all/</guid><description>
 &lt;p>EGI manages the operations of two components for the sites so you don&amp;rsquo;t need
 to do it:&lt;/p>
 &lt;ul>
@@ -623,10 +572,14 @@ transferring information
 &lt;p>the &lt;code>image-sync&lt;/code> makes sure that images available in &lt;a href="https://registry.egi.eu">EGI&amp;rsquo;s Artefact Registry&lt;/a>
 are available for your users in glance.&lt;/p>
 &lt;/li>
+&lt;li>
+&lt;p>&lt;code>accounting&lt;/code> extracts usage records from your OpenStack services and creates
+&lt;a href="../../../../internal/accounting/record-and-message-formats/">accounting records&lt;/a>
+that are sent to the central &lt;a href="../../../../internal/accounting">EGI accounting repository&lt;/a>.&lt;/p>
+&lt;/li>
 &lt;/ul>
-&lt;p>The deployment and configuration of these components is managed a the&lt;/p>
-&lt;!-- cspell:disable-next-line -->
-&lt;p>&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/">EGI-Federation/fedcloud-catchall-operations repository&lt;/a>.
+&lt;p>The deployment and configuration of these components is managed at the
+&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/">EGI-Federation/fedcloud-catchall-operations repository&lt;/a>.
 Every provider should have a single &lt;code>yaml&lt;/code> file that describes its configuration
 as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;your endpoint as declared in GOCDB&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -646,11 +599,17 @@ as follows:&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">auth&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">project_id&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;local OpenStack project identifier for second VO&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;name of another vo&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Accounting is configured on a per-site basis in the main
+&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/blob/main/deploy/playbook.yaml">deployment playbook file&lt;/a>
+with the &lt;code>accounting_sites&lt;/code> variable:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">accounting_sites&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">&amp;lt;name of site&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can create
 &lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/pulls">pull requests&lt;/a>
 for adding and maintaining your site configuration to the catch-all operations. As
 soon as the pull request is merged, a new deployment will be triggered and your site
-should start publishing information and syncing images.&lt;/p>
+should start publishing information, syncing images and generating accounting.&lt;/p>
 &lt;p>The catch-all operations uses a service account user, this user is member of the &lt;code>ops&lt;/code> VO
 and should be enabled to manage VM images in glance.&lt;/p>
 &lt;h2 id="opting-out-of-catch-all-operations">Opting out of catch-all operations&lt;/h2>
@@ -662,8 +621,13 @@ removing the &lt;code>images&lt;/code> configuration. In that case, monitoring p
 on the images being present at the site.&lt;/p>
 &lt;p>Individual components are available in GitHub if you want to operate them by your own:&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/cloud-info-provider">&lt;code>cloud-info-provider&lt;/code>&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/EGI-Federation/atrope">&lt;code>atrope&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/cloud-info-provider">&lt;code>cloud-info-provider&lt;/code>&lt;/a>
+for generating site information;&lt;/li>
+&lt;li>&lt;a href="https://github.com/EGI-Federation/atrope">&lt;code>atrope&lt;/code>&lt;/a> for image synchronisation;&lt;/li>
+&lt;li>&lt;a href="https://github.com/IFCA-Advanced-Computing/caso/">cASO&lt;/a> for generating usage
+records; and&lt;/li>
+&lt;li>&lt;a href="https://github.com/apel/ssm">ssmsend&lt;/a>, for sending usage information to the
+central EGI accounting repository.&lt;/li>
 &lt;/ul></description></item><item><title>Providers: GPU flavours</title><link>/providers/cloud-compute/openstack/gpu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/gpu/</guid><description>
 &lt;h2 id="setting-up-gpu-flavours">Setting up GPU flavours&lt;/h2>
 &lt;p>Support for GPU can be added to flavours using the
@@ -868,28 +832,11 @@ for the VOs are listed in
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>$ openstack mapping &lt;span style="color:#204a87">set&lt;/span> --rules mapping.json egi-mapping
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can include as many mappings as needed in the json file. Users will be
 members of all the matching groups.&lt;/p>
-&lt;h2 id="accounting">Accounting&lt;/h2>
-&lt;p>Add the project supporting the VO to cASO:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>In the &lt;code>projects&lt;/code> field of &lt;code>/etc/caso/caso.conf&lt;/code> :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ini" data-lang="ini">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">projects&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">vo_project1, vo_project2, &amp;lt;your_new_vo_project&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>and as a new mapping in &lt;code>/etc/caso/voms.json&lt;/code> :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;&amp;lt;your new vo&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;projects&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&amp;lt;your new vo project&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;p>Be sure to include the user running cASO at least as &lt;code>reader&lt;/code> of the project if
-it does not have admin privileges:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>openstack role add --user &amp;lt;your caso user&amp;gt; --project &amp;lt;your new vo project&amp;gt; reader
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="information-system--vm-image-management">Information system / VM Image management&lt;/h2>
-&lt;p>If you are correctly setting the &lt;code>egi.VO&lt;/code> property to your projects, the
-configuration will be automatically retrieved by the catch-all components.&lt;/p></description></item><item><title>Providers: Useful Resources</title><link>/providers/cloud-compute/openstack/useful-resources/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/useful-resources/</guid><description>
+&lt;h2 id="catch-all-components">Catch-all components&lt;/h2>
+&lt;p>Update your &lt;code>site.yaml&lt;/code> at the
+&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/">EGI-Federation/fedcloud-catchall-operations repository&lt;/a>
+to include the new VO by creating a PR. Once merged the new VO will be visible
+for all components.&lt;/p></description></item><item><title>Providers: Useful Resources</title><link>/providers/cloud-compute/openstack/useful-resources/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/providers/cloud-compute/openstack/useful-resources/</guid><description>
 &lt;p>In this page we gather a list of useful resources for OpenStack administrators.&lt;/p>
 &lt;h2 id="openstack-idle-vm-detector-osidle">OpenStack IDLE VM Detector (osidle)&lt;/h2>
 &lt;p>Our partners from &lt;a href="https://grycap.upv.es/">GRyCAP UPV&lt;/a> have created a tool

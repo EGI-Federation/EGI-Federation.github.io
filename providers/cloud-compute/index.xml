@@ -115,26 +115,12 @@ from outside the site:&lt;/p>
 OpenStack services APIs:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="./aai">Authentication and authorization of EGI users&lt;/a> into your system is
-performed by configuring the native OpenID Connect support of Keystone&lt;/li>
-&lt;li>&lt;strong>cASO&lt;/strong> collects &lt;a href="./accounting">accounting&lt;/a> data from OpenStack and uses
-&lt;strong>SSM&lt;/strong> to send the records to the central accounting database on
-the &lt;a href="../../../internal/accounting">EGI Accounting service&lt;/a>
-(&lt;a href="https://apel.github.io/">APEL&lt;/a>). cASO and SSM are operated by the site.&lt;/li>
-&lt;li>EGI runs &lt;a href="./catch-all">catch-all components&lt;/a> &amp;ndash; cloud-info-provider and
-cloudkeeper &amp;ndash; information discovery and VM image synchronisation.&lt;/li>
+performed by configuring the native OpenID Connect support of Keystone.&lt;/li>
+&lt;li>EGI runs &lt;a href="./catch-all">catch-all components&lt;/a> &amp;ndash; cloud-info-provider, image-sync
+and cASO/SSM &amp;ndash; information discovery, VM image synchronisation and
+accounting.&lt;/li>
 &lt;/ul>
 &lt;p>&lt;img src="openstacksite.png" alt="image">&lt;/p>
-&lt;h2 id="installation-options">Installation options&lt;/h2>
-&lt;p>cASO and SSM releases can be be obtained from GitHub:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/IFCA-Advanced-Computing/caso/releases">cASO&lt;/a>. cASO
-containers are available in the
-&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations/pkgs/container/fedcloud-caso">fedcloud-caso&lt;/a>
-package from
-&lt;!-- cspell:disable-next-line -->
-&lt;a href="https://github.com/EGI-Federation/fedcloud-catchall-operations">fedcloud-catchall-operations&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/apel/ssm/releases">SSM&lt;/a>.&lt;/li>
-&lt;/ul>
 &lt;h2 id="open-ports">Open Ports&lt;/h2>
 &lt;h3 id="inbound">Inbound&lt;/h3>
 &lt;p>The following &lt;strong>services&lt;/strong> must be accessible to allow access to an
